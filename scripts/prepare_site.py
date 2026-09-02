@@ -10,7 +10,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 PRESENTATIONS = ROOT / "presentations"
-SLIDES_OUT = DOCS / "slides"
+SLIDES_OUT = DOCS / "presentations"
+LEGACY_SLIDES_OUT = DOCS / "slides"
 TEMPLATE_OUT = DOCS / "template"
 ACCESS_JS = DOCS / "javascripts" / "access-gate.js"
 
@@ -38,7 +39,7 @@ def inject_gate(html: str, token: str) -> str:
 
 
 def prepare() -> list[tuple[str, str]]:
-    for output in (SLIDES_OUT, TEMPLATE_OUT):
+    for output in (SLIDES_OUT, LEGACY_SLIDES_OUT, TEMPLATE_OUT):
         output.mkdir(parents=True, exist_ok=True)
         for child in output.iterdir():
             if child.is_dir():
@@ -94,7 +95,7 @@ def write_home(entries: list[tuple[str, str]]) -> None:
 def print_links(entries: list[tuple[str, str]]) -> None:
     print("Tokenized presentation links:")
     for name, token in entries:
-        print(f"- https://ricardo-cunha.github.io/iuta-slides/slides/{name}/index.html?access={token}")
+        print(f"- https://ricardo-cunha.github.io/iuta-slides/presentations/{name}/index.html?access={token}")
 
 
 if __name__ == "__main__":
