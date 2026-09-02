@@ -1,0 +1,11 @@
+/* Minimal styling for the MkDocs landing page. */
+:root {
+  --md-primary-fg-color: #0a4d8c;
+  --md-accent-fg-color: #a24e3c;
+}
+.md-header {
+  background: #0a4d8c;
+}
+.md-content a {
+  font-weight: 600;
+}
