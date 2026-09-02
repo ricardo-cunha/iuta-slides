@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import hashlib
 import os
 import shutil
@@ -10,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 PRESENTATIONS = ROOT / "presentations"
 SLIDES_OUT = DOCS / "slides"
+TEMPLATE_OUT = DOCS / "template"
 ACCESS_JS = DOCS / "javascripts" / "access-gate.js"
 
 # This is only a link token, not encryption. Set a private value for deployment.
@@ -36,12 +38,16 @@ def inject_gate(html: str, token: str) -> str:
 
 
 def prepare() -> list[tuple[str, str]]:
-    SLIDES_OUT.mkdir(parents=True, exist_ok=True)
-    for child in SLIDES_OUT.iterdir():
-        if child.is_dir():
-            shutil.rmtree(child, onerror=remove_readonly)
-        else:
-            child.unlink()
+    for output in (SLIDES_OUT, TEMPLATE_OUT):
+        output.mkdir(parents=True, exist_ok=True)
+        for child in output.iterdir():
+            if child.is_dir():
+                shutil.rmtree(child, onerror=remove_readonly)
+            else:
+                child.unlink()
+
+    template_source = ROOT / "template"
+    shutil.copytree(template_source, TEMPLATE_OUT, dirs_exist_ok=True)
 
     entries: list[tuple[str, str]] = []
     for source in sorted(PRESENTATIONS.iterdir()):
@@ -65,33 +71,39 @@ def write_home(entries: list[tuple[str, str]]) -> None:
         "",
         "Presentations for the IUTA seminar and related StreamFind work.",
         "",
-        "> Slide links contain an access token. Treat each link as confidential: anyone who has a valid link can open that presentation.",
+        "## Template",
+        "",
+        "[Open the Reveal.js IUTA template](template/index.html)",
         "",
         "## Available presentations",
         "",
+        "Presentations are intentionally unlisted. Use a tokenized link supplied by the owner to open a deck.",
+        "",
+        "## Repository",
+        "",
+        "[View the source repository](https://github.com/ricardo-cunha/iuta_slides)",
+        "",
+        "## Access model",
+        "",
+        "Presentation links use light, link-based access control. Anyone with a valid link can open that presentation, so these links are not a substitute for server-side authentication.",
+        "",
     ]
-    for name, token in entries:
-        label = name.replace("_", " ")
-        lines.append(f"- [{label}](slides/{name}/index.html?access={token})")
-    lines.extend(
-        [
-            "",
-            "## Repository",
-            "",
-            "[View the source repository](https://github.com/ricardo-cunha/iuta_slides)",
-            "",
-            "## Access model",
-            "",
-            "These links provide light, link-based access control for a static site. They are not a substitute for server-side authentication and should not protect confidential material.",
-            "",
-        ]
-    )
     (DOCS / "index.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def print_links(entries: list[tuple[str, str]]) -> None:
+    print("Tokenized presentation links:")
+    for name, token in entries:
+        print(f"- https://ricardo-cunha.github.io/iuta_slides/slides/{name}/index.html?access={token}")
+
+
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--show-links", action="store_true")
+    args = parser.parse_args()
+
     entries = prepare()
     write_home(entries)
-    print(f"Prepared {len(entries)} presentation(s) in {SLIDES_OUT}")
-    for name, _ in entries:
-        print(f"- {name}")
+    print(f"Prepared {len(entries)} presentation(s) and the public template")
+    if args.show_links:
+        print_links(entries)
