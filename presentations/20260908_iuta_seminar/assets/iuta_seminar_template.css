@@ -6,7 +6,7 @@
    --green: #009f45;
    --text: #6f6f6f;
    --side-gap: 52px;
-   --top-rule: 78px;
+   --top-rule: 88px;
    --bottom-rule: 60px;
    --footer-bottom: 24px;
    --title-bg: url("title-background.jpg");
@@ -281,9 +281,9 @@ code {
    text-align: center;
 }
 
-   6. Title and thank-you slides
-   Same branded treatment as slides.html.
-   ============================================================================ */
+/* 6. Title and thank-you slides
+Same branded treatment as slides.html.
+============================================================================ */
 .reveal .slides #title-slide {
    background-color: transparent;
    border: 0 !important;
