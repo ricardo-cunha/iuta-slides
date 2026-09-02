@@ -81,7 +81,7 @@ def write_home(entries: list[tuple[str, str]]) -> None:
         "",
         "## Repository",
         "",
-        "[View the source repository](https://github.com/ricardo-cunha/iuta_slides)",
+        "[View the source repository](https://github.com/ricardo-cunha/iuta-slides)",
         "",
         "## Access model",
         "",
@@ -94,7 +94,7 @@ def write_home(entries: list[tuple[str, str]]) -> None:
 def print_links(entries: list[tuple[str, str]]) -> None:
     print("Tokenized presentation links:")
     for name, token in entries:
-        print(f"- https://ricardo-cunha.github.io/iuta_slides/slides/{name}/index.html?access={token}")
+        print(f"- https://ricardo-cunha.github.io/iuta-slides/slides/{name}/index.html?access={token}")
 
 
 if __name__ == "__main__":

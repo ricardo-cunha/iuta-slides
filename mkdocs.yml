@@ -1,8 +1,8 @@
 site_name: IUTA Slides
 site_description: Presentations and seminar slide decks
-site_url: https://ricardo-cunha.github.io/iuta_slides/
-repo_url: https://github.com/ricardo-cunha/iuta_slides
-repo_name: ricardo-cunha/iuta_slides
+site_url: https://ricardo-cunha.github.io/iuta-slides/
+repo_url: https://github.com/ricardo-cunha/iuta-slides
+repo_name: ricardo-cunha/iuta-slides
 use_directory_urls: false
 strict: true
 theme:
