@@ -18,12 +18,12 @@
   <meta name="presentation-project-link" content="project.example.org">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
-  <link rel="stylesheet" href="./assets/vendor/reveal.js/reset.css">
-  <link rel="stylesheet" href="./assets/vendor/reveal.js/reveal.css">
-  <link rel="stylesheet" href="./assets/vendor/reveal.js/white.css">
-  <link rel="stylesheet" href="./assets/vendor/highlight.js/atom-one-dark.min.css">
-  <link rel="stylesheet" href="./assets/template.css">
-  <link rel="stylesheet" href="./assets/layouts.css">
+  <link rel="stylesheet" href="../assets/template/vendor/reveal.js/reset.css">
+  <link rel="stylesheet" href="../assets/template/vendor/reveal.js/reveal.css">
+  <link rel="stylesheet" href="../assets/template/vendor/reveal.js/white.css">
+  <link rel="stylesheet" href="../assets/template/vendor/highlight.js/atom-one-dark.min.css">
+  <link rel="stylesheet" href="../assets/template/template.css">
+  <link rel="stylesheet" href="../assets/template/layouts.css">
 </head>
 
 <body>
@@ -31,7 +31,7 @@
     <div class="slides">
       <!-- Metadata is defined at the top of this file. Keep the structure. -->
       <section id="title-slide" class="quarto-title-block">
-        <img class="banner-background" src="./assets/title-background.jpg" alt="">
+        <img class="banner-background" src="../assets/template/title-background.jpg" alt="">
         <h1 class="title"></h1>
         <div class="title-date"></div>
         <div class="title-event"></div>
@@ -49,7 +49,7 @@
       -->
 
       <!-- Basic text slide -->
-      <section class="slide" id="basic-slide">
+      <section class="slide basic-slide">
         <h2>Basic text slide</h2>
         <div class="slide-body">
           <p>Use this layout for an introduction, summary, or short explanation.</p>
@@ -242,7 +242,7 @@ for sample in samples:
       <section class="slide" id="full-image-slide">
         <h2>Full-slide image</h2>
         <div class="slide-body">
-          <img class="full-slide-image" src="./assets/title-background.jpg" alt="Example full-slide background image">
+          <img class="full-slide-image" src="../assets/template/title-background.jpg" alt="Example full-slide background image">
         </div>
       </section>
 
@@ -255,7 +255,7 @@ for sample in samples:
               <h3>Text beside an image</h3>
               <p>Use this layout when the figure is the primary message and the text provides context.</p>
             </div>
-            <img src="./assets/title-background.jpg" alt="Example image occupying two-thirds of the slide body">
+            <img src="../assets/template/title-background.jpg" alt="Example image occupying two-thirds of the slide body">
           </div>
         </div>
       </section>
@@ -269,20 +269,20 @@ for sample in samples:
               <h3>Equal visual weight</h3>
               <p>Use a balanced split when the explanation and the image are equally important.</p>
             </div>
-            <img src="./assets/title-background.jpg" alt="Example image occupying half of the slide body">
+            <img src="../assets/template/title-background.jpg" alt="Example image occupying half of the slide body">
           </div>
         </div>
       </section>
 
       <!-- Text/image example: text at the top and a centered image below. -->
-      <section class="slide" id="text-image-stacked-slide">
+      <section class="slide text-image-stacked-slide">
         <h2>Text above a centered image</h2>
         <div class="slide-body text-image-stacked">
           <div class="layout-text">
             <h3>Start with the message</h3>
             <p>Keep the explanation directly below the header, then let the image occupy the remaining space.</p>
           </div>
-          <img src="./assets/title-background.jpg" alt="Example centered image below explanatory text">
+          <img src="../assets/template/title-background.jpg" alt="Example centered image below explanatory text">
         </div>
       </section>
 
@@ -358,11 +358,11 @@ for sample in samples:
 
       <!-- Keep this as the final slide. -->
       <section class="slide thank-you-slide">
-        <img class="banner-background" src="./assets/title-background.jpg" alt="">
+        <img class="banner-background" src="../assets/template/title-background.jpg" alt="">
         <h2></h2>
         <p></p>
         <div class="thank-you-visit"><span></span><br><strong></strong></div>
-        <div class="thank-you-qr-placeholder" aria-label="QR code placeholder">QR</div>
+        <div class="thank-you-qr" aria-label="QR code placeholder">QR</div>
         <div class="thank-you-author"><strong></strong><span></span></div>
         <div class="title-logo iuta" aria-hidden="true"></div>
         <div class="title-logo ude" aria-hidden="true"></div>
@@ -377,7 +377,7 @@ for sample in samples:
   <!-- Change the logo source and alt text here when using a different logo. -->
   <template id="slide-chrome-template">
     <div class="slide-chrome">
-      <img class="slide-logo" src="./assets/iuta-logo.png" alt="IUTA">
+      <img class="slide-logo" src="../assets/template/iuta-logo.png" alt="IUTA">
       <div class="slide-footer">
         <span class="metadata-left"></span>
         <span class="center metadata-footer"></span>
@@ -386,16 +386,16 @@ for sample in samples:
     </div>
   </template>
 
-  <script src="./assets/vendor/reveal.js/reveal.js"></script>
-  <script src="./assets/vendor/highlight.js/highlight.min.js"></script>
-  <script src="./assets/vendor/highlight.js/languages/javascript.min.js"></script>
-  <script src="./assets/vendor/highlight.js/languages/r.min.js"></script>
-  <script src="./assets/vendor/highlight.js/languages/python.min.js"></script>
-  <script src="./assets/vendor/highlight.js/languages/cpp.min.js"></script>
-  <script src="./assets/vendor/highlight.js/languages/shell.min.js"></script>
-  <script src="./assets/vendor/highlight.js/languages/bash.min.js"></script>
-  <script src="./assets/vendor/highlight.js/languages/rust.min.js"></script>
-  <script src="./assets/vendor/highlight.js/languages/json.min.js"></script>
+  <script src="../assets/template/vendor/reveal.js/reveal.js"></script>
+  <script src="../assets/template/vendor/highlight.js/highlight.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/javascript.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/r.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/python.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/cpp.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/shell.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/bash.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/rust.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/json.min.js"></script>
   <script>
     hljs.registerLanguage('ttl', function (hljs) {
       return {

@@ -1,9 +1,9 @@
 /* ============================================================================
    MARK: 1. Basic text layout
    ============================================================================ */
-/* Use this ID on a slide that contains a short paragraph, list, and callout.
-   The rule moves the basic text body closer to the top blue rule. */
-#basic-slide > .slide-body {
+/* Use class="basic-slide" on a slide that contains a short paragraph, list,
+   and callout. The rule moves the basic text body closer to the top blue rule. */
+.basic-slide > .slide-body {
    gap: 0;
    justify-content: flex-start;
    padding-top: 0;
@@ -18,9 +18,107 @@
 .columns {
    --column-count: 2;
    display: grid;
-   gap: 1.3rem;
+   gap: 2.5rem;
    grid-template-columns: repeat(var(--column-count), 1fr);
-   margin-top: 0;
+}
+
+/* Columns grid fills the remaining slide-body space. */
+.slide-body > .columns {
+   flex: 1 1 0;
+   min-height: 0;
+   justify-content: flex-start;
+}
+
+/* Each column is a flex container so its children share the available space.
+   container-type lets children use cqw/cqh units that scale with column size. */
+.columns > div {
+   container-type: inline-size;
+   display: flex;
+   flex-direction: column;
+   gap: 0.6em;
+   min-height: 0;
+   overflow: hidden;
+}
+
+/* Headings inside columns scale with column width. */
+.columns > div > h3 {
+   flex: 0 0 auto;
+   font-size: clamp(0.8em, 3.2cqw, 1.2em);
+   margin: 0;
+}
+
+/* Images fill the column width and size proportionally. */
+.columns > div > img {
+   display: block;
+   flex: 0 1 auto;
+   height: auto;
+   object-fit: contain;
+   width: 100%;
+}
+
+/* Strong labels scale with column width. */
+.columns > div > strong {
+   flex: 0 0 auto;
+   font-size: clamp(0.7em, 3.2cqw, 1.15em);
+}
+
+/* Body text fills remaining space; font scales with column width so it always
+   fits without clipping. cqw = 1 % of the column inline-size. */
+.columns > div > span {
+   flex: 1 1 auto;
+   font-size: clamp(0.55em, 2.8cqw, 1em);
+   line-height: 1.4;
+   min-height: 0;
+   word-break: break-word;
+}
+
+/* Paragraphs and lists inside columns also scale and fill. */
+.columns > div > p,
+.columns > div > ul {
+   flex: 0 1 auto;
+   font-size: clamp(0.55em, 2.8cqw, 1em);
+   line-height: 1.4;
+   min-height: 0;
+   margin: 0;
+}
+
+/* Code blocks inside columns shrink to fit the available space. */
+.columns > div > pre {
+   flex: 1 1 0;
+   font-size: clamp(0.45em, 2.2cqw, 0.8em);
+   min-height: 0;
+   min-width: 0;
+   max-width: 100%;
+   overflow: hidden;
+}
+
+/* Constrain code-block overflow when placed inside columns. */
+.columns > div > pre.code-block {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   max-height: none;
+   max-width: 100%;
+   overflow: hidden;
+   width: 100%;
+}
+
+.columns > div > pre.code-block code {
+   display: block;
+   max-width: 100%;
+   overflow: hidden;
+   white-space: pre-wrap;
+   overflow-wrap: anywhere;
+   word-break: break-word;
+}
+
+/* Use class="slide-citation" for a small footnote or reference line below
+   the main slide content. Font scales with the slide width via vw. */
+.slide-body > .slide-citation {
+   flex: 0 0 auto;
+   font-size: clamp(0.5em, 0.6vw, 0.85em);
+   line-height: 1.4;
+   margin-top: auto;
 }
 
 /* ============================================================================
@@ -219,22 +317,21 @@
    MARK: 10. Full-slide image layout
    ============================================================================
    Use class="full-slide-image" for one image that should occupy as much of
-   the slide body as possible while preserving its aspect ratio. The 20px
-   inset leaves a safe margin on every side. */
+   the slide body as possible while preserving its aspect ratio. */
 .full-image-slide > .slide-body {
    padding: 0;
 }
 
-.full-slide-image {
-   bottom: 20px;
-   height: calc(100% - 40px);
-   left: 20px;
+.reveal .full-slide-image {
+   height: 100%;
+   left: 50%;
+   margin: 0;
+   max-height: 100%;
+   max-width: 100%;
    object-fit: contain;
    position: absolute;
-   right: 20px;
-   top: 20px;
-   transform: translateY(-16px);
-   width: calc(100% - 40px);
+   top: 0;
+   transform: translateX(-50%);
 }
 
 /* ============================================================================
@@ -275,35 +372,34 @@
 
 /* Use this variant when the text should start below the header and the image
    should occupy the remaining space, centered at the bottom. */
-#text-image-stacked-slide > .slide-body {
+.reveal .slides section.slide.text-image-stacked-slide > .slide-body.text-image-stacked {
    align-items: stretch;
    box-sizing: border-box;
-   display: grid;
+   display: flex;
+   flex-direction: column;
    gap: 0;
-   grid-template-rows: auto minmax(0, 1fr);
    min-height: 0;
-   padding-bottom: 20px;
    padding-top: 0;
+   justify-content: flex-start;
 }
 
-#text-image-stacked-slide > .slide-body > .layout-text {
-   align-self: start;
-   margin: 0 0 0 -2em;
+.reveal .slides section.slide.text-image-stacked-slide > .slide-body.text-image-stacked > .layout-text {
+   flex: 0 0 auto;
+   margin: 0;
    min-height: 0;
    padding: 0;
    text-align: left;
-   width: calc(100% + 2em);
+   width: 100%;
 }
 
-#text-image-stacked-slide > .slide-body > .layout-text > :first-child {
+.reveal .slides section.slide.text-image-stacked-slide > .slide-body.text-image-stacked > .layout-text > :first-child {
    margin-top: 0;
 }
 
-#text-image-stacked-slide > .slide-body > img {
-   align-self: center;
+.reveal .slides section.slide.text-image-stacked-slide > .slide-body.text-image-stacked > img {
+   flex: 1 1 0;
    display: block;
    height: auto;
-   justify-self: center;
    max-height: 100%;
    max-width: 100%;
    min-height: 0;

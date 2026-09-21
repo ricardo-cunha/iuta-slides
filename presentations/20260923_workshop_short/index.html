@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!--
+    START HERE: set the presentation metadata before editing the slides below.
+    These values populate the title slide, footer, document title, and final slide.
+  -->
+  <meta name="author" content="Ricardo Cunha">
+  <meta name="author-email" content="cunha@iuta.de">
+  <meta name="presentation-title" content="Human- and AI-Accessible Analytical Data Processing">
+  <meta name="presentation-date" content="2026-09-23">
+  <meta name="presentation-event" content="Workshop µAutOzon">
+  <meta name="presentation-affiliation"
+    content="Institut fur Umwelt &amp; Energie, Technik &amp; Analytik e. V. (IUTA)">
+  <meta name="presentation-thank-you" content="Thank you for your attention">
+  <meta name="presentation-thank-you-subtitle" content="Visit the project in">
+  <meta name="presentation-project-link" content="streamfind.odea-project.org">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="../assets/template/vendor/reveal.js/reset.css">
+  <link rel="stylesheet" href="../assets/template/vendor/reveal.js/reveal.css">
+  <link rel="stylesheet" href="../assets/template/vendor/reveal.js/white.css">
+  <link rel="stylesheet" href="../assets/template/vendor/highlight.js/atom-one-dark.min.css">
+  <link rel="stylesheet" href="../assets/template/template.css">
+  <link rel="stylesheet" href="../assets/template/layouts.css">
+
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!-- Metadata is defined at the top of this file. Keep the structure. -->
+      <section id="title-slide" class="quarto-title-block">
+        <img class="banner-background" src="../assets/template/title-background.jpg" alt="">
+        <h1 class="title"></h1>
+        <div class="title-date"></div>
+        <div class="title-event"></div>
+        <div class="title-speakers"></div>
+        <div class="title-affiliations"></div>
+        <div class="title-logo iuta" aria-hidden="true"></div>
+        <div class="title-logo ude" aria-hidden="true"></div>
+        <div class="title-logo jrf" aria-hidden="true"></div>
+      </section>
+
+      <!--
+        MARK: START SLIDES HERE.
+        Edit, duplicate, or remove the example slides below. Keep the title slide
+        first and the thank-you slide last.
+      -->
+
+      <!-- MARK: Back in 2022 -->
+      <section class="slide" id="back-in-2022">
+        <h2>Back in 2022...</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/streamfind_motivation_lab.png"
+            alt="Back in 2022 image">
+        </div>
+      </section>
+
+      <!-- MARK: StreamFind project -->
+      <section class="slide" id="streamfind-logo-slide">
+        <h2>BMFTR funded streamFind: 01.09.2022 - 31.08.2025</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/streamfind_project.png"
+            alt="StreamFind project image">
+        </div>
+      </section>
+
+      <!-- MARK: The StreamFind plan -->
+      <section class="slide" id="streamfind-logo-slide">
+        <h2>The streamfind plan</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/streamfind_plan.png" alt="StreamFind plan image">
+        </div>
+      </section>
+
+      <!-- MARK: Fast-forward to the project end -->
+      <section class="slide" id="streamfind-fast-forward-slide">
+        <h2>Fast-forward to the project end: StreamFind R package</h2>
+        <div class="slide-body">
+          <div class="columns" style="--column-count: 3;">
+            <div style="text-align: center;">
+              <img src="../assets/r_package_modular_data_model.png"
+                alt="Modular data model: interlocking data-model modules around the R logo">
+              <strong>Create, manage and run workflows</strong>
+              <span>Full project lifecycle for data processing workflows, including provenance tracking.</span>
+            </div>
+            <div style="text-align: center;">
+              <img src="../assets/r_package_analytical_workflows.png"
+                alt="Analytical workflow stages flowing into the R logo">
+              <strong>Analytical workflows</strong>
+              <span>Validated, reusable workflows for mass spectrometry, spectroscopy, chromatography, and
+                statistics.</span>
+            </div>
+            <div style="text-align: center;">
+              <img src="../assets/r_package_reproducible_environment.png"
+                alt="A sealed, version-pinned environment with reproducible state and dependencies">
+              <strong>Expandable and interactive reporting</strong>
+              <span>Modular expansion of analytical processing methods and flexible interactive HTML reports.</span>
+            </div>
+          </div>
+          <p class="slide-citation">
+            Thissen, J., Klassen, M.D., Fischer, B., Cunha, J.R. et al. StreamFind: data processing workflows for
+            qualification and
+            quantification of biopharmaceutical drug products analyzed by size exclusion chromatography coupled to
+            capillary-enhanced Raman spectroscopy. <em>Anal Bioanal Chem</em> 417, 4469–4480 (2025).
+            <a href="https://doi.org/10.1007/s00216-025-05964-3">https://doi.org/10.1007/s00216-025-05964-3</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- MARK: R scripting and the Shiny GUI -->
+      <section class="slide" id="r-script-gui-slide">
+        <h2>How to use StreamFind?</h2>
+        <div class="slide-body">
+          <div class="columns">
+            <div>
+              <h3>R scripting interface</h3>
+              <pre class="code-block language-r"><code>library(StreamFind)
+
+project &lt;- MassSpecEngine$new(
+  metadata = list(
+    name = "Example project",
+    author = "Ricardo Cunha"
+  )
+)
+
+workflow &lt;- Workflow(list(
+  Method_NonTargetAnalysis_FindFeatures(),
+  Method_NonTargetAnalysis_LoadFeaturesMS1(),
+  Method_NonTargetAnalysis_LoadFeaturesMS2()
+))
+
+project$Workflow &lt;- workflow
+project$run()</code></pre>
+            </div>
+            <div>
+              <h3>R Shiny GUI</h3>
+              <img src="../assets/shiny_gui_screenshot.jpeg" alt="StreamFind Shiny application interface"
+                style="width: 100%; height: auto;">
+              <p><strong>Same project model through a guided interface:</strong></p>
+              <ul>
+                <li>Configure metadata and working directory</li>
+                <li>Load analyses; assign replicate or blank groups</li>
+                <li>Assemble, validate, and run workflows</li>
+                <li>Inspect results, reports, and the audit trail</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: StreamFind friction -->
+      <section class="slide" id="streamfind-friction">
+        <h2>However, StreamFind is still not accessible to everyone</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/r_package_friction_summary.png"
+            alt="StreamFind friction image">
+        </div>
+      </section>
+
+      <!-- MARK: CogniFlow project -->
+      <section class="slide" id="cogniflow">
+        <h2>New project: CogniFlow</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/cogniflow_overview_loop.webp"
+            alt="CogniFlow overview image">
+        </div>
+      </section>
+
+      <!-- MARK: Can AI manage your analytical data? -->
+      <section class="slide text-image-stacked-slide" id="anthropic-slide">
+        <h2>Can AI manage your analytical data?</h2>
+        <div class="slide-body text-image-stacked">
+          <div class="layout-text">
+            <p>
+              Article: How Claude is accelerating protein design and analytical chemistry<br>
+              <a href="https://www.anthropic.com/research/Claude-accelerates-protein-design"
+                style="font-style: italic; font-size: 0.85em;">
+                https://www.anthropic.com/research/Claude-accelerates-protein-design
+              </a>
+            </p>
+          </div>
+          <img src="../assets/anthropic_article.png" alt="anthropic_article">
+        </div>
+      </section>
+
+      <!-- MARK: What is analytical data processing? -->
+      <style>
+        .fair-chips { display: flex; gap: .6em; margin-top: 1.2em; }
+        .fair-chip { flex: 1 1 0; min-width: 0; background: #eef4fa; border: 1px solid #c9dcee; border-radius: .5em; padding: .35em .6em; line-height: 1.2; }
+        .fair-chip strong { color: #0a4d8c; }
+        .fair-chip span { display: block; font-size: .75em; color: #4a5a6a; }
+      </style>
+      <section class="slide">
+        <h2>What is analytical data processing?</h2>
+        <div class="slide-body">
+          <div class="columns">
+            <div>
+              <p style="font-size: 1.2em;">
+                Analytical data processing should turn instrument measurements and experiment metadata into
+                <strong>validated, FAIR results</strong> — a goal that is hard to achieve consistently today.
+              </p>
+            </div>
+            <div>
+              <img class="slide-figure" src="../assets/fair_data_flow.png"
+                alt="Mass spec instrument in a lab, with data flowing from the instrument into FAIR-organized results">
+            </div>
+          </div>
+          <div class="fair-chips">
+            <span class="fair-chip"><strong>F</strong>indable<span>traceable data</span></span>
+            <span class="fair-chip"><strong>A</strong>ccessible<span>usable by others</span></span>
+            <span class="fair-chip"><strong>I</strong>nteroperable<span>standard formats</span></span>
+            <span class="fair-chip"><strong>R</strong>eusable<span>reproducible results</span></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: Why control matters for FAIR data? -->
+      <style>
+        #fair-risk-slide .fair-flow { display: flex; align-items: center; gap: .5em; margin: .8em 0 .4em; }
+        #fair-risk-slide .fair-node { background: #eef4fa; border: 1px solid #c9dcee; border-radius: .6em; padding: .5em .7em; text-align: center; min-width: 0; flex: 1 1 0; }
+        #fair-risk-slide .fair-node svg { width: 2.2em; height: 2.2em; color: #0a4d8c; }
+        #fair-risk-slide .fair-node-label { font-weight: 600; }
+        #fair-risk-slide .fair-node-sub { font-size: .8em; color: #4a5a6a; }
+        #fair-risk-slide .fair-node.agent { border-color: #e5b9b9; }
+        #fair-risk-slide .fair-node.agent.badged { animation: risk-pulse 1.6s ease-in-out infinite; }
+        @keyframes risk-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(163, 36, 36, 0); } 50% { box-shadow: 0 0 0 6px rgba(163, 36, 36, .18); } }
+        #fair-risk-slide .fair-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: .4em; margin-top: .5em; }
+        #fair-risk-slide .fair-badge { max-width: 100%; background: #fdecec; border: 1px solid #f2b8b8; color: #a32424; border-radius: .4em; padding: .25em .5em; text-align: left; font-size: .8em; line-height: 1.25; opacity: 0; transform: translateY(-.3em); transition: opacity .3s, transform .3s; }
+        #fair-risk-slide .fair-badge:last-child { flex-basis: 100%; }
+        #fair-risk-slide .fair-badge strong { display: block; }
+        #fair-risk-slide .fair-badge.show { opacity: 1; transform: none; }
+        #fair-risk-slide .fair-link { display: flex; align-items: center; flex: 1 1 0; min-width: 2em; color: #9fc0dd; transition: color .3s; }
+        #fair-risk-slide .fair-link::before { content: ""; flex: 1 1 0; height: 6px; background: currentColor; }
+        #fair-risk-slide .fair-link::after { content: ""; width: 0; height: 0; margin-left: 2px; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 12px solid currentColor; }
+        #fair-risk-slide .fair-link-bad { color: #cf7a7a; }
+        #fair-risk-slide .fair-fairbox { background: #eef4fa; border: 1px solid #c9dcee; border-radius: .6em; padding: .5em .7em; min-width: 0; flex: 0 1 auto; }
+        #fair-risk-slide .fair-fairbox .fair-chips { flex-direction: column; margin-top: .5em; gap: .4em; }
+        #fair-risk-slide .fair-fairbox .fair-chip { position: relative; transition: opacity .3s; }
+        #fair-risk-slide .fair-fairbox .fair-chip.broken { opacity: .4; }
+        #fair-risk-slide .fair-fairbox .fair-chip.broken::after { content: ""; position: absolute; left: 8%; right: 8%; top: 50%; height: 2px; background: #a32424; transform: rotate(-6deg); }
+        #fair-risk-slide .fair-flow { left: var(--side-gap); margin: 0; position: absolute; right: var(--side-gap); top: 50%; transform: translateY(-50%); }
+        #fair-risk-slide .fair-flow > .fair-node,
+        #fair-risk-slide .fair-flow > .fair-link,
+        #fair-risk-slide .fair-flow > .fair-fairbox { opacity: 0; transform: translateX(-.5em); transition: opacity .35s ease, transform .35s ease; }
+        #fair-risk-slide .fair-flow > .fair-fairbox { transform: translateX(.5em); }
+        #fair-risk-slide .fair-reveal { opacity: 1 !important; transform: none !important; }
+        #fair-risk-slide .fair-chip { opacity: 0; transform: translateY(-.3em); transition: opacity .3s ease, transform .3s ease; }
+        #fair-risk-slide .fair-chip.fair-show { opacity: 1; transform: none; }
+      </style>
+      <section class="slide" id="fair-risk-slide">
+        <h2>Why control matters for FAIR data?</h2>
+        <div class="fair-flow">
+          <div class="fair-node instrument">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M14 6h14l8 8v26a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V6z" fill="none" stroke="currentColor"
+                stroke-width="3" />
+              <path d="M21 20h8v16h-8z" fill="currentColor" opacity=".4" />
+            </svg>
+            <div class="fair-node-label">Measurement</div>
+            <div class="fair-node-sub">raw data + metadata</div>
+          </div>
+          <div class="fair-link" aria-hidden="true"></div>
+          <div class="fair-node agent">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="15" fill="none" stroke="currentColor" stroke-width="3" />
+              <circle cx="24" cy="24" r="4" fill="currentColor" />
+              <path d="M24 6v9M24 33v9M6 24h9M33 24h9" stroke="currentColor" stroke-width="3" />
+            </svg>
+            <div class="fair-node-label">Vibe agent</div>
+            <div class="fair-badges">
+              <span class="fair-badge"><strong>Uncontrolled</strong>changes beyond intent</span>
+              <span class="fair-badge"><strong>Uncertain</strong>hides errors and assumptions</span>
+              <span class="fair-badge"><strong>Limited</strong>vendor-specific formats are not directly usable</span>
+            </div>
+          </div>
+          <div class="fair-link fair-link-bad" aria-hidden="true"></div>
+          <div class="fair-fairbox">
+            <div class="fair-node-label">FAIR expectations, broken</div>
+            <div class="fair-chips fair-chips-risk">
+              <span class="fair-chip"><strong>F</strong>indable<span>traceable data</span></span>
+              <span class="fair-chip"><strong>A</strong>ccessible<span>usable by others</span></span>
+              <span class="fair-chip"><strong>I</strong>nteroperable<span>standard formats</span></span>
+              <span class="fair-chip"><strong>R</strong>eusable<span>reproducible results</span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: CogniFlow plan -->
+      <style>
+        .cogniflow-refactoring-figure { display: block; height: 78%; left: 50%; object-fit: contain; position: absolute; top: 52%; transform: translate(-50%, -50%); width: 90%; }
+        #cogniflow-plan-slide .cogniflow-sequence { height: 78%; left: 5%; position: absolute; top: 52%; transform: translateY(-50%); width: 90%; }
+        #cogniflow-plan-slide .cogniflow-sequence .cogniflow-refactoring-figure { height: 100%; left: 0; top: 0; transform: none; width: 100%; z-index: 1; }
+        #cogniflow-plan-slide .cogniflow-mask { background: #fff !important; display: block; opacity: 1; position: absolute; transition: opacity .35s ease; visibility: visible; z-index: 20; }
+        #cogniflow-plan-slide .cogniflow-mask.visible { opacity: 0; visibility: hidden; }
+        #cogniflow-plan-slide .cogniflow-mask-global { inset: 0; z-index: 30; }
+        #cogniflow-plan-slide .cogniflow-trigger { display: none; }
+        #cogniflow-plan-slide .cogniflow-mask-backend { bottom: 0; left: 0; right: 43%; top: 28%; }
+        #cogniflow-plan-slide .cogniflow-mask-ontology { bottom: 36%; left: 0; right: 25%; top: 0; }
+        #cogniflow-plan-slide .cogniflow-mask-ontology-arrow { left: 20%; right: 66%; top: 24%; bottom: 47%; }
+        #cogniflow-plan-slide .cogniflow-mask-mcp { bottom: 0; left: 54%; right: 20%; top: 25%; }
+        #cogniflow-plan-slide .cogniflow-mask-mcp-arrow { bottom: 22%; left: 45%; right: 30%; top: 50%; }
+        #cogniflow-plan-slide .cogniflow-mask-users { bottom: 0; left: 66%; right: 0; top: 0; }
+      </style>
+      <section class="slide" id="cogniflow-plan-slide">
+        <h2>FAIR principles for data, operations, and processing methods</h2>
+        <div class="cogniflow-sequence" aria-label="Progressive view of the standardized architecture">
+          <img class="cogniflow-refactoring-figure" src="../assets/cogniflow_refactoring_plan.png"
+            alt="Streamfind refactoring plan for the Cogniflow project">
+          <span class="cogniflow-mask cogniflow-mask-global" aria-hidden="true"></span>
+          <span class="cogniflow-mask cogniflow-mask-backend" aria-hidden="true"></span>
+          <span class="cogniflow-mask cogniflow-mask-ontology"></span>
+          <span class="cogniflow-mask cogniflow-mask-ontology-arrow"></span>
+          <span class="cogniflow-mask cogniflow-mask-mcp"></span>
+          <span class="cogniflow-mask cogniflow-mask-mcp-arrow"></span>
+          <span class="cogniflow-mask cogniflow-mask-users"></span>
+          <span class="cogniflow-trigger fragment" data-fragment-index="0" data-mask="backend"
+            aria-hidden="true"></span>
+          <span class="cogniflow-trigger fragment" data-fragment-index="1" data-mask="ontology"
+            aria-hidden="true"></span>
+          <span class="cogniflow-trigger fragment" data-fragment-index="2" data-mask="mcp" aria-hidden="true"></span>
+          <span class="cogniflow-trigger fragment" data-fragment-index="3" data-mask="users" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <!-- MARK: StreamFind in practice -->
+      <!-- <style>
+        #streamfind-in-practice-slide video { display: block; width: 100%; max-height: calc(100vh - 160px); margin: 0 auto; border-radius: .4em; background: #000; }
+      </style>
+      <section class="slide" id="streamfind-in-practice-slide">
+        <h2>StreamFind in practice</h2>
+        <div class="slide-body">
+          <video controls preload="metadata" src="../assets/streamfind_demo.mp4"></video>
+        </div>
+      </section> -->
+
+      <!-- MARK: StreamFind relaxed technician -->
+      <section class="slide" id="streamfind-relaxed-technician-slide">
+        <h2> FAIR data builds confidence, skills, and regulatory integrity </h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/streamfind_relaxed_technician.png"
+            alt="StreamFind relaxed technician image">
+        </div>
+      </section>
+
+      <!--
+        MARK: SLIDES END HERE
+      -->
+
+      <!-- Keep this as the final slide. -->
+      <section class="slide thank-you-slide">
+        <img class="banner-background" src="../assets/template/title-background.jpg" alt="">
+        <h2></h2>
+        <p></p>
+        <div class="thank-you-visit"><span></span><br><strong></strong></div>
+        <img class="thank-you-qr" src="../assets/project_qr.png" alt="QR code for the streamfind project">
+        <div class="thank-you-author"><strong></strong><span></span></div>
+        <div class="title-logo iuta" aria-hidden="true"></div>
+        <div class="title-logo ude" aria-hidden="true"></div>
+        <div class="title-logo jrf" aria-hidden="true"></div>
+        <div class="thank-you-funding"><span>Funded by:</span>
+          <div class="thank-you-funding-logos"><img src="../assets/eu_funding.jpg"
+              alt="European Union and NextGenerationEU funding mark"><img src="../assets/bmftr_logo.png"
+              alt="BMFTR logo"><img src="../assets/funded_by_mkulnv_nrw.svg"
+              alt="Ministerium für Kultur und Wissenschaft des Landes Nordrhein-Westfalen"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Change the logo source and alt text here when using a different logo. -->
+  <template id="slide-chrome-template">
+    <div class="slide-chrome">
+      <img class="slide-logo" src="../assets/template/iuta-logo.png" alt="IUTA">
+      <div class="slide-footer">
+        <span class="metadata-left"></span>
+        <span class="center metadata-footer"></span>
+        <span class="number"></span>
+      </div>
+    </div>
+  </template>
+
+  <script src="../assets/template/vendor/reveal.js/reveal.js"></script>
+  <script src="../assets/template/vendor/highlight.js/highlight.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/javascript.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/r.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/python.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/cpp.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/shell.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/bash.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/rust.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/json.min.js"></script>
+  <script>
+    hljs.registerLanguage('ttl', function (hljs) {
+      return {
+        name: 'Turtle',
+        aliases: ['turtle'],
+        contains: [
+          hljs.HASH_COMMENT_MODE,
+          { className: 'meta', begin: /@(?:prefix|base)\b/ },
+          { className: 'symbol', begin: /\ba\b/ },
+          hljs.QUOTE_STRING_MODE,
+          hljs.NUMBER_MODE,
+          { className: 'attr', begin: /[A-Za-z_][\w-]*:/ },
+          { className: 'link', begin: /<[^>]+>/ }
+        ]
+      };
+    });
+
+    document.querySelectorAll('pre.code-block code').forEach(function (block) {
+      hljs.highlightElement(block);
+    });
+
+    function metadata(name) {
+      var node = document.querySelector('meta[name="' + name + '"]');
+      return node ? node.content : '';
+    }
+
+    function addSlideChrome() {
+      var template = document.querySelector('#slide-chrome-template');
+      if (!template) return;
+      document.querySelectorAll('.reveal .slides section.slide:not(#title-slide):not(.thank-you-slide)').forEach(function (slide) {
+        if (slide.querySelector(':scope > .slide-chrome')) return;
+        var chrome = template.content.cloneNode(true);
+        var body = slide.querySelector(':scope > .slide-body');
+        slide.insertBefore(chrome, body || slide.children[1]);
+      });
+    }
+
+    addSlideChrome();
+
+    function resetTimedAnimation(slide) {
+      document.querySelectorAll('.timed-animation-demo').forEach(function (demo) {
+        demo.classList.remove('is-active');
+      });
+      if (!slide || slide.id !== 'timed-animation-slide') return;
+      slide.querySelector('.timed-animation-demo').classList.add('is-active');
+    }
+
+    var presentationMetadata = {
+      title: metadata('presentation-title'),
+      author: metadata('author'),
+      date: metadata('presentation-date'),
+      event: metadata('presentation-event'),
+      affiliation: metadata('presentation-affiliation'),
+      footer: [metadata('author'), metadata('author-email')].filter(Boolean).join(' | '),
+      thankYou: metadata('presentation-thank-you'),
+      thankYouSubtitle: metadata('presentation-thank-you-subtitle'),
+      projectLink: metadata('presentation-project-link')
+    };
+
+    document.title = presentationMetadata.title;
+    document.querySelector('#title-slide .title').textContent = presentationMetadata.title;
+    document.querySelector('#title-slide .title-date').textContent = presentationMetadata.date;
+    document.querySelector('#title-slide .title-event').textContent = presentationMetadata.event;
+    document.querySelector('#title-slide .title-speakers').textContent = presentationMetadata.author;
+    document.querySelector('#title-slide .title-affiliations').textContent = presentationMetadata.affiliation;
+    document.querySelector('.thank-you-slide h2').textContent = presentationMetadata.thankYou;
+    document.querySelector('.thank-you-slide p').textContent = presentationMetadata.thankYouSubtitle;
+    document.querySelector('.thank-you-slide .thank-you-visit span').textContent = presentationMetadata.thankYouSubtitle;
+    document.querySelector('.thank-you-slide .thank-you-visit strong').textContent = presentationMetadata.projectLink;
+    document.querySelector('.thank-you-slide .thank-you-author strong').textContent = presentationMetadata.footer;
+    document.querySelector('.thank-you-slide .thank-you-author span').textContent = presentationMetadata.affiliation;
+    document.querySelectorAll('.metadata-left').forEach(function (node) {
+      node.textContent = [presentationMetadata.date, presentationMetadata.event].filter(Boolean).join(' | ');
+    });
+    document.querySelectorAll('.metadata-footer').forEach(function (node) {
+      node.textContent = presentationMetadata.footer;
+    });
+
+    Reveal.initialize({
+      controls: false, progress: false, hash: true, history: true,
+      keyboard: true, overview: false, view: 'scroll', center: false, transition: 'none',
+      slideNumber: 'c/t', width: 1920, height: 1080, margin: 0.04
+    });
+
+    function syncSlideNumber() {
+      document.querySelectorAll('.slide-footer .number').forEach(function (node) {
+        node.textContent = Reveal.getIndices().h + 1;
+      });
+    }
+    Reveal.on('ready', syncSlideNumber);
+    Reveal.on('slidechanged', syncSlideNumber);
+    Reveal.on('ready', function (event) {
+      resetTimedAnimation(event.currentSlide);
+      revealFairRisk();
+    });
+    Reveal.on('slidechanged', function (event) {
+      resetTimedAnimation(event.currentSlide);
+      revealFairRisk();
+    });
+
+    var fairTimers = [];
+    function revealFairRisk() {
+      fairTimers.forEach(clearTimeout);
+      fairTimers = [];
+      var slide = document.getElementById('fair-risk-slide');
+      if (!slide) return;
+      var instrument = slide.querySelector('.fair-node.instrument');
+      var agent = slide.querySelector('.fair-node.agent');
+      var links = Array.prototype.slice.call(slide.querySelectorAll('.fair-link'));
+      var fairbox = slide.querySelector('.fair-fairbox');
+      var badges = Array.prototype.slice.call(slide.querySelectorAll('.fair-badge'));
+      var chips = Array.prototype.slice.call(slide.querySelectorAll('.fair-chip'));
+
+      var revealables = [instrument, links[0], agent, badges[0], badges[1], badges[2], links[1], fairbox];
+      revealables.forEach(function (element) {
+        if (element) element.classList.remove('fair-reveal');
+      });
+      chips.forEach(function (chip) {
+        chip.classList.remove('fair-show');
+        chip.classList.remove('broken');
+      });
+
+      var currentSlide = Reveal.getCurrentSlide();
+      if (currentSlide !== slide) return;
+      revealables.forEach(function (element, index) {
+        if (!element) return;
+        fairTimers.push(setTimeout(function () {
+          if (Reveal.getCurrentSlide() !== slide) return;
+          element.classList.add('fair-reveal');
+          if (element === badges[0] || element === badges[1] || element === badges[2]) element.classList.add('show');
+        }, index * 500));
+      });
+      chips.forEach(function (chip, index) {
+        fairTimers.push(setTimeout(function () {
+          if (Reveal.getCurrentSlide() !== slide) return;
+          chip.classList.add('fair-show');
+          chip.classList.add('broken');
+        }, 4100 + index * 500));
+      });
+    }
+
+    function revealCogniflowMask(fragment, isVisible) {
+      if (!fragment || !fragment.classList || !fragment.classList.contains('cogniflow-trigger')) return;
+      var slide = document.getElementById('cogniflow-plan-slide');
+      var mask = slide && slide.querySelector('.cogniflow-mask-' + fragment.dataset.mask);
+      if (mask) mask.classList.toggle('visible', isVisible);
+      var globalMask = slide && slide.querySelector('.cogniflow-mask-global');
+      if (globalMask && fragment.dataset.mask === 'backend') globalMask.classList.toggle('visible', isVisible);
+      var ontologyArrow = slide && slide.querySelector('.cogniflow-mask-ontology-arrow');
+      if (ontologyArrow && fragment.dataset.mask === 'ontology') ontologyArrow.classList.toggle('visible', isVisible);
+      var mcpArrow = slide && slide.querySelector('.cogniflow-mask-mcp-arrow');
+      if (mcpArrow && fragment.dataset.mask === 'mcp') mcpArrow.classList.toggle('visible', isVisible);
+    }
+    Reveal.on('fragmentshown', function (event) { revealCogniflowMask(event.fragment, true); });
+    Reveal.on('fragmenthidden', function (event) { revealCogniflowMask(event.fragment, false); });
+  </script>
+</body>
+
+</html>

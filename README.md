@@ -5,10 +5,16 @@ Reveal.js presentations using the IUTA visual template.
 The repository contains:
 
 - `template/` — the reusable IUTA Reveal.js template.
-- `presentations/` — individual presentation decks.
+- `presentations/` — individual presentation decks (each in its own folder with `index.html`).
+- `presentations/assets/` — shared assets (template CSS, vendor libraries, images).
 - `docs/` — the MkDocs landing page and documentation-site assets.
 - `scripts/prepare_site.py` — prepares the MkDocs site and generates tokenized presentation links.
 - `.github/workflows/pages.yml` — builds and deploys the MkDocs site to GitHub Pages.
+
+## Presentations
+
+- `20260923_workshop_short/` — StreamFind FAIR data workshop (short version).
+- `template/` — reusable IUTA template for new presentations.
 
 ## GitHub Pages
 

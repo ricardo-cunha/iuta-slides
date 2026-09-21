@@ -113,20 +113,20 @@ code {
 
 .reveal .slides section.slide > .slide-body {
    box-sizing: border-box;
-   bottom: calc(var(--bottom-rule) + 2px);
+   bottom: calc(var(--bottom-rule) + 20px);
    display: flex;
    flex-direction: column;
    gap: 2em;
    justify-content: center;
    left: var(--side-gap);
    overflow: hidden;
-   padding: 1.5em 0 0;
+   padding: 0;
    position: absolute;
    right: var(--side-gap);
-   top: calc(var(--top-rule) + 2px);
+   top: calc(var(--top-rule) + 20px);
 }
 
-.reveal .slides section.slide:not(#basic-slide):not(.thank-you-slide) > .slide-body > * {
+.reveal .slides section.slide:not(.basic-slide):not(.thank-you-slide) > .slide-body > * {
    flex: 0 0 auto;
 }
 
@@ -304,11 +304,10 @@ code {
 }
 
 #title-slide .title-event {
-   color: #fff;
-   font-size: .66em;
-   font-weight: 700;
-   text-transform: uppercase;
-   top: 32.3%;
+    color: #fff;
+    font-size: .66em;
+    font-weight: 700;
+    top: 32.3%;
 }
 
 #title-slide .title-speakers {
@@ -423,16 +422,10 @@ code {
 
 .thank-you-slide p { display: none; }
 
-.thank-you-slide .thank-you-qr-placeholder {
-   align-items: center;
+.thank-you-slide .thank-you-qr {
    aspect-ratio: 1;
    background: #fff;
-   color: #0a4d8c;
-   display: flex;
-   font-size: 1.05em;
-   font-weight: 700;
    height: 250px;
-   justify-content: center;
    left: 4.5%;
    padding: .8em;
    position: absolute;
@@ -475,15 +468,20 @@ code {
 }
 
 .thank-you-slide .thank-you-funding > span { color: #000; font-size: .45em; font-weight: 600; }
-.thank-you-slide .funding-logo-placeholder {
+.thank-you-slide .funding-logo-placeholder,
+.thank-you-slide .thank-you-funding-logos {
    align-items: center;
-   border: 1px dashed #7a7a7a;
-   color: #7a7a7a;
    display: flex;
-   font-size: .5em;
-   height: 4.8em;
-   justify-content: center;
-   width: 14em;
+   gap: .8em;
+   height: auto;
+   max-width: 70%;
+}
+.thank-you-slide .thank-you-funding-logos img {
+   flex: 1 1 0;
+   height: auto;
+   max-height: 3.5em;
+   min-width: 0;
+   object-fit: contain;
 }
 
 .thank-you-slide .title-logo.iuta,
@@ -545,4 +543,9 @@ code {
       right: 64px;
       width: 84px;
    }
+}
+
+/* Syntax highlighting: color function calls differently */
+code .hljs-title.function_ {
+   color: #e6c07b;
 }
