@@ -47,8 +47,14 @@ def prepare() -> list[tuple[str, str]]:
             else:
                 child.unlink()
 
-    template_source = ROOT / "template"
+    template_source = PRESENTATIONS / "template"
     shutil.copytree(template_source, TEMPLATE_OUT, dirs_exist_ok=True)
+
+    # Copy shared assets
+    shared_assets = PRESENTATIONS / "assets"
+    if shared_assets.is_dir():
+        assets_dest = SLIDES_OUT / "assets"
+        shutil.copytree(shared_assets, assets_dest, dirs_exist_ok=True)
 
     entries: list[tuple[str, str]] = []
     for source in sorted(PRESENTATIONS.iterdir()):
