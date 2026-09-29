@@ -11,7 +11,7 @@
   <meta name="author-email" content="cunha@iuta.de">
   <meta name="presentation-title" content="Human- and AI-Accessible Analytical Data Processing">
   <meta name="presentation-date" content="2026-11-02">
-  <meta name="presentation-event" content="IUTA AnalytikTag">
+  <meta name="presentation-event" content="10. IUTA AnalytikTag">
   <meta name="presentation-affiliation"
     content="Institut fur Umwelt &amp; Energie, Technik &amp; Analytik e. V. (IUTA)">
   <meta name="presentation-thank-you" content="Thank you for your attention">
@@ -50,7 +50,7 @@
         first and the thank-you slide last.
       -->
 
-      <!-- MARK: Back in 2022 -->
+      <!-- MARK: Back in 2022... -->
       <section class="slide" id="back-in-2022">
         <h2>Back in 2022...</h2>
         <div class="slide-body">
@@ -61,7 +61,7 @@
 
       <!-- MARK: StreamFind project -->
       <section class="slide" id="streamfind-logo-slide">
-        <h2>BMFTR funded streamFind: 01.09.2022 - 31.08.2025</h2>
+        <h2>StreamFind (01.09.2022 - 31.08.2025)</h2>
         <div class="slide-body">
           <img class="full-slide-image" src="../assets/streamfind_project.png"
             alt="StreamFind project image">
@@ -70,14 +70,14 @@
 
       <!-- MARK: The StreamFind plan -->
       <section class="slide" id="streamfind-logo-slide">
-        <h2>The streamfind plan</h2>
+        <h2>The StreamFind project concept</h2>
         <div class="slide-body">
           <img class="full-slide-image" src="../assets/streamfind_plan.png" alt="StreamFind plan image">
         </div>
       </section>
 
       <!-- MARK: Fast-forward to the project end -->
-      <section class="slide" id="streamfind-fast-forward-slide">
+      <!-- <section class="slide" id="streamfind-fast-forward-slide">
         <h2>Fast-forward to the project end: StreamFind R package</h2>
         <div class="slide-body">
           <div class="columns" style="--column-count: 3;">
@@ -109,11 +109,11 @@
             <a href="https://doi.org/10.1007/s00216-025-05964-3">https://doi.org/10.1007/s00216-025-05964-3</a>
           </p>
         </div>
-      </section>
+      </section> -->
 
       <!-- MARK: R scripting and the Shiny GUI -->
       <section class="slide" id="r-script-gui-slide">
-        <h2>How to use StreamFind?</h2>
+        <h2>Fast-forward to the project end, we created the StreamFind R package</h2>
         <div class="slide-body">
           <div class="columns">
             <div>
@@ -164,9 +164,14 @@ project$run()</code></pre>
       <!-- MARK: CogniFlow project -->
       <section class="slide" id="cogniflow">
         <h2>New project: CogniFlow</h2>
+        <style>
+          #cogniflow .funding-logo { bottom: 0; position: absolute; left: 0; width: 25%; z-index: 1; }
+        </style>
         <div class="slide-body">
           <img class="full-slide-image" src="../assets/cogniflow_overview_loop.webp"
             alt="CogniFlow overview image">
+          <img class="funding-logo" src="../assets/funded_by_mkulnv_nrw.svg"
+            alt="Funded by the Ministry of Culture and Science of North Rhine-Westphalia">
         </div>
       </section>
 
@@ -187,7 +192,7 @@ project$run()</code></pre>
         </div>
       </section>
 
-      <!-- MARK: What is analytical data processing? -->
+      <!-- MARK: What is analytical data processing?
       <style>
         .fair-chips { display: flex; gap: .6em; margin-top: 1.2em; }
         .fair-chip { flex: 1 1 0; min-width: 0; background: #eef4fa; border: 1px solid #c9dcee; border-radius: .5em; padding: .35em .6em; line-height: 1.2; }
@@ -216,12 +221,12 @@ project$run()</code></pre>
             <span class="fair-chip"><strong>R</strong>eusable<span>reproducible results</span></span>
           </div>
         </div>
-      </section>
+      </section> -->
 
-      <!-- MARK: Why control matters for FAIR data? -->
+      <!-- MARK: Why does control matters for FAIR analytical data processing? -->
       <style>
         #fair-risk-slide .fair-flow { display: flex; align-items: center; gap: .5em; margin: .8em 0 .4em; }
-        #fair-risk-slide .fair-node { background: #eef4fa; border: 1px solid #c9dcee; border-radius: .6em; padding: .5em .7em; text-align: center; min-width: 0; flex: 1 1 0; }
+        #fair-risk-slide .fair-node { background: #eef4fa; border: 1px solid #c9dcee; border-radius: .6em; padding: .5em .7em; text-align: center; min-width: 0; flex: 1.25 1 0; }
         #fair-risk-slide .fair-node svg { width: 2.2em; height: 2.2em; color: #0a4d8c; }
         #fair-risk-slide .fair-node-label { font-weight: 600; }
         #fair-risk-slide .fair-node-sub { font-size: .8em; color: #4a5a6a; }
@@ -229,19 +234,22 @@ project$run()</code></pre>
         #fair-risk-slide .fair-node.agent.badged { animation: risk-pulse 1.6s ease-in-out infinite; }
         @keyframes risk-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(163, 36, 36, 0); } 50% { box-shadow: 0 0 0 6px rgba(163, 36, 36, .18); } }
         #fair-risk-slide .fair-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: .4em; margin-top: .5em; }
-        #fair-risk-slide .fair-badge { max-width: 100%; background: #fdecec; border: 1px solid #f2b8b8; color: #a32424; border-radius: .4em; padding: .25em .5em; text-align: left; font-size: .8em; line-height: 1.25; opacity: 0; transform: translateY(-.3em); transition: opacity .3s, transform .3s; }
+        #fair-risk-slide .fair-badge { box-sizing: border-box; flex: 1 1 100%; max-width: 100%; width: 100%; background: #fdecec; border: 1px solid #f2b8b8; color: #a32424; border-radius: .4em; padding: .25em .5em; text-align: left; font-size: .8em; line-height: 1.25; opacity: 0; transform: translateY(-.3em); transition: opacity .3s, transform .3s; }
         #fair-risk-slide .fair-badge:last-child { flex-basis: 100%; }
         #fair-risk-slide .fair-badge strong { display: block; }
         #fair-risk-slide .fair-badge.show { opacity: 1; transform: none; }
-        #fair-risk-slide .fair-link { display: flex; align-items: center; flex: 1 1 0; min-width: 2em; color: #9fc0dd; transition: color .3s; }
+        #fair-risk-slide .fair-link { display: flex; align-items: center; flex: .35 1 0; min-width: 1.5em; color: #9fc0dd; transition: color .3s; }
         #fair-risk-slide .fair-link::before { content: ""; flex: 1 1 0; height: 6px; background: currentColor; }
         #fair-risk-slide .fair-link::after { content: ""; width: 0; height: 0; margin-left: 2px; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 12px solid currentColor; }
         #fair-risk-slide .fair-link-bad { color: #cf7a7a; }
-        #fair-risk-slide .fair-fairbox { background: #eef4fa; border: 1px solid #c9dcee; border-radius: .6em; padding: .5em .7em; min-width: 0; flex: 0 1 auto; }
-        #fair-risk-slide .fair-fairbox .fair-chips { flex-direction: column; margin-top: .5em; gap: .4em; }
-        #fair-risk-slide .fair-fairbox .fair-chip { position: relative; transition: opacity .3s; }
+        #fair-risk-slide .fair-fairbox { background: #eef4fa; border: 1px solid #c9dcee; border-radius: .6em; box-sizing: border-box; padding: .5em .7em; min-width: 0; flex: 0 1 32%; }
+        #fair-risk-slide .fair-fairbox-description { font-size: .55em; line-height: 1.25; margin: .35em 0 .5em; overflow-wrap: anywhere; }
+        #fair-risk-slide .fair-fairbox .fair-chips { display: flex; flex-direction: column; margin-top: .5em; gap: .4em; }
+        #fair-risk-slide .fair-fairbox .fair-chip { flex: 1 1 auto; min-width: 0; position: relative; transition: opacity .3s; }
+        #fair-risk-slide .fair-fairbox .fair-chip span { display: block; font-size: .75em; }
         #fair-risk-slide .fair-fairbox .fair-chip.broken { opacity: .4; }
-        #fair-risk-slide .fair-fairbox .fair-chip.broken::after { content: ""; position: absolute; left: 8%; right: 8%; top: 50%; height: 2px; background: #a32424; transform: rotate(-6deg); }
+        #fair-risk-slide .fair-fairbox .fair-chip { text-align: center; }
+        #fair-risk-slide .fair-fairbox .fair-chip.broken::after { content: ""; position: absolute; left: 18%; right: 18%; top: 50%; height: 2px; background: #a32424; transform: rotate(-6deg); }
         #fair-risk-slide .fair-flow { left: var(--side-gap); margin: 0; position: absolute; right: var(--side-gap); top: 50%; transform: translateY(-50%); }
         #fair-risk-slide .fair-flow > .fair-node,
         #fair-risk-slide .fair-flow > .fair-link,
@@ -252,7 +260,7 @@ project$run()</code></pre>
         #fair-risk-slide .fair-chip.fair-show { opacity: 1; transform: none; }
       </style>
       <section class="slide" id="fair-risk-slide">
-        <h2>Why control matters for FAIR data?</h2>
+        <h2>Why does control matter for FAIR analytical data processing?</h2>
         <div class="fair-flow">
           <div class="fair-node instrument">
             <svg viewBox="0 0 48 48" aria-hidden="true">
@@ -280,11 +288,15 @@ project$run()</code></pre>
           <div class="fair-link fair-link-bad" aria-hidden="true"></div>
           <div class="fair-fairbox">
             <div class="fair-node-label">FAIR expectations, broken</div>
+            <p class="fair-fairbox-description">
+              Analytical data processing should turn instrument measurements and experiment metadata into
+              <strong>validated, FAIR results</strong> — a goal that is hard to achieve consistently today.
+            </p>
             <div class="fair-chips fair-chips-risk">
-              <span class="fair-chip"><strong>F</strong>indable<span>traceable data</span></span>
-              <span class="fair-chip"><strong>A</strong>ccessible<span>usable by others</span></span>
-              <span class="fair-chip"><strong>I</strong>nteroperable<span>standard formats</span></span>
-              <span class="fair-chip"><strong>R</strong>eusable<span>reproducible results</span></span>
+              <span class="fair-chip"><span class="fair-chip-label"><strong>F</strong>indable</span><span>traceable data</span></span>
+              <span class="fair-chip"><span class="fair-chip-label"><strong>A</strong>ccessible</span><span>usable by others</span></span>
+              <span class="fair-chip"><span class="fair-chip-label"><strong>I</strong>nteroperable</span><span>standard formats</span></span>
+              <span class="fair-chip"><span class="fair-chip-label"><strong>R</strong>eusable</span><span>reproducible results</span></span>
             </div>
           </div>
         </div>
