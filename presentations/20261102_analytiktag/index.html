@@ -69,7 +69,7 @@
       </section>
 
       <!-- MARK: The StreamFind plan -->
-      <section class="slide" id="streamfind-logo-slide">
+      <section class="slide" id="streamfind-plan-slide">
         <h2>The StreamFind project concept</h2>
         <div class="slide-body">
           <img class="full-slide-image" src="../assets/streamfind_plan.png" alt="StreamFind plan image">
@@ -339,31 +339,31 @@ project$run()</code></pre>
         </div>
       </section>
 
-      <!-- Basic text slide -->
-      <section class="slide teaser-slide">
-        <h2>Teaser</h2>
-        <div class="slide-body">
-          <p>Show the AI agent building a workflow via a prompt and then the same workflow being inspected via the web app, highlighting the benefits of FAIR data practices.</p>
-        </div>
-      </section>
-
       <!-- MARK: StreamFind in practice -->
-      <!-- <style>
-        #streamfind-in-practice-slide video { display: block; width: 100%; max-height: calc(100vh - 160px); margin: 0 auto; border-radius: .4em; background: #000; }
+      <style>
+        html, body, .reveal, .reveal-viewport { background: #000 !important; }
+        .reveal .slides #title-slide { background: #fff !important; }
+        .reveal .slides section.slide:not(.streamfind-video-slide) { background: #fff; }
+        .streamfind-video-slide { background: #000; padding: 0 !important; }
+        .streamfind-video-slide > .slide-chrome { z-index: 1; }
+        .streamfind-video-slide video { display: block; height: 100%; inset: 0; max-height: none; max-width: none; object-fit: contain; position: absolute; width: 100%; z-index: 3; }
       </style>
-      <section class="slide" id="streamfind-in-practice-slide">
-        <h2>StreamFind in practice</h2>
-        <div class="slide-body">
-          <video controls preload="metadata" src="../assets/streamfind_demo.mp4"></video>
-        </div>
-      </section> -->
+      <section class="slide streamfind-video-slide" id="streamfind-video-1">
+        <video autoplay muted playsinline preload="auto" src="../assets/streamfind_workflow_prompt.mp4"></video>
+      </section>
+      <section class="slide streamfind-video-slide" id="streamfind-video-2">
+        <video autoplay muted playsinline preload="auto" src="../assets/streamfind_workflow_inspection.mp4"></video>
+      </section>
+      <section class="slide streamfind-video-slide" id="streamfind-video-3">
+        <video autoplay muted playsinline preload="auto" src="../assets/streamfind_workflow_results.mp4"></video>
+      </section>
 
       <!-- MARK: StreamFind relaxed technician -->
       <section class="slide" id="streamfind-relaxed-technician-slide">
         <h2> FAIR data builds confidence, skills, and regulatory integrity </h2>
         <div class="slide-body">
-          <img class="full-slide-image" src="../assets/streamfind_relaxed_technician.png"
-            alt="StreamFind relaxed technician image">
+          <img class="full-slide-image" src="../assets/streamfind_confident_technician.png"
+            alt="StreamFind confident technician image">
         </div>
       </section>
 
@@ -512,7 +512,19 @@ project$run()</code></pre>
     Reveal.on('slidechanged', function (event) {
       resetTimedAnimation(event.currentSlide);
       revealFairRisk();
+      syncStreamfindVideos(event.currentSlide);
     });
+    Reveal.on('ready', function (event) { syncStreamfindVideos(event.currentSlide); });
+
+    function syncStreamfindVideos(currentSlide) {
+      document.querySelectorAll('.streamfind-video-slide video').forEach(function (video) {
+        if (video.closest('.streamfind-video-slide') === currentSlide) {
+          video.play().catch(function () { });
+        } else {
+          video.pause();
+        }
+      });
+    }
 
     var fairTimers = [];
     function revealFairRisk() {

@@ -1,0 +1,1803 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!--
+    START HERE: set the presentation metadata before editing the slides below.
+    These values populate the title slide, footer, document title, and final slide.
+  -->
+  <meta name="author" content="Ricardo Cunha">
+  <meta name="author-email" content="cunha@iuta.de">
+  <meta name="presentation-title" content="Human- and AI-Accessible Analytical Data Processing: a deeper dive">
+  <meta name="presentation-date" content="2026-11-02">
+  <meta name="presentation-event" content="10. IUTA AnalytikTag">
+  <meta name="presentation-affiliation"
+    content="Institut fur Umwelt &amp; Energie, Technik &amp; Analytik e. V. (IUTA)">
+  <meta name="presentation-thank-you" content="Thank you for your attention">
+  <meta name="presentation-thank-you-subtitle" content="Visit the project in">
+  <meta name="presentation-project-link" content="streamfind.odea-project.org">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="../assets/template/vendor/reveal.js/reset.css">
+  <link rel="stylesheet" href="../assets/template/vendor/reveal.js/reveal.css">
+  <link rel="stylesheet" href="../assets/template/vendor/reveal.js/white.css">
+  <link rel="stylesheet" href="../assets/template/vendor/highlight.js/atom-one-dark.min.css">
+  <link rel="stylesheet" href="../assets/template/template.css">
+  <link rel="stylesheet" href="../assets/template/layouts.css">
+
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!-- Metadata is defined at the top of this file. Keep the structure. -->
+      <section id="title-slide" class="quarto-title-block">
+        <img class="banner-background" src="../assets/template/title-background.jpg" alt="">
+        <h1 class="title"></h1>
+        <div class="title-date"></div>
+        <div class="title-event"></div>
+        <div class="title-speakers"></div>
+        <div class="title-affiliations"></div>
+        <div class="title-logo iuta" aria-hidden="true"></div>
+        <div class="title-logo ude" aria-hidden="true"></div>
+        <div class="title-logo jrf" aria-hidden="true"></div>
+      </section>
+
+      <!--
+        MARK: START SLIDES HERE.
+        Edit, duplicate, or remove the example slides below. Keep the title slide
+        first and the thank-you slide last.
+      -->
+
+      <!-- MARK: Back in 2022... -->
+      <section class="slide" id="back-in-2022">
+        <h2>Back in 2022...</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/streamfind_motivation_lab.png"
+            alt="Back in 2022 image">
+        </div>
+      </section>
+
+      <!-- MARK: StreamFind project -->
+      <section class="slide" id="streamfind-logo-slide">
+        <h2>StreamFind (01.09.2022 - 31.08.2025)</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/streamfind_project.png" alt="StreamFind project image">
+        </div>
+      </section>
+
+      <!-- MARK: The StreamFind plan -->
+      <section class="slide" id="streamfind-plan-slide">
+        <h2>The StreamFind project concept</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/streamfind_plan.png" alt="StreamFind plan image">
+        </div>
+      </section>
+
+      <!-- MARK: Fast-forward to the project end -->
+      <section class="slide" id="streamfind-fast-forward-slide">
+        <h2>StreamFind R package</h2>
+        <div class="slide-body">
+          <div class="columns" style="--column-count: 3;">
+            <div style="text-align: center;">
+              <img src="../assets/r_package_modular_data_model.png"
+                alt="Modular data model: interlocking data-model modules around the R logo">
+              <strong>Create, manage and run workflows</strong>
+              <span>Full project lifecycle for data processing workflows, including provenance tracking.</span>
+            </div>
+            <div style="text-align: center;">
+              <img src="../assets/r_package_analytical_workflows.png"
+                alt="Analytical workflow stages flowing into the R logo">
+              <strong>Analytical workflows</strong>
+              <span>Validated, reusable workflows for mass spectrometry, spectroscopy, chromatography, and
+                statistics.</span>
+            </div>
+            <div style="text-align: center;">
+              <img src="../assets/r_package_reproducible_environment.png"
+                alt="A sealed, version-pinned environment with reproducible state and dependencies">
+              <strong>Expandable and interactive reporting</strong>
+              <span>Modular expansion of analytical processing methods and flexible interactive HTML reports.</span>
+            </div>
+          </div>
+          <p class="slide-citation">
+            Thissen, J., Klassen, M.D., Fischer, B., Cunha, J.R. et al. StreamFind: data processing workflows for
+            qualification and
+            quantification of biopharmaceutical drug products analyzed by size exclusion chromatography coupled to
+            capillary-enhanced Raman spectroscopy. <em>Anal Bioanal Chem</em> 417, 4469–4480 (2025).
+            <a href="https://doi.org/10.1007/s00216-025-05964-3">https://doi.org/10.1007/s00216-025-05964-3</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- MARK: Analytical Workflows -->
+      <style>
+        .workflow-overview-slide .workflow-overview {
+          display: grid;
+          grid-template-columns: 1.05fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
+          gap: 10px;
+          height: 100%;
+          min-height: 0;
+        }
+
+        .workflow-overview-slide .workflow-card {
+          align-items: center;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          border: 2px solid #000;
+          min-height: 0;
+          overflow: hidden;
+          padding: 14px 18px;
+          text-align: center;
+        }
+
+        .workflow-overview-slide .workflow-card img {
+          display: block;
+          max-height: 100%;
+          max-width: 100%;
+          object-fit: contain;
+        }
+
+        .workflow-overview-slide .workflow-nontarget {
+          grid-row: 1 / span 2;
+        }
+
+        #analytical-workflows .workflow-nontarget,
+        #analytical-workflows-lcuv .workflow-lcuv,
+        #analytical-workflows-hrms .workflow-lchrms,
+        #analytical-workflows-secraman .workflow-secraman {
+          border: 5px solid #c00000;
+          box-shadow: inset 0 0 0 2px #000;
+        }
+
+        .workflow-overview-slide .workflow-nontarget img {
+          flex: 0 1 58%;
+          height: 58%;
+          width: 100%;
+        }
+
+        .workflow-overview-slide .workflow-lcuv {
+          background: transparent;
+        }
+
+        .workflow-overview-slide .workflow-lcuv .workflow-plots {
+          align-items: center;
+          display: grid;
+          flex: 0 0 48%;
+          height: 48%;
+          gap: 8px;
+          grid-template-columns: 1fr 1fr;
+          min-height: 0;
+          overflow: hidden;
+          width: 100%;
+        }
+
+        .workflow-overview-slide .workflow-lcuv .workflow-plots img {
+          height: 100%;
+          min-height: 0;
+          min-width: 0;
+          width: 100%;
+        }
+
+        .workflow-overview-slide .workflow-secraman {
+          background: transparent;
+        }
+
+        .workflow-overview-slide .workflow-secraman img {
+          flex: 0 1 52%;
+          height: 52%;
+          object-fit: cover;
+          object-position: center top;
+          width: 80%;
+        }
+
+        .workflow-overview-slide .workflow-lchrms {
+          background: transparent;
+          grid-column: 3;
+          grid-row: 1 / span 2;
+        }
+
+        .workflow-overview-slide .workflow-lchrms .workflow-identification {
+          align-items: center;
+          display: flex;
+          flex: 0 1 72%;
+          flex-direction: column;
+          min-height: 0;
+          width: 90%;
+        }
+
+        .workflow-overview-slide .workflow-lchrms .workflow-identification img {
+          display: block;
+          flex: 0 1 100%;
+          height: 100%;
+          max-height: 100%;
+          max-width: 100%;
+          min-height: 0;
+          object-fit: contain;
+          width: 100%;
+        }
+      </style>
+      <section class="slide workflow-overview-slide" id="analytical-workflows">
+        <h2>Demonstration</h2>
+        <div class="slide-body">
+          <div class="workflow-overview">
+            <article class="workflow-card workflow-nontarget">
+              <img src="../assets/elrig_non_target_screening_process.jpeg"
+                alt="Process diagram for non-target screening">
+              <h3>Non-target Screening</h3>
+            </article>
+            <article class="workflow-card workflow-lcuv">
+              <div class="workflow-plots">
+                <img src="../assets/elrig_lc_uv_chromatogram.png" alt="LC-UV chromatogram">
+                <img src="../assets/elrig_lc_uv_calibration.png" alt="LC-UV calibration curve">
+              </div>
+              <h3>LC-UV based quantification</h3>
+            </article>
+            <article class="workflow-card workflow-secraman">
+              <img src="../assets/elrig_sec_cers_instrument.png" alt="SEC-CERS analytical instrument">
+              <h3>SEC-Raman based quality evaluation</h3>
+            </article>
+            <article class="workflow-card workflow-lchrms">
+              <div class="workflow-identification">
+                <img src="../assets/hrms_ident.png" alt="LC-HRMS peak with monoclonal antibody identification">
+              </div>
+              <h3>LC-HRMS based identification</h3>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <style>
+        #nts-process-slide .nts-process-stage {
+          height: 78%;
+          left: 50%;
+          position: absolute;
+          top: 48%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+        }
+
+        #nts-process-slide .nts-process-image {
+          height: 100%;
+          left: 18%;
+          object-fit: contain;
+          position: absolute;
+          top: 7%;
+          width: 60%;
+        }
+
+        #nts-process-slide .nts-air-liquide {
+          height: auto;
+          left: 30%;
+          position: absolute;
+          top: -8%;
+          width: 18%;
+        }
+
+        #nts-process-slide .nts-process-legend {
+          align-items: center;
+          display: flex;
+          font-size: .6em;
+          gap: .5em;
+          position: absolute;
+        }
+
+        #nts-process-slide .nts-water-note {
+          left: 23%;
+          top: 55%;
+          width: auto;
+        }
+
+        #nts-process-slide .nts-effluent-note {
+          bottom: -3%;
+          right: 6%;
+          width: 300px;
+        }
+
+        #nts-process-slide .nts-red-dot {
+          background: #c00000;
+          border-radius: 50%;
+          flex: 0 0 1.1em;
+          height: 1.1em;
+        }
+
+        #nts-process-slide .nts-process-citation {
+          bottom: 0;
+          font-size: .4em;
+          left: 0;
+          line-height: 1.25;
+          position: absolute;
+        }
+
+        .nts-case-layout {
+          align-items: stretch;
+          display: grid;
+          gap: 1.2em;
+          grid-template-columns: minmax(340px, 34%) minmax(0, 1fr);
+          height: 100%;
+          min-height: 0;
+        }
+
+        .nts-sidebar {
+          display: flex;
+          flex-direction: column;
+          min-height: 0;
+          overflow: hidden;
+        }
+
+        .nts-workflow-steps {
+          align-self: center;
+          display: block;
+          flex: 0 0 160px;
+          height: 160px;
+          max-width: 200px;
+          object-fit: contain;
+          width: 100%;
+        }
+
+        .nts-operation-list {
+          background: #f7f7f7;
+          box-sizing: border-box;
+          color: #777;
+          display: flex;
+          flex: 0 0 auto;
+          flex-direction: column;
+          font-family: Consolas, "Courier New", monospace;
+          font-size: .38em;
+          justify-content: flex-start;
+          line-height: 1.12;
+          list-style: none;
+          margin: 0;
+          overflow: visible;
+          padding: .35em .5em;
+          width: 100%;
+        }
+
+        .reveal .nts-operation-list {
+          list-style: none;
+          margin: 0;
+          padding: .35em .5em;
+        }
+
+        .nts-operation-list li {
+          box-sizing: border-box;
+          flex: 0 0 auto;
+          margin: 0;
+          padding: 1px 3px;
+        }
+
+        .nts-operation-list li.is-current {
+          border: 2px solid #c00000;
+          box-shadow: inset -2px 0 #c00000;
+          color: #222;
+        }
+
+        .nts-operation-list li.is-current-range {
+          border-left: 2px solid #c00000;
+          border-right: 2px solid #c00000;
+          box-shadow: inset -2px 0 #c00000;
+          color: #222;
+        }
+
+        .nts-operation-list li.is-range-start {
+          border-top: 2px solid #c00000;
+        }
+
+        .nts-operation-list li.is-range-end {
+          border-bottom: 2px solid #c00000;
+        }
+
+        .nts-result-panel {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          min-height: 0;
+          min-width: 0;
+          overflow: hidden;
+        }
+
+        .nts-result-panel>img {
+          display: block;
+          height: 100%;
+          max-height: 100%;
+          max-width: 100%;
+          object-fit: contain;
+          width: 100%;
+        }
+
+        #nts-matrix-correction .nts-sidebar {
+          position: relative;
+        }
+
+        #nts-matrix-correction .nts-citation-image {
+          flex: 0 0 auto;
+          height: auto;
+          margin-top: .3em;
+          max-height: 90px;
+          object-fit: contain;
+          width: 100%;
+        }
+
+        #nts-transformation-products .nts-transformation-visual {
+          align-items: center;
+          display: grid;
+          gap: 1em;
+          grid-template-columns: 34% minmax(0, 1fr);
+          height: 100%;
+          min-height: 0;
+          width: 100%;
+        }
+
+        #nts-transformation-products .nts-transformation-graph {
+          height: 48%;
+          object-fit: contain;
+          width: 100%;
+        }
+
+        #nts-transformation-products .nts-transformation-results {
+          height: 78%;
+          min-height: 0;
+          object-fit: contain;
+          width: 100%;
+        }
+      </style>
+
+      <!-- MARK: Non-target Screening — treatment process and sampling -->
+      <section class="slide" id="nts-process-slide">
+        <h2>Non-target Screening</h2>
+        <div class="slide-body">
+          <div class="nts-process-stage">
+            <img class="nts-process-image" src="../assets/elrig_non_target_screening_process.jpeg"
+              alt="Ozone treatment process diagram showing the pre-treatment column, main contactor, static mixer, and effluent route">
+            <img class="nts-air-liquide" src="../assets/elrig_nts_air_liquide_logo.png" alt="Air Liquide">
+            <div class="nts-process-legend nts-water-note"><span class="nts-red-dot"></span></div>
+            <div class="nts-process-legend nts-effluent-note"><span class="nts-red-dot"></span><span>Effluent from
+                conventional ozone injection</span></div>
+          </div>
+          <p class="nts-process-citation">Guerrero-Granados et al. (2025)<br>ACS ES&amp;T, 10.1021/acsestwater.5c00053
+          </p>
+        </div>
+      </section>
+
+      <!-- MARK: Non-target Screening — feature finding and feature counts -->
+      <section class="slide" id="nts-feature-counts">
+        <h2>Non-target Screening</h2>
+        <div class="slide-body">
+          <div class="nts-case-layout">
+            <aside class="nts-sidebar">
+              <img class="nts-workflow-steps" src="../assets/elrig_nts_workflow_steps.png"
+                alt="Non-target screening workflow overview">
+              <ol class="nts-operation-list">
+                <li class="is-current">1: FindFeatures (openms)</li>
+                <li>2: CalculateFeaturesQuality (StreamFind)</li>
+                <li>3: GroupFeatures (openms)</li>
+                <li>4: FilterFeatures (StreamFind)</li>
+                <li>5: FillFeatures (StreamFind)</li>
+                <li>6: AnnotateFeatures (StreamFind)</li>
+                <li>7: FilterFeatures (StreamFind)</li>
+                <li>8: FindInternalStandards (StreamFind)</li>
+                <li>9: CorrectMatrixSuppression (TiChri)</li>
+                <li>10: FilterFeatures (StreamFind)</li>
+                <li>11: FilterFeatures (StreamFind)</li>
+                <li>12: FilterFeatures (StreamFind)</li>
+                <li>13: FilterFeatures (StreamFind)</li>
+                <li>14: LoadFeaturesMS1 (StreamFind)</li>
+                <li>15: LoadFeaturesMS2 (StreamFind)</li>
+                <li>16: FilterFeaturesMS2 (native)</li>
+                <li>17: SuspectScreening (StreamFind)</li>
+                <li>18: GenerateCompounds (metfrag)</li>
+                <li>19: GenerateTransformationProducts (cts)</li>
+                <li>20: FindTransformationProducts (native)</li>
+                <li>21: CalculateTransformationProductsSimilarity (native)</li>
+              </ol>
+            </aside>
+            <div class="nts-result-panel">
+              <img src="../assets/elrig_nts_feature_counts_panel_a.png"
+                alt="Number of detected features across six treatment and sampling stages">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: Non-target Screening — feature filling -->
+      <section class="slide" id="nts-feature-filling">
+        <h2>Non-target Screening</h2>
+        <div class="slide-body">
+          <div class="nts-case-layout">
+            <aside class="nts-sidebar">
+              <img class="nts-workflow-steps" src="../assets/elrig_nts_workflow_steps.png"
+                alt="Non-target screening workflow overview">
+              <ol class="nts-operation-list">
+                <li>1: FindFeatures (openms)</li>
+                <li>2: CalculateFeaturesQuality (StreamFind)</li>
+                <li>3: GroupFeatures (openms)</li>
+                <li>4: FilterFeatures (StreamFind)</li>
+                <li class="is-current">5: FillFeatures (StreamFind)</li>
+                <li>6: AnnotateFeatures (StreamFind)</li>
+                <li>7: FilterFeatures (StreamFind)</li>
+                <li>8: FindInternalStandards (StreamFind)</li>
+                <li>9: CorrectMatrixSuppression (TiChri)</li>
+                <li>10: FilterFeatures (StreamFind)</li>
+                <li>11: FilterFeatures (StreamFind)</li>
+                <li>12: FilterFeatures (StreamFind)</li>
+                <li>13: FilterFeatures (StreamFind)</li>
+                <li>14: LoadFeaturesMS1 (StreamFind)</li>
+                <li>15: LoadFeaturesMS2 (StreamFind)</li>
+                <li>16: FilterFeaturesMS2 (native)</li>
+                <li>17: SuspectScreening (StreamFind)</li>
+                <li>18: GenerateCompounds (metfrag)</li>
+                <li>19: GenerateTransformationProducts (cts)</li>
+                <li>20: FindTransformationProducts (native)</li>
+                <li>21: CalculateTransformationProductsSimilarity (native)</li>
+              </ol>
+            </aside>
+            <div class="nts-result-panel">
+              <img src="../assets/elrig_nts_fill_features_detail.png"
+                alt="Filled-feature chromatograms, feature detection details, and normalized-intensity comparison">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: Non-target Screening — matrix-suppression correction -->
+      <section class="slide" id="nts-matrix-correction">
+        <h2>Non-target Screening</h2>
+        <div class="slide-body">
+          <div class="nts-case-layout">
+            <aside class="nts-sidebar">
+              <img class="nts-workflow-steps" src="../assets/elrig_nts_workflow_steps.png"
+                alt="Non-target screening workflow overview">
+              <ol class="nts-operation-list">
+                <li>1: FindFeatures (openms)</li>
+                <li>2: CalculateFeaturesQuality (StreamFind)</li>
+                <li>3: GroupFeatures (openms)</li>
+                <li>4: FilterFeatures (StreamFind)</li>
+                <li>5: FillFeatures (StreamFind)</li>
+                <li>6: AnnotateFeatures (StreamFind)</li>
+                <li>7: FilterFeatures (StreamFind)</li>
+                <li>8: FindInternalStandards (StreamFind)</li>
+                <li class="is-current">9: CorrectMatrixSuppression (TiChri)</li>
+                <li>10: FilterFeatures (StreamFind)</li>
+                <li>11: FilterFeatures (StreamFind)</li>
+                <li>12: FilterFeatures (StreamFind)</li>
+                <li>13: FilterFeatures (StreamFind)</li>
+                <li>14: LoadFeaturesMS1 (StreamFind)</li>
+                <li>15: LoadFeaturesMS2 (StreamFind)</li>
+                <li>16: FilterFeaturesMS2 (native)</li>
+                <li>17: SuspectScreening (StreamFind)</li>
+                <li>18: GenerateCompounds (metfrag)</li>
+                <li>19: GenerateTransformationProducts (cts)</li>
+                <li>20: FindTransformationProducts (native)</li>
+                <li>21: CalculateTransformationProductsSimilarity (native)</li>
+              </ol>
+              <img class="nts-citation-image" src="../assets/elrig_nts_matrix_correction_reference.png"
+                alt="Tisler et al. (2021), matrix correction based on TIC profile">
+            </aside>
+            <div class="nts-result-panel">
+              <img src="../assets/elrig_nts_matrix_correction.png"
+                alt="Matrix suppression correction plots comparing corrected and uncorrected features">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: Non-target Screening — transformation products -->
+      <section class="slide" id="nts-transformation-products">
+        <h2>Non-target Screening</h2>
+        <div class="slide-body">
+          <div class="nts-case-layout">
+            <aside class="nts-sidebar">
+              <img class="nts-workflow-steps" src="../assets/elrig_nts_workflow_steps.png"
+                alt="Non-target screening workflow overview">
+              <ol class="nts-operation-list">
+                <li>1: FindFeatures (openms)</li>
+                <li>2: CalculateFeaturesQuality (StreamFind)</li>
+                <li>3: GroupFeatures (openms)</li>
+                <li>4: FilterFeatures (StreamFind)</li>
+                <li>5: FillFeatures (StreamFind)</li>
+                <li>6: AnnotateFeatures (StreamFind)</li>
+                <li>7: FilterFeatures (StreamFind)</li>
+                <li>8: FindInternalStandards (StreamFind)</li>
+                <li>9: CorrectMatrixSuppression (TiChri)</li>
+                <li>10: FilterFeatures (StreamFind)</li>
+                <li>11: FilterFeatures (StreamFind)</li>
+                <li>12: FilterFeatures (StreamFind)</li>
+                <li>13: FilterFeatures (StreamFind)</li>
+                <li>14: LoadFeaturesMS1 (StreamFind)</li>
+                <li>15: LoadFeaturesMS2 (StreamFind)</li>
+                <li>16: FilterFeaturesMS2 (native)</li>
+                <li>17: SuspectScreening (StreamFind)</li>
+                <li>18: GenerateCompounds (metfrag)</li>
+                <li class="is-current-range is-range-start">19: GenerateTransformationProducts (cts)</li>
+                <li class="is-current-range">20: FindTransformationProducts (native)</li>
+                <li class="is-current-range is-range-end">21: CalculateTransformationProductsSimilarity (native)</li>
+              </ol>
+            </aside>
+            <div class="nts-result-panel">
+              <div class="nts-transformation-visual">
+                <img class="nts-transformation-graph" src="../assets/elrig_nts_transformation_products.png"
+                  alt="Transformation-product network centered on estriol">
+                <img class="nts-transformation-results" src="../assets/elrig_nts_estriol_results.png"
+                  alt="Normalized estriol and transformation-product abundance with associated molecular structures">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: Analytical Workflows — LC-UV demonstration -->
+      <section class="slide workflow-overview-slide" id="analytical-workflows-lcuv">
+        <h2>Demonstration</h2>
+        <div class="slide-body">
+          <div class="workflow-overview">
+            <article class="workflow-card workflow-nontarget">
+              <img src="../assets/elrig_non_target_screening_process.jpeg"
+                alt="Process diagram for non-target screening">
+              <h3>Non-target Screening</h3>
+            </article>
+            <article class="workflow-card workflow-lcuv">
+              <div class="workflow-plots">
+                <img src="../assets/elrig_lc_uv_chromatogram.png" alt="LC-UV chromatogram">
+                <img src="../assets/elrig_lc_uv_calibration.png" alt="LC-UV calibration curve">
+              </div>
+              <h3>LC-UV based quantification</h3>
+            </article>
+            <article class="workflow-card workflow-secraman">
+              <img src="../assets/elrig_sec_cers_instrument.png" alt="SEC-CERS analytical instrument">
+              <h3>SEC-Raman based quality evaluation</h3>
+            </article>
+            <article class="workflow-card workflow-lchrms">
+              <div class="workflow-identification">
+                <img src="../assets/hrms_ident.png" alt="LC-HRMS peak with monoclonal antibody identification">
+              </div>
+              <h3>LC-HRMS based identification</h3>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <style>
+        .detail-method-list {
+          justify-content: flex-start;
+          gap: .45em;
+          font-size: .45em;
+          line-height: 1.2;
+        }
+
+        #sec-raman-stage-one .nts-sidebar,
+        #sec-raman-stage-two .nts-sidebar {
+          position: relative;
+        }
+
+        #sec-raman-stage-one .raman-citation,
+        #sec-raman-stage-two .raman-citation {
+          color: var(--text);
+          flex: 0 0 auto;
+          font-size: .46em;
+          line-height: 1.2;
+          margin: 0 0 .25em;
+        }
+
+        #lchrms-identification .lchrms-detail-layout {
+          display: grid;
+          grid-template-rows: 44% minmax(0, 1fr);
+          gap: .5em;
+          height: 100%;
+          min-height: 0;
+        }
+
+        #lchrms-identification .lchrms-workflow-summary {
+          align-items: flex-start;
+          display: flex;
+          flex-direction: column;
+          gap: .25em;
+          min-height: 0;
+        }
+
+        #lchrms-identification .nts-workflow-steps {
+          align-self: flex-start;
+          flex: 0 0 120px;
+          height: 120px;
+          max-width: 130px;
+          width: 130px;
+        }
+
+        #lchrms-identification .detail-method-list {
+          align-self: flex-start;
+          font-size: .41em;
+          gap: .2em;
+          line-height: 1.15;
+          width: 40%;
+        }
+
+        #lchrms-identification .lchrms-figure-row {
+          align-items: stretch;
+          display: grid;
+          gap: .45em;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          height: 100%;
+          min-height: 0;
+        }
+
+        #lchrms-identification .lchrms-figure-row img {
+          display: block;
+          height: 100%;
+          min-height: 0;
+          min-width: 0;
+          object-fit: contain;
+          width: 100%;
+        }
+
+        #lcuv-quantification .lcuv-detail-layout {
+          display: grid;
+          grid-template-rows: 38% minmax(0, 1fr);
+          gap: .5em;
+          height: 100%;
+          min-height: 0;
+        }
+
+        #lcuv-quantification .lcuv-workflow-summary {
+          align-items: flex-start;
+          display: flex;
+          flex-direction: column;
+          gap: .25em;
+          min-height: 0;
+        }
+
+        #lcuv-quantification .nts-workflow-steps {
+          align-self: flex-start;
+          flex: 0 0 130px;
+          height: 130px;
+          max-width: 140px;
+          width: 140px;
+        }
+
+        #lcuv-quantification .detail-method-list {
+          align-self: flex-start;
+          width: 34%;
+        }
+
+        #lcuv-quantification .lcuv-figure-row {
+          align-items: stretch;
+          display: grid;
+          gap: .8em;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          height: 100%;
+          min-height: 0;
+        }
+
+        #lcuv-quantification .lcuv-figure-row img {
+          display: block;
+          height: 100%;
+          min-height: 0;
+          min-width: 0;
+          object-fit: contain;
+          width: 100%;
+        }
+
+        #sec-raman-stage-one .nts-operation-list li:nth-child(1),
+        #sec-raman-stage-two .nts-operation-list li:nth-child(14) {
+          border-top: 2px solid #c00000;
+        }
+
+        #sec-raman-stage-one .nts-operation-list li:nth-child(13),
+        #sec-raman-stage-two .nts-operation-list li:nth-child(18) {
+          border-bottom: 2px solid #c00000;
+        }
+
+        #sec-raman-stage-two .nts-operation-list li.is-muted {
+          color: #c9c9c9;
+        }
+
+        #sec-raman-stage-one .raman-pair-results {
+          align-content: center;
+          display: grid;
+          gap: .5em;
+          grid-template-rows: repeat(2, minmax(0, 1fr));
+          height: 92%;
+          margin: auto;
+          min-height: 0;
+          overflow: hidden;
+          width: 100%;
+        }
+
+        #sec-raman-stage-one .raman-pair-results img {
+          display: block;
+          height: 100%;
+          max-height: 100%;
+          max-width: 100%;
+          min-height: 0;
+          object-fit: contain;
+          width: 100%;
+        }
+      </style>
+
+      <!-- MARK: LC-UV quantification detail -->
+      <section class="slide" id="lcuv-quantification">
+        <h2>LC-UV based quantification</h2>
+        <div class="slide-body">
+          <div class="lcuv-detail-layout">
+            <div class="lcuv-workflow-summary">
+              <img class="nts-workflow-steps" src="../assets/elrig_nts_workflow_steps.png"
+                alt="Chromatographic quantification workflow">
+              <ol class="nts-operation-list detail-method-list">
+                <li>1: LoadChromatograms (native)</li>
+                <li>2: SmoothChromatograms (movingaverage)</li>
+                <li>3: CorrectChromatogramsBaseline (airpls)</li>
+                <li>4: IntegrateChromatograms (pracma)</li>
+                <li>5: QuantifyChromatographicPeaks (native)</li>
+              </ol>
+            </div>
+            <div class="lcuv-figure-row">
+              <img src="../assets/elrig_lc_uv_chromatogram.png" alt="LC-UV chromatogram for the blank and sample">
+              <img src="../assets/elrig_lc_uv_quantification_detail.png" alt="Overlaid LC-UV calibration chromatograms">
+              <img src="../assets/elrig_lc_uv_calibration.png" alt="LC-UV quantification calibration curve">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: Analytical Workflows — LC-HRMS demonstration -->
+      <section class="slide workflow-overview-slide" id="analytical-workflows-hrms">
+        <h2>Demonstration</h2>
+        <div class="slide-body">
+          <div class="workflow-overview">
+            <article class="workflow-card workflow-nontarget">
+              <img src="../assets/elrig_non_target_screening_process.jpeg"
+                alt="Process diagram for non-target screening">
+              <h3>Non-target Screening</h3>
+            </article>
+            <article class="workflow-card workflow-lcuv">
+              <div class="workflow-plots">
+                <img src="../assets/elrig_lc_uv_chromatogram.png" alt="LC-UV chromatogram">
+                <img src="../assets/elrig_lc_uv_calibration.png" alt="LC-UV calibration curve">
+              </div>
+              <h3>LC-UV based quantification</h3>
+            </article>
+            <article class="workflow-card workflow-secraman">
+              <img src="../assets/elrig_sec_cers_instrument.png" alt="SEC-CERS analytical instrument">
+              <h3>SEC-Raman based quality evaluation</h3>
+            </article>
+            <article class="workflow-card workflow-lchrms">
+              <div class="workflow-identification">
+                <img src="../assets/hrms_ident.png" alt="LC-HRMS peak with monoclonal antibody identification">
+              </div>
+              <h3>LC-HRMS based identification</h3>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: LC-HRMS identification detail -->
+      <section class="slide" id="lchrms-identification">
+        <h2>LC-HRMS based identification</h2>
+        <div class="slide-body">
+          <div class="lchrms-detail-layout">
+            <div class="lchrms-workflow-summary">
+              <img class="nts-workflow-steps" src="../assets/elrig_nts_workflow_steps.png"
+                alt="Mass spectrometry identification workflow">
+              <ol class="nts-operation-list detail-method-list">
+                <li>1: LoadChromatograms (native)</li>
+                <li>2: SmoothChromatograms (movingaverage)</li>
+                <li>3: FindChromPeaks (LocalMaxima)</li>
+                <li>4: LoadSpectra (chrompeaks)</li>
+                <li>5: CalculateSpectraCharges (native)</li>
+                <li>6: DeconvoluteSpectra (native)</li>
+                <li>7: SmoothSpectra (savgol)</li>
+                <li>8: FindSpectraMaxima (native)</li>
+              </ol>
+            </div>
+            <div class="lchrms-figure-row">
+              <img src="../assets/elrig_lc_hrms_chromatogram_detail.png" alt="LC-HRMS chromatogram for the sample">
+              <img src="../assets/elrig_lc_hrms_spectrum.png" alt="LC-HRMS mass spectrum">
+              <img src="../assets/elrig_lc_hrms_peak_table.png" alt="Detected LC-HRMS features">
+              <img src="../assets/elrig_lc_hrms_chromatogram.png"
+                alt="Extracted ion chromatograms and identified protein">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: Analytical Workflows — SEC-Raman demonstration -->
+      <section class="slide workflow-overview-slide" id="analytical-workflows-secraman">
+        <h2>Demonstration</h2>
+        <div class="slide-body">
+          <div class="workflow-overview">
+            <article class="workflow-card workflow-nontarget">
+              <img src="../assets/elrig_non_target_screening_process.jpeg"
+                alt="Process diagram for non-target screening">
+              <h3>Non-target Screening</h3>
+            </article>
+            <article class="workflow-card workflow-lcuv">
+              <div class="workflow-plots">
+                <img src="../assets/elrig_lc_uv_chromatogram.png" alt="LC-UV chromatogram">
+                <img src="../assets/elrig_lc_uv_calibration.png" alt="LC-UV calibration curve">
+              </div>
+              <h3>LC-UV based quantification</h3>
+            </article>
+            <article class="workflow-card workflow-secraman">
+              <img src="../assets/elrig_sec_cers_instrument.png" alt="SEC-CERS analytical instrument">
+              <h3>SEC-Raman based quality evaluation</h3>
+            </article>
+            <article class="workflow-card workflow-lchrms">
+              <div class="workflow-identification">
+                <img src="../assets/hrms_ident.png" alt="LC-HRMS peak with monoclonal antibody identification">
+              </div>
+              <h3>LC-HRMS based identification</h3>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: SEC-Raman workflow stages 1–13 -->
+      <section class="slide" id="sec-raman-stage-one">
+        <h2>SEC-Raman based quality evaluation</h2>
+        <div class="slide-body">
+          <div class="nts-case-layout">
+            <aside class="nts-sidebar">
+              <p class="raman-citation">Thissen et al. (2025)<br>Analytical and Bioanalytical Chemistry</p>
+              <img class="nts-workflow-steps" src="../assets/elrig_nts_workflow_steps.png"
+                alt="SEC-Raman processing workflow">
+              <ol class="nts-operation-list">
+                <li class="is-current-range is-range-start">1: ScaleTime (native)</li>
+                <li class="is-current-range">2: AddShiftValues (native)</li>
+                <li class="is-current-range">3: DeleteScansSection (native)</li>
+                <li class="is-current-range">4: DeleteScansSection (native)</li>
+                <li class="is-current-range">5: DeleteSpectraSection (native)</li>
+                <li class="is-current-range">6: BinScans (native)</li>
+                <li class="is-current-range">7: SubtractScansSection (native)</li>
+                <li class="is-current-range">8: SmoothSpectra (savgol)</li>
+                <li class="is-current-range">9: DeleteSpectraSection (native)</li>
+                <li class="is-current-range">10: DeleteSpectraSection (native)</li>
+                <li class="is-current-range">11: CorrectSpectraBaseline (baseline_als)</li>
+                <li class="is-current-range">12: DeleteSpectraSection (native)</li>
+                <li class="is-current-range is-range-end">13: DeleteSpectraSection (native)</li>
+                <li>14: FindChromPeaks (LocalMaxima)</li>
+                <li>15: GroupPeaks (native)</li>
+                <li>16: FilterSpectra (native)</li>
+                <li>17: AverageSpectra (native)</li>
+                <li>18: NormalizeSpectra (minmax)</li>
+              </ol>
+            </aside>
+            <div class="nts-result-panel">
+              <div class="raman-pair-results">
+                <img src="../assets/elrig_sec_raman_active_workflow_results.png"
+                  alt="SEC-Raman elution and Raman spectra from the early workflow stages">
+                <img src="../assets/elrig_sec_raman_later_workflow_results.png"
+                  alt="SEC-Raman spectral comparison plots from the early workflow stages">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: SEC-Raman workflow stages 14–18 -->
+      <section class="slide" id="sec-raman-stage-two">
+        <h2>SEC-Raman based quality evaluation</h2>
+        <div class="slide-body">
+          <div class="nts-case-layout">
+            <aside class="nts-sidebar">
+              <p class="raman-citation">Thissen et al. (2025)<br>Analytical and Bioanalytical Chemistry</p>
+              <img class="nts-workflow-steps" src="../assets/elrig_nts_workflow_steps.png"
+                alt="SEC-Raman processing workflow">
+              <ol class="nts-operation-list">
+                <li class="is-muted">1: ScaleTime (native)</li>
+                <li class="is-muted">2: AddShiftValues (native)</li>
+                <li class="is-muted">3: DeleteScansSection (native)</li>
+                <li class="is-muted">4: DeleteScansSection (native)</li>
+                <li class="is-muted">5: DeleteSpectraSection (native)</li>
+                <li class="is-muted">6: BinScans (native)</li>
+                <li class="is-muted">7: SubtractScansSection (native)</li>
+                <li class="is-muted">8: SmoothSpectra (savgol)</li>
+                <li class="is-muted">9: DeleteSpectraSection (native)</li>
+                <li class="is-muted">10: DeleteSpectraSection (native)</li>
+                <li class="is-muted">11: CorrectSpectraBaseline (baseline_als)</li>
+                <li class="is-muted">12: DeleteSpectraSection (native)</li>
+                <li class="is-muted">13: DeleteSpectraSection (native)</li>
+                <li class="is-current-range is-range-start">14: FindChromPeaks (LocalMaxima)</li>
+                <li class="is-current-range">15: GroupPeaks (native)</li>
+                <li class="is-current-range">16: FilterSpectra (native)</li>
+                <li class="is-current-range">17: AverageSpectra (native)</li>
+                <li class="is-current-range is-range-end">18: NormalizeSpectra (minmax)</li>
+              </ol>
+            </aside>
+            <div class="nts-result-panel">
+              <img src="../assets/elrig_sec_raman_peak_comparison.png"
+                alt="SEC-Raman peak comparison and normalized spectra across workflow stages">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: R scripting and the Shiny GUI -->
+      <section class="slide" id="r-script-gui-slide">
+        <h2>Scripting and Graphical Interface </h2>
+        <div class="slide-body">
+          <div class="columns">
+            <div>
+              <h3>R scripting interface</h3>
+              <pre class="code-block language-r"><code>library(StreamFind)
+
+project &lt;- MassSpecEngine$new(
+  metadata = list(
+    name = "Example project",
+    author = "Ricardo Cunha"
+  )
+)
+
+workflow &lt;- Workflow(list(
+  Method_NonTargetAnalysis_FindFeatures(),
+  Method_NonTargetAnalysis_LoadFeaturesMS1(),
+  Method_NonTargetAnalysis_LoadFeaturesMS2()
+))
+
+project$Workflow &lt;- workflow
+project$run()</code></pre>
+            </div>
+            <div>
+              <h3>R Shiny GUI</h3>
+              <img src="../assets/shiny_gui_screenshot.jpeg" alt="StreamFind Shiny application interface"
+                style="width: 100%; height: auto;">
+              <p><strong>Same project model through a guided interface:</strong></p>
+              <ul>
+                <li>Configure metadata and working directory</li>
+                <li>Load analyses; assign replicate or blank groups</li>
+                <li>Assemble, validate, and run workflows</li>
+                <li>Inspect results, reports, and the audit trail</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: DuckDB on-disk persistence as the center of the framework -->
+      <style>
+        #persistent-data .columns {
+          grid-template-columns: 5fr 2fr;
+          align-items: center;
+        }
+
+        #persistent-data .columns>div:first-child {
+          align-items: center;
+        }
+
+        #persistent-data .columns>div:first-child>p {
+          font-size: .72em;
+          line-height: 1.3;
+          margin-bottom: .4em;
+        }
+
+        #persistent-data .columns>div:first-child>img {
+          max-height: 65vh;
+          width: auto;
+          max-width: 100%;
+        }
+
+        #persistent-data .columns>div:last-child {
+          align-items: center;
+          text-align: center;
+        }
+
+        #persistent-data .columns>div:last-child>img {
+          max-width: 280px;
+          height: auto;
+        }
+
+        #persistent-data .columns>div:last-child>span {
+          font-size: .65em;
+          color: var(--text);
+          margin-top: .3em;
+        }
+      </style>
+      <section class="slide" id="persistent-data">
+        <h2>Persistent data at the center of R scripts, GUI, and reporting</h2>
+        <div class="slide-body">
+          <div class="columns">
+            <div>
+              <p>R scripting, the Shiny GUI, and generated interactive reports all read and write the same on-disk
+                project store — metadata, analyses, workflows, results, and audit trail.</p>
+              <img src="../assets/iuta_seminar_duckdb_center.png"
+                alt="Scheme: the R script and the Shiny GUI converge into one DuckDB project database, which supports save/load, reports, and the audit trail">
+            </div>
+            <div>
+              <img src="../assets/iuta_seminar_nontarget_report_qr.png"
+                alt="QR code for an interactive Non-Target Screening HTML report">
+              <span>Interactive HTML report<br>Non-Target Screening</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: StreamFind friction -->
+      <section class="slide" id="streamfind-friction">
+        <h2>However, StreamFind is still not accessible to everyone</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/r_package_friction_summary.png" alt="StreamFind friction image">
+        </div>
+      </section>
+
+      <!-- MARK: CogniFlow project -->
+      <section class="slide" id="cogniflow">
+        <h2>New project: CogniFlow</h2>
+        <style>
+          #cogniflow .funding-logo {
+            bottom: 0;
+            position: absolute;
+            left: 0;
+            width: 25%;
+            z-index: 1;
+          }
+        </style>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/cogniflow_overview_loop.webp" alt="CogniFlow overview image">
+          <img class="funding-logo" src="../assets/funded_by_mkulnv_nrw.svg"
+            alt="Funded by the Ministry of Culture and Science of North Rhine-Westphalia">
+        </div>
+      </section>
+
+      <!-- MARK: Can AI manage your analytical data? -->
+      <section class="slide text-image-stacked-slide" id="anthropic-slide">
+        <h2>Can AI manage your analytical data?</h2>
+        <div class="slide-body text-image-stacked">
+          <div class="layout-text">
+            <p>
+              Article: How Claude is accelerating protein design and analytical chemistry<br>
+              <a href="https://www.anthropic.com/research/Claude-accelerates-protein-design"
+                style="font-style: italic; font-size: 0.85em;">
+                https://www.anthropic.com/research/Claude-accelerates-protein-design
+              </a>
+            </p>
+          </div>
+          <img src="../assets/anthropic_article.png" alt="anthropic_article">
+        </div>
+      </section>
+
+      <!-- MARK: What is analytical data processing?
+      <style>
+        .fair-chips { display: flex; gap: .6em; margin-top: 1.2em; }
+        .fair-chip { flex: 1 1 0; min-width: 0; background: #eef4fa; border: 1px solid #c9dcee; border-radius: .5em; padding: .35em .6em; line-height: 1.2; }
+        .fair-chip strong { color: #0a4d8c; }
+        .fair-chip span { display: block; font-size: .75em; color: #4a5a6a; }
+      </style>
+      <section class="slide">
+        <h2>What is analytical data processing?</h2>
+        <div class="slide-body">
+          <div class="columns">
+            <div>
+              <p style="font-size: 1.2em;">
+                Analytical data processing should turn instrument measurements and experiment metadata into
+                <strong>validated, FAIR results</strong> — a goal that is hard to achieve consistently today.
+              </p>
+            </div>
+            <div>
+              <img class="slide-figure" src="../assets/fair_data_flow.png"
+                alt="Mass spec instrument in a lab, with data flowing from the instrument into FAIR-organized results">
+            </div>
+          </div>
+          <div class="fair-chips">
+            <span class="fair-chip"><strong>F</strong>indable<span>traceable data</span></span>
+            <span class="fair-chip"><strong>A</strong>ccessible<span>usable by others</span></span>
+            <span class="fair-chip"><strong>I</strong>nteroperable<span>standard formats</span></span>
+            <span class="fair-chip"><strong>R</strong>eusable<span>reproducible results</span></span>
+          </div>
+        </div>
+      </section> -->
+
+      <!-- MARK: Why does control matters for FAIR analytical data processing? -->
+      <style>
+        #fair-risk-slide .fair-flow {
+          display: flex;
+          align-items: center;
+          gap: .5em;
+          margin: .8em 0 .4em;
+        }
+
+        #fair-risk-slide .fair-node {
+          background: #eef4fa;
+          border: 1px solid #c9dcee;
+          border-radius: .6em;
+          padding: .5em .7em;
+          text-align: center;
+          min-width: 0;
+          flex: 1.25 1 0;
+        }
+
+        #fair-risk-slide .fair-node svg {
+          width: 2.2em;
+          height: 2.2em;
+          color: #0a4d8c;
+        }
+
+        #fair-risk-slide .fair-node-label {
+          font-weight: 600;
+        }
+
+        #fair-risk-slide .fair-node-sub {
+          font-size: .8em;
+          color: #4a5a6a;
+        }
+
+        #fair-risk-slide .fair-node.agent {
+          border-color: #e5b9b9;
+        }
+
+        #fair-risk-slide .fair-node.agent.badged {
+          animation: risk-pulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes risk-pulse {
+
+          0%,
+          100% {
+            box-shadow: 0 0 0 0 rgba(163, 36, 36, 0);
+          }
+
+          50% {
+            box-shadow: 0 0 0 6px rgba(163, 36, 36, .18);
+          }
+        }
+
+        #fair-risk-slide .fair-badges {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: .4em;
+          margin-top: .5em;
+        }
+
+        #fair-risk-slide .fair-badge {
+          box-sizing: border-box;
+          flex: 1 1 100%;
+          max-width: 100%;
+          width: 100%;
+          background: #fdecec;
+          border: 1px solid #f2b8b8;
+          color: #a32424;
+          border-radius: .4em;
+          padding: .25em .5em;
+          text-align: left;
+          font-size: .8em;
+          line-height: 1.25;
+          opacity: 0;
+          transform: translateY(-.3em);
+          transition: opacity .3s, transform .3s;
+        }
+
+        #fair-risk-slide .fair-badge:last-child {
+          flex-basis: 100%;
+        }
+
+        #fair-risk-slide .fair-badge strong {
+          display: block;
+        }
+
+        #fair-risk-slide .fair-badge.show {
+          opacity: 1;
+          transform: none;
+        }
+
+        #fair-risk-slide .fair-link {
+          display: flex;
+          align-items: center;
+          flex: .35 1 0;
+          min-width: 1.5em;
+          color: #9fc0dd;
+          transition: color .3s;
+        }
+
+        #fair-risk-slide .fair-link::before {
+          content: "";
+          flex: 1 1 0;
+          height: 6px;
+          background: currentColor;
+        }
+
+        #fair-risk-slide .fair-link::after {
+          content: "";
+          width: 0;
+          height: 0;
+          margin-left: 2px;
+          border-top: 9px solid transparent;
+          border-bottom: 9px solid transparent;
+          border-left: 12px solid currentColor;
+        }
+
+        #fair-risk-slide .fair-link-bad {
+          color: #cf7a7a;
+        }
+
+        #fair-risk-slide .fair-fairbox {
+          background: #eef4fa;
+          border: 1px solid #c9dcee;
+          border-radius: .6em;
+          box-sizing: border-box;
+          padding: .5em .7em;
+          min-width: 0;
+          flex: 0 1 32%;
+        }
+
+        #fair-risk-slide .fair-fairbox-description {
+          font-size: .55em;
+          line-height: 1.25;
+          margin: .35em 0 .5em;
+          overflow-wrap: anywhere;
+        }
+
+        #fair-risk-slide .fair-fairbox .fair-chips {
+          display: flex;
+          flex-direction: column;
+          margin-top: .5em;
+          gap: .4em;
+        }
+
+        #fair-risk-slide .fair-fairbox .fair-chip {
+          flex: 1 1 auto;
+          min-width: 0;
+          position: relative;
+          transition: opacity .3s;
+        }
+
+        #fair-risk-slide .fair-fairbox .fair-chip span {
+          display: block;
+          font-size: .75em;
+        }
+
+        #fair-risk-slide .fair-fairbox .fair-chip.broken {
+          opacity: .4;
+        }
+
+        #fair-risk-slide .fair-fairbox .fair-chip {
+          text-align: center;
+        }
+
+        #fair-risk-slide .fair-fairbox .fair-chip.broken::after {
+          content: "";
+          position: absolute;
+          left: 18%;
+          right: 18%;
+          top: 50%;
+          height: 2px;
+          background: #a32424;
+          transform: rotate(-6deg);
+        }
+
+        #fair-risk-slide .fair-flow {
+          left: var(--side-gap);
+          margin: 0;
+          position: absolute;
+          right: var(--side-gap);
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        #fair-risk-slide .fair-flow>.fair-node,
+        #fair-risk-slide .fair-flow>.fair-link,
+        #fair-risk-slide .fair-flow>.fair-fairbox {
+          opacity: 0;
+          transform: translateX(-.5em);
+          transition: opacity .35s ease, transform .35s ease;
+        }
+
+        #fair-risk-slide .fair-flow>.fair-fairbox {
+          transform: translateX(.5em);
+        }
+
+        #fair-risk-slide .fair-reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+
+        #fair-risk-slide .fair-chip {
+          opacity: 0;
+          transform: translateY(-.3em);
+          transition: opacity .3s ease, transform .3s ease;
+        }
+
+        #fair-risk-slide .fair-chip.fair-show {
+          opacity: 1;
+          transform: none;
+        }
+      </style>
+      <section class="slide" id="fair-risk-slide">
+        <h2>Why does control matter for FAIR analytical data processing?</h2>
+        <div class="fair-flow">
+          <div class="fair-node instrument">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M14 6h14l8 8v26a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V6z" fill="none" stroke="currentColor"
+                stroke-width="3" />
+              <path d="M21 20h8v16h-8z" fill="currentColor" opacity=".4" />
+            </svg>
+            <div class="fair-node-label">Measurement</div>
+            <div class="fair-node-sub">raw data + metadata</div>
+          </div>
+          <div class="fair-link" aria-hidden="true"></div>
+          <div class="fair-node agent">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="15" fill="none" stroke="currentColor" stroke-width="3" />
+              <circle cx="24" cy="24" r="4" fill="currentColor" />
+              <path d="M24 6v9M24 33v9M6 24h9M33 24h9" stroke="currentColor" stroke-width="3" />
+            </svg>
+            <div class="fair-node-label">Vibe agent</div>
+            <div class="fair-badges">
+              <span class="fair-badge"><strong>Uncontrolled</strong>changes beyond intent</span>
+              <span class="fair-badge"><strong>Uncertain</strong>hides errors and assumptions</span>
+              <span class="fair-badge"><strong>Limited</strong>vendor-specific formats are not directly usable</span>
+            </div>
+          </div>
+          <div class="fair-link fair-link-bad" aria-hidden="true"></div>
+          <div class="fair-fairbox">
+            <div class="fair-node-label">FAIR expectations, broken</div>
+            <p class="fair-fairbox-description">
+              Analytical data processing should turn instrument measurements and experiment metadata into
+              <strong>validated, FAIR results</strong> — a goal that is hard to achieve consistently today.
+            </p>
+            <div class="fair-chips fair-chips-risk">
+              <span class="fair-chip"><span class="fair-chip-label"><strong>F</strong>indable</span><span>traceable
+                  data</span></span>
+              <span class="fair-chip"><span class="fair-chip-label"><strong>A</strong>ccessible</span><span>usable by
+                  others</span></span>
+              <span class="fair-chip"><span class="fair-chip-label"><strong>I</strong>nteroperable</span><span>standard
+                  formats</span></span>
+              <span class="fair-chip"><span class="fair-chip-label"><strong>R</strong>eusable</span><span>reproducible
+                  results</span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARK: CogniFlow plan -->
+      <style>
+        .cogniflow-refactoring-figure {
+          display: block;
+          height: 78%;
+          left: 50%;
+          object-fit: contain;
+          position: absolute;
+          top: 52%;
+          transform: translate(-50%, -50%);
+          width: 90%;
+        }
+
+        #cogniflow-plan-slide .cogniflow-sequence {
+          height: 78%;
+          left: 5%;
+          position: absolute;
+          top: 52%;
+          transform: translateY(-50%);
+          width: 90%;
+        }
+
+        #cogniflow-plan-slide .cogniflow-sequence .cogniflow-refactoring-figure {
+          height: 100%;
+          left: 0;
+          top: 0;
+          transform: none;
+          width: 100%;
+          z-index: 1;
+        }
+
+        #cogniflow-plan-slide .cogniflow-mask {
+          background: #fff !important;
+          display: block;
+          opacity: 1;
+          position: absolute;
+          transition: opacity .35s ease;
+          visibility: visible;
+          z-index: 20;
+        }
+
+        #cogniflow-plan-slide .cogniflow-mask.visible {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        #cogniflow-plan-slide .cogniflow-mask-global {
+          inset: 0;
+          z-index: 30;
+        }
+
+        #cogniflow-plan-slide .cogniflow-trigger {
+          display: none;
+        }
+
+        #cogniflow-plan-slide .cogniflow-mask-backend {
+          bottom: 0;
+          left: 0;
+          right: 43%;
+          top: 28%;
+        }
+
+        #cogniflow-plan-slide .cogniflow-mask-ontology {
+          bottom: 36%;
+          left: 0;
+          right: 25%;
+          top: 0;
+        }
+
+        #cogniflow-plan-slide .cogniflow-mask-ontology-arrow {
+          left: 20%;
+          right: 66%;
+          top: 24%;
+          bottom: 47%;
+        }
+
+        #cogniflow-plan-slide .cogniflow-mask-mcp {
+          bottom: 0;
+          left: 54%;
+          right: 20%;
+          top: 25%;
+        }
+
+        #cogniflow-plan-slide .cogniflow-mask-mcp-arrow {
+          bottom: 22%;
+          left: 45%;
+          right: 30%;
+          top: 50%;
+        }
+
+        #cogniflow-plan-slide .cogniflow-mask-users {
+          bottom: 0;
+          left: 66%;
+          right: 0;
+          top: 0;
+        }
+      </style>
+      <section class="slide" id="cogniflow-plan-slide">
+        <h2>FAIR principles for data, operations, and processing methods</h2>
+        <div class="cogniflow-sequence" aria-label="Progressive view of the standardized architecture">
+          <img class="cogniflow-refactoring-figure" src="../assets/cogniflow_refactoring_plan.png"
+            alt="Streamfind refactoring plan for the Cogniflow project">
+          <span class="cogniflow-mask cogniflow-mask-global" aria-hidden="true"></span>
+          <span class="cogniflow-mask cogniflow-mask-backend" aria-hidden="true"></span>
+          <span class="cogniflow-mask cogniflow-mask-ontology"></span>
+          <span class="cogniflow-mask cogniflow-mask-ontology-arrow"></span>
+          <span class="cogniflow-mask cogniflow-mask-mcp"></span>
+          <span class="cogniflow-mask cogniflow-mask-mcp-arrow"></span>
+          <span class="cogniflow-mask cogniflow-mask-users"></span>
+          <span class="cogniflow-trigger fragment" data-fragment-index="0" data-mask="backend"
+            aria-hidden="true"></span>
+          <span class="cogniflow-trigger fragment" data-fragment-index="1" data-mask="ontology"
+            aria-hidden="true"></span>
+          <span class="cogniflow-trigger fragment" data-fragment-index="2" data-mask="mcp" aria-hidden="true"></span>
+          <span class="cogniflow-trigger fragment" data-fragment-index="3" data-mask="users" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <!-- Basic text slide -->
+      <section class="slide teaser-slide">
+        <h2>Teaser</h2>
+        <div class="slide-body">
+          <p>Show the AI agent building a workflow via a prompt and then the same workflow being inspected via the web
+            app, highlighting the benefits of FAIR data practices.</p>
+        </div>
+      </section>
+
+      <!-- MARK: StreamFind in practice -->
+      <!-- <style>
+        #streamfind-in-practice-slide video { display: block; width: 100%; max-height: calc(100vh - 160px); margin: 0 auto; border-radius: .4em; background: #000; }
+      </style>
+      <section class="slide" id="streamfind-in-practice-slide">
+        <h2>StreamFind in practice</h2>
+        <div class="slide-body">
+          <video controls preload="metadata" src="../assets/streamfind_demo.mp4"></video>
+        </div>
+      </section> -->
+
+      <!-- MARK: StreamFind relaxed technician -->
+      <section class="slide" id="streamfind-relaxed-technician-slide">
+        <h2> FAIR data builds confidence, skills, and regulatory integrity </h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/streamfind_confident_technician.png"
+            alt="StreamFind confident technician image">
+        </div>
+      </section>
+
+      <!--
+        MARK: SLIDES END HERE
+      -->
+
+      <!-- Keep this as the final slide. -->
+      <section class="slide thank-you-slide">
+        <img class="banner-background" src="../assets/template/title-background.jpg" alt="">
+        <h2></h2>
+        <p></p>
+        <div class="thank-you-visit"><span></span><br><strong></strong></div>
+        <img class="thank-you-qr" src="../assets/project_qr.png" alt="QR code for the streamfind project">
+        <div class="thank-you-author"><strong></strong><span></span></div>
+        <div class="title-logo iuta" aria-hidden="true"></div>
+        <div class="title-logo ude" aria-hidden="true"></div>
+        <div class="title-logo jrf" aria-hidden="true"></div>
+        <div class="thank-you-funding"><span>Funded by:</span>
+          <div class="thank-you-funding-logos"><img src="../assets/eu_funding.jpg"
+              alt="European Union and NextGenerationEU funding mark"><img src="../assets/bmftr_logo.png"
+              alt="BMFTR logo"><img src="../assets/funded_by_mkulnv_nrw.svg"
+              alt="Ministerium für Kultur und Wissenschaft des Landes Nordrhein-Westfalen"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Change the logo source and alt text here when using a different logo. -->
+  <template id="slide-chrome-template">
+    <div class="slide-chrome">
+      <img class="slide-logo" src="../assets/template/iuta-logo.png" alt="IUTA">
+      <div class="slide-footer">
+        <span class="metadata-left"></span>
+        <span class="center metadata-footer"></span>
+        <span class="number"></span>
+      </div>
+    </div>
+  </template>
+
+  <script src="../assets/template/vendor/reveal.js/reveal.js"></script>
+  <script src="../assets/template/vendor/highlight.js/highlight.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/javascript.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/r.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/python.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/cpp.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/shell.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/bash.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/rust.min.js"></script>
+  <script src="../assets/template/vendor/highlight.js/languages/json.min.js"></script>
+  <script>
+    hljs.registerLanguage('ttl', function (hljs) {
+      return {
+        name: 'Turtle',
+        aliases: ['turtle'],
+        contains: [
+          hljs.HASH_COMMENT_MODE,
+          { className: 'meta', begin: /@(?:prefix|base)\b/ },
+          { className: 'symbol', begin: /\ba\b/ },
+          hljs.QUOTE_STRING_MODE,
+          hljs.NUMBER_MODE,
+          { className: 'attr', begin: /[A-Za-z_][\w-]*:/ },
+          { className: 'link', begin: /<[^>]+>/ }
+        ]
+      };
+    });
+
+    document.querySelectorAll('pre.code-block code').forEach(function (block) {
+      hljs.highlightElement(block);
+    });
+
+    function metadata(name) {
+      var node = document.querySelector('meta[name="' + name + '"]');
+      return node ? node.content : '';
+    }
+
+    function addSlideChrome() {
+      var template = document.querySelector('#slide-chrome-template');
+      if (!template) return;
+      document.querySelectorAll('.reveal .slides section.slide:not(#title-slide):not(.thank-you-slide)').forEach(function (slide) {
+        if (slide.querySelector(':scope > .slide-chrome')) return;
+        var chrome = template.content.cloneNode(true);
+        var body = slide.querySelector(':scope > .slide-body');
+        slide.insertBefore(chrome, body || slide.children[1]);
+      });
+    }
+
+    addSlideChrome();
+
+    function resetTimedAnimation(slide) {
+      document.querySelectorAll('.timed-animation-demo').forEach(function (demo) {
+        demo.classList.remove('is-active');
+      });
+      if (!slide || slide.id !== 'timed-animation-slide') return;
+      slide.querySelector('.timed-animation-demo').classList.add('is-active');
+    }
+
+    var presentationMetadata = {
+      title: metadata('presentation-title'),
+      author: metadata('author'),
+      date: metadata('presentation-date'),
+      event: metadata('presentation-event'),
+      affiliation: metadata('presentation-affiliation'),
+      footer: [metadata('author'), metadata('author-email')].filter(Boolean).join(' | '),
+      thankYou: metadata('presentation-thank-you'),
+      thankYouSubtitle: metadata('presentation-thank-you-subtitle'),
+      projectLink: metadata('presentation-project-link')
+    };
+
+    document.title = presentationMetadata.title;
+    document.querySelector('#title-slide .title').textContent = presentationMetadata.title;
+    document.querySelector('#title-slide .title-date').textContent = presentationMetadata.date;
+    document.querySelector('#title-slide .title-event').textContent = presentationMetadata.event;
+    document.querySelector('#title-slide .title-speakers').textContent = presentationMetadata.author;
+    document.querySelector('#title-slide .title-affiliations').textContent = presentationMetadata.affiliation;
+    document.querySelector('.thank-you-slide h2').textContent = presentationMetadata.thankYou;
+    document.querySelector('.thank-you-slide p').textContent = presentationMetadata.thankYouSubtitle;
+    document.querySelector('.thank-you-slide .thank-you-visit span').textContent = presentationMetadata.thankYouSubtitle;
+    document.querySelector('.thank-you-slide .thank-you-visit strong').textContent = presentationMetadata.projectLink;
+    document.querySelector('.thank-you-slide .thank-you-author strong').textContent = presentationMetadata.footer;
+    document.querySelector('.thank-you-slide .thank-you-author span').textContent = presentationMetadata.affiliation;
+    document.querySelectorAll('.metadata-left').forEach(function (node) {
+      node.textContent = [presentationMetadata.date, presentationMetadata.event].filter(Boolean).join(' | ');
+    });
+    document.querySelectorAll('.metadata-footer').forEach(function (node) {
+      node.textContent = presentationMetadata.footer;
+    });
+
+    Reveal.initialize({
+      controls: false, progress: false, hash: true, history: true,
+      keyboard: true, overview: false, view: 'scroll', center: false, transition: 'none',
+      slideNumber: 'c/t', width: 1920, height: 1080, margin: 0.04
+    });
+
+    function syncSlideNumber() {
+      document.querySelectorAll('.slide-footer .number').forEach(function (node) {
+        node.textContent = Reveal.getIndices().h + 1;
+      });
+    }
+    Reveal.on('ready', syncSlideNumber);
+    Reveal.on('slidechanged', syncSlideNumber);
+    Reveal.on('ready', function (event) {
+      resetTimedAnimation(event.currentSlide);
+      revealFairRisk();
+    });
+    Reveal.on('slidechanged', function (event) {
+      resetTimedAnimation(event.currentSlide);
+      revealFairRisk();
+    });
+
+    var fairTimers = [];
+    function revealFairRisk() {
+      fairTimers.forEach(clearTimeout);
+      fairTimers = [];
+      var slide = document.getElementById('fair-risk-slide');
+      if (!slide) return;
+      var instrument = slide.querySelector('.fair-node.instrument');
+      var agent = slide.querySelector('.fair-node.agent');
+      var links = Array.prototype.slice.call(slide.querySelectorAll('.fair-link'));
+      var fairbox = slide.querySelector('.fair-fairbox');
+      var badges = Array.prototype.slice.call(slide.querySelectorAll('.fair-badge'));
+      var chips = Array.prototype.slice.call(slide.querySelectorAll('.fair-chip'));
+
+      var revealables = [instrument, links[0], agent, badges[0], badges[1], badges[2], links[1], fairbox];
+      revealables.forEach(function (element) {
+        if (element) element.classList.remove('fair-reveal');
+      });
+      chips.forEach(function (chip) {
+        chip.classList.remove('fair-show');
+        chip.classList.remove('broken');
+      });
+
+      var currentSlide = Reveal.getCurrentSlide();
+      if (currentSlide !== slide) return;
+      revealables.forEach(function (element, index) {
+        if (!element) return;
+        fairTimers.push(setTimeout(function () {
+          if (Reveal.getCurrentSlide() !== slide) return;
+          element.classList.add('fair-reveal');
+          if (element === badges[0] || element === badges[1] || element === badges[2]) element.classList.add('show');
+        }, index * 500));
+      });
+      chips.forEach(function (chip, index) {
+        fairTimers.push(setTimeout(function () {
+          if (Reveal.getCurrentSlide() !== slide) return;
+          chip.classList.add('fair-show');
+          chip.classList.add('broken');
+        }, 4100 + index * 500));
+      });
+    }
+
+    function revealCogniflowMask(fragment, isVisible) {
+      if (!fragment || !fragment.classList || !fragment.classList.contains('cogniflow-trigger')) return;
+      var slide = document.getElementById('cogniflow-plan-slide');
+      var mask = slide && slide.querySelector('.cogniflow-mask-' + fragment.dataset.mask);
+      if (mask) mask.classList.toggle('visible', isVisible);
+      var globalMask = slide && slide.querySelector('.cogniflow-mask-global');
+      if (globalMask && fragment.dataset.mask === 'backend') globalMask.classList.toggle('visible', isVisible);
+      var ontologyArrow = slide && slide.querySelector('.cogniflow-mask-ontology-arrow');
+      if (ontologyArrow && fragment.dataset.mask === 'ontology') ontologyArrow.classList.toggle('visible', isVisible);
+      var mcpArrow = slide && slide.querySelector('.cogniflow-mask-mcp-arrow');
+      if (mcpArrow && fragment.dataset.mask === 'mcp') mcpArrow.classList.toggle('visible', isVisible);
+    }
+    Reveal.on('fragmentshown', function (event) { revealCogniflowMask(event.fragment, true); });
+    Reveal.on('fragmenthidden', function (event) { revealCogniflowMask(event.fragment, false); });
+  </script>
+</body>
+
+</html>
