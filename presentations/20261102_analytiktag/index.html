@@ -70,9 +70,145 @@
 
       <!-- MARK: The StreamFind plan -->
       <section class="slide" id="streamfind-plan-slide">
-        <h2>The StreamFind project concept</h2>
+        <h2>StreamFind R package</h2>
         <div class="slide-body">
           <img class="full-slide-image" src="../assets/streamfind_plan.png" alt="StreamFind plan image">
+        </div>
+      </section>
+
+      <!-- MARK: Analytical Workflows -->
+      <style>
+        .workflow-overview-slide .workflow-overview {
+          display: grid;
+          grid-template-columns: 1.05fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
+          gap: 10px;
+          height: 100%;
+          min-height: 0;
+        }
+
+        .workflow-overview-slide .workflow-card {
+          align-items: center;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          border: 2px solid #000;
+          min-height: 0;
+          overflow: hidden;
+          padding: 14px 18px;
+          text-align: center;
+        }
+
+        .workflow-overview-slide .workflow-card img {
+          display: block;
+          max-height: 100%;
+          max-width: 100%;
+          object-fit: contain;
+        }
+
+        .workflow-overview-slide .workflow-nontarget {
+          grid-row: 1 / span 2;
+        }
+
+        #analytical-workflows .workflow-nontarget {
+          border: 2px solid #000;
+        }
+
+        .workflow-overview-slide .workflow-nontarget img {
+          flex: 0 1 58%;
+          height: 58%;
+          width: 100%;
+        }
+
+        .workflow-overview-slide .workflow-lcuv {
+          background: transparent;
+        }
+
+        .workflow-overview-slide .workflow-lcuv .workflow-plots {
+          align-items: center;
+          display: grid;
+          flex: 0 0 48%;
+          height: 48%;
+          gap: 8px;
+          grid-template-columns: 1fr 1fr;
+          min-height: 0;
+          overflow: hidden;
+          width: 100%;
+        }
+
+        .workflow-overview-slide .workflow-lcuv .workflow-plots img {
+          height: 100%;
+          min-height: 0;
+          min-width: 0;
+          width: 100%;
+        }
+
+        .workflow-overview-slide .workflow-secraman {
+          background: transparent;
+        }
+
+        .workflow-overview-slide .workflow-secraman img {
+          flex: 0 1 52%;
+          height: 52%;
+          object-fit: cover;
+          object-position: center top;
+          width: 80%;
+        }
+
+        .workflow-overview-slide .workflow-lchrms {
+          background: transparent;
+          grid-column: 3;
+          grid-row: 1 / span 2;
+        }
+
+        .workflow-overview-slide .workflow-lchrms .workflow-identification {
+          align-items: center;
+          display: flex;
+          flex: 0 1 72%;
+          flex-direction: column;
+          min-height: 0;
+          width: 90%;
+        }
+
+        .workflow-overview-slide .workflow-lchrms .workflow-identification img {
+          display: block;
+          flex: 0 1 100%;
+          height: 100%;
+          max-height: 100%;
+          max-width: 100%;
+          min-height: 0;
+          object-fit: contain;
+          width: 100%;
+        }
+      </style>
+      <section class="slide workflow-overview-slide" id="analytical-workflows">
+        <h2>Workflows demonstrated using the StreamFind R package</h2>
+        <div class="slide-body">
+          <div class="workflow-overview">
+            <article class="workflow-card workflow-nontarget">
+              <img src="../assets/elrig_non_target_screening_process.jpeg"
+                alt="Process diagram for non-target screening">
+              <h3>Non-target Screening based on LC-HRMS</h3>
+            </article>
+            <article class="workflow-card workflow-lcuv">
+              <div class="workflow-plots">
+                <img src="../assets/elrig_lc_uv_chromatogram.png" alt="LC-UV chromatogram">
+                <img src="../assets/elrig_lc_uv_calibration.png" alt="LC-UV calibration curve">
+              </div>
+              <h3>LC-UV based quantification</h3>
+            </article>
+            <article class="workflow-card workflow-secraman">
+              <img src="../assets/elrig_sec_cers_instrument.png" alt="SEC-CERS analytical instrument">
+              <h3>Quality evaluation based on SEC-Raman</h3>
+            </article>
+            <article class="workflow-card workflow-lchrms">
+              <div class="workflow-identification">
+                <img src="../assets/hrms_ident.png" alt="LC-HRMS peak with monoclonal antibody identification">
+              </div>
+              <h3>Identification of monoclonal antibodies based on LC-HRMS</h3>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -113,7 +249,7 @@
 
       <!-- MARK: R scripting and the Shiny GUI -->
       <section class="slide" id="r-script-gui-slide">
-        <h2>Fast-forward to the project end, we created the StreamFind R package</h2>
+        <h2>The interface to the StreamFind R package</h2>
         <div class="slide-body">
           <div class="columns">
             <div>
@@ -163,7 +299,7 @@ project$run()</code></pre>
 
       <!-- MARK: CogniFlow project -->
       <section class="slide" id="cogniflow">
-        <h2>New project: CogniFlow</h2>
+        <h2>New project</h2>
         <style>
           #cogniflow .funding-logo { bottom: 0; position: absolute; left: 0; width: 25%; z-index: 1; }
         </style>
@@ -278,7 +414,7 @@ project$run()</code></pre>
               <circle cx="24" cy="24" r="4" fill="currentColor" />
               <path d="M24 6v9M24 33v9M6 24h9M33 24h9" stroke="currentColor" stroke-width="3" />
             </svg>
-            <div class="fair-node-label">Vibe agent</div>
+            <div class="fair-node-label">Agentic vibe coding</div>
             <div class="fair-badges">
               <span class="fair-badge"><strong>Uncontrolled</strong>changes beyond intent</span>
               <span class="fair-badge"><strong>Uncertain</strong>hides errors and assumptions</span>
@@ -303,7 +439,7 @@ project$run()</code></pre>
       </section>
 
       <!-- MARK: CogniFlow plan -->
-      <style>
+      <!-- <style>
         .cogniflow-refactoring-figure { display: block; height: 78%; left: 50%; object-fit: contain; position: absolute; top: 52%; transform: translate(-50%, -50%); width: 90%; }
         #cogniflow-plan-slide .cogniflow-sequence { height: 78%; left: 5%; position: absolute; top: 52%; transform: translateY(-50%); width: 90%; }
         #cogniflow-plan-slide .cogniflow-sequence .cogniflow-refactoring-figure { height: 100%; left: 0; top: 0; transform: none; width: 100%; z-index: 1; }
@@ -319,7 +455,7 @@ project$run()</code></pre>
         #cogniflow-plan-slide .cogniflow-mask-users { bottom: 0; left: 66%; right: 0; top: 0; }
       </style>
       <section class="slide" id="cogniflow-plan-slide">
-        <h2>FAIR principles for data, operations, and processing methods</h2>
+        <h2>Design for FAIR analytical data processing </h2>
         <div class="cogniflow-sequence" aria-label="Progressive view of the standardized architecture">
           <img class="cogniflow-refactoring-figure" src="../assets/cogniflow_refactoring_plan.png"
             alt="Streamfind refactoring plan for the Cogniflow project">
@@ -337,10 +473,51 @@ project$run()</code></pre>
           <span class="cogniflow-trigger fragment" data-fragment-index="2" data-mask="mcp" aria-hidden="true"></span>
           <span class="cogniflow-trigger fragment" data-fragment-index="3" data-mask="users" aria-hidden="true"></span>
         </div>
+      </section> -->
+
+      <!-- MARK: Anthropic example operations -->
+      <section class="slide" id="anthropic-example-operations-slide">
+        <h2>Breaking down the Anthropic example in concrete operations</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/fair_workflow_explained_1.png"
+            alt="Anthropic example broken down into concrete operations">
+        </div>
+      </section>
+
+      <section class="slide" id="anthropic-example-operations-slide-2">
+        <h2>Implementation conditions must be part of the provenance</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/fair_workflow_explained_2.png"
+            alt="Anthropic example broken down into concrete operations">
+        </div>
+      </section>
+
+      <section class="slide" id="anthropic-example-operations-slide-3">
+        <h2>How can we describe a data processing operation?</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/fair_workflow_explained_3.png"
+            alt="Anthropic example broken down into concrete operations">
+        </div>
+      </section>
+
+      <section class="slide" id="anthropic-example-operations-slide-4">
+        <h2>Ontology as a functional knowledge graph</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/fair_workflow_explained_4.png"
+            alt="Anthropic example broken down into concrete operations">
+        </div>
+      </section>
+
+      <section class="slide" id="anthropic-example-operations-slide-5">
+        <h2>We own and control our data transformation via validated tools</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/fair_workflow_explained_5.png"
+            alt="Anthropic example broken down into concrete operations">
+        </div>
       </section>
 
       <!-- MARK: StreamFind in practice -->
-      <style>
+      <!-- <style>
         html, body, .reveal, .reveal-viewport { background: #000 !important; }
         .reveal .slides #title-slide { background: #fff !important; }
         .reveal .slides section.slide:not(.streamfind-video-slide) { background: #fff; }
@@ -356,7 +533,7 @@ project$run()</code></pre>
       </section>
       <section class="slide streamfind-video-slide" id="streamfind-video-3">
         <video autoplay muted playsinline preload="auto" src="../assets/streamfind_workflow_results.mp4"></video>
-      </section>
+      </section> -->
 
       <!-- MARK: StreamFind relaxed technician -->
       <section class="slide" id="streamfind-relaxed-technician-slide">
