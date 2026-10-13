@@ -35,8 +35,11 @@
     <div class="slides">
       <!-- Metadata is defined at the top of this file. Keep the structure. -->
       <style>
-        #title-slide .title { font-size: 1.6em; }
+        #title-slide .title {
+          font-size: 1.6em;
+        }
       </style>
+      <!-- MARK: Title slide -->
       <section id="title-slide" class="quarto-title-block">
         <img class="banner-background" src="../assets/template/title-background.jpg" alt="">
         <h1 class="title"></h1>
@@ -49,6 +52,7 @@
         <div class="title-logo jrf" aria-hidden="true"></div>
       </section>
 
+
       <!--
         MARK: START SLIDES HERE.
         Edit, duplicate, or remove the example slides below. Keep the title slide
@@ -59,10 +63,10 @@
       <section class="slide" id="back-in-2022">
         <h2>Back in 2022...</h2>
         <div class="slide-body">
-          <img class="full-slide-image" src="../assets/streamfind_motivation_lab.png"
-            alt="Back in 2022 image">
+          <img class="full-slide-image" src="../assets/streamfind_motivation_lab.png" alt="Back in 2022 image">
         </div>
       </section>
+
 
       <!-- MARK: StreamFind project -->
       <section class="slide" id="streamfind-logo-slide">
@@ -72,16 +76,18 @@
         </div>
       </section>
 
+
       <!-- MARK: The StreamFind plan -->
       <section class="slide" id="streamfind-plan-slide">
-        <h2>The StreamFind project concept</h2>
+        <h2>StreamFind R package</h2>
         <div class="slide-body">
           <img class="full-slide-image" src="../assets/streamfind_plan.png" alt="StreamFind plan image">
         </div>
       </section>
 
+
       <!-- MARK: Fast-forward to the project end -->
-      <section class="slide" id="streamfind-fast-forward-slide">
+      <!-- <section class="slide" id="streamfind-fast-forward-slide">
         <h2>StreamFind R package</h2>
         <div class="slide-body">
           <div class="columns" style="--column-count: 3;">
@@ -106,9 +112,10 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> -->
 
-      <!-- MARK: Analytical Workflows -->
+
+      <!-- MARK: Workflows demonstrated using the StreamFind R package -->
       <style>
         .workflow-overview-slide .workflow-overview {
           display: grid;
@@ -215,13 +222,13 @@
         }
       </style>
       <section class="slide workflow-overview-slide" id="analytical-workflows">
-        <h2>Workflows demonstrated </h2>
+        <h2>Workflows demonstrated using the StreamFind R package </h2>
         <div class="slide-body">
           <div class="workflow-overview">
             <article class="workflow-card workflow-nontarget">
               <img src="../assets/elrig_non_target_screening_process.jpeg"
                 alt="Process diagram for non-target screening">
-              <h3>Non-target Screening</h3>
+              <h3>Non-target Screening based on LC-HRMS</h3>
             </article>
             <article class="workflow-card workflow-lcuv">
               <div class="workflow-plots">
@@ -238,15 +245,16 @@
               <div class="workflow-identification">
                 <img src="../assets/hrms_ident.png" alt="LC-HRMS peak with monoclonal antibody identification">
               </div>
-              <h3>LC-HRMS based identification</h3>
+              <h3>Identification of monoclonal antibodies based on LC-HRMS</h3>
             </article>
           </div>
         </div>
       </section>
 
+
       <!-- MARK: R scripting and the Shiny GUI -->
       <section class="slide" id="r-script-gui-slide">
-        <h2>Scripting and Graphical Interface </h2>
+        <h2>The interface to the StreamFind R package </h2>
         <div class="slide-body">
           <div class="columns">
             <div>
@@ -285,7 +293,8 @@ project$run()</code></pre>
         </div>
       </section>
 
-      <!-- MARK: DuckDB on-disk persistence as the center of the framework -->
+
+      <!-- MARK: Persistent data at the center via DuckDB -->
       <style>
         #persistent-data .columns {
           grid-template-columns: 5fr 2fr;
@@ -325,7 +334,7 @@ project$run()</code></pre>
         }
       </style>
       <section class="slide" id="persistent-data">
-        <h2>Persistent data at the center of R scripts, GUI, and reporting</h2>
+        <h2>Persistent data at the center via DuckDB</h2>
         <div class="slide-body">
           <div class="columns">
             <div>
@@ -343,17 +352,19 @@ project$run()</code></pre>
         </div>
       </section>
 
+
       <!-- MARK: StreamFind friction -->
       <section class="slide" id="streamfind-friction">
-        <h2>However, StreamFind is still not accessible to everyone</h2>
+        <h2>However, the StreamFind R package is still not accessible to everyone</h2>
         <div class="slide-body">
           <img class="full-slide-image" src="../assets/r_package_friction_summary.png" alt="StreamFind friction image">
         </div>
       </section>
 
+
       <!-- MARK: CogniFlow project -->
       <section class="slide" id="cogniflow">
-        <h2>New project: CogniFlow</h2>
+        <h2>New project</h2>
         <style>
           #cogniflow .funding-logo {
             bottom: 0;
@@ -369,6 +380,7 @@ project$run()</code></pre>
             alt="Funded by the Ministry of Culture and Science of North Rhine-Westphalia">
         </div>
       </section>
+
 
       <!-- MARK: Can AI manage your analytical data? -->
       <section class="slide text-image-stacked-slide" id="anthropic-slide">
@@ -387,7 +399,8 @@ project$run()</code></pre>
         </div>
       </section>
 
-      <!-- MARK: Why does control matters for FAIR analytical data processing? -->
+
+      <!-- MARK: Why does control matter for FAIR analytical data processing? -->
       <style>
         #fair-risk-slide .fair-flow {
           display: flex;
@@ -621,7 +634,7 @@ project$run()</code></pre>
               <circle cx="24" cy="24" r="4" fill="currentColor" />
               <path d="M24 6v9M24 33v9M6 24h9M33 24h9" stroke="currentColor" stroke-width="3" />
             </svg>
-            <div class="fair-node-label">Vibe agent</div>
+            <div class="fair-node-label">Agentic vibe coding</div>
             <div class="fair-badges">
               <span class="fair-badge"><strong>Uncontrolled</strong>changes beyond intent</span>
               <span class="fair-badge"><strong>Uncertain</strong>hides errors and assumptions</span>
@@ -649,9 +662,9 @@ project$run()</code></pre>
         </div>
       </section>
 
-      <!-- MARK: CogniFlow plan -->
-      <style>
-        .cogniflow-refactoring-figure {
+      <!-- MARK: FAIR principles for data, operations, and processing methods -->
+      <!-- <style>
+         .cogniflow-refactoring-figure {
           display: block;
           height: 78%;
           left: 50%;
@@ -746,7 +759,7 @@ project$run()</code></pre>
           top: 0;
         }
       </style>
-      <section class="slide" id="cogniflow-plan-slide">
+        <section class="slide" id="cogniflow-plan-slide">
         <h2>FAIR principles for data, operations, and processing methods</h2>
         <div class="cogniflow-sequence" aria-label="Progressive view of the standardized architecture">
           <img class="cogniflow-refactoring-figure" src="../assets/cogniflow_refactoring_plan.png"
@@ -765,123 +778,878 @@ project$run()</code></pre>
           <span class="cogniflow-trigger fragment" data-fragment-index="2" data-mask="mcp" aria-hidden="true"></span>
           <span class="cogniflow-trigger fragment" data-fragment-index="3" data-mask="users" aria-hidden="true"></span>
         </div>
+      </section> -->
+
+      <!-- MARK: Anthropic example operations -->
+      <section class="slide" id="anthropic-example-operations-slide">
+        <h2>Breaking down the Anthropic example in concrete operations</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/fair_workflow_explained_1.png"
+            alt="Anthropic example broken down into concrete operations">
+        </div>
       </section>
 
-      <style>
-        .framework-story-slide .ontology-ttl-layout { align-items: center; display: flex; gap: 3%; height: 78%; margin: 2% 4% 0; }
-        .framework-story-slide .ttl-file-card { align-items: center; background: #eef4fa; border: 1px solid #c9dcee; border-radius: .6em; display: flex; flex: 0 0 19%; flex-direction: column; gap: .35em; justify-content: center; padding: 1em; text-align: center; }
-        .framework-story-slide .ttl-file-icon { align-items: center; background: #0a4d8c; border-radius: .25em; color: #fff; display: flex; font-size: 1.5em; height: 2em; justify-content: center; width: 2.5em; }
-        .framework-story-slide .ttl-file-card strong { color: #0a4d8c; }
-        .framework-story-slide .ttl-file-card > span:last-child { color: #4a5a6a; font-size: .7em; line-height: 1.2; }
-        .framework-story-slide pre.ontology-ttl { background: #202a35; border-radius: .5em; box-sizing: border-box; color: #d7e3f0; flex: 1 1 auto; font-size: .56em; line-height: 1.45; margin: 0; min-width: 0; padding: 1.2em 1.4em; }
-        .framework-story-slide .ttl-line { display: block; opacity: .35; }
-        .framework-story-slide .ttl-line.ttl-active { opacity: 1; }
-        .framework-story-slide .ttl-comment { color: #718394; }
-        .framework-story-slide .ttl-directive { color: #c792ea; }
-        .framework-story-slide .ttl-prefix { color: #82aaff; }
-        .framework-story-slide .ttl-iri, .framework-story-slide .ttl-string { color: #c3e88d; }
-        .framework-story-slide .ttl-subject { color: #f78c6c; }
-        .framework-story-slide .ttl-predicate { color: #89ddff; }
-        .framework-story-slide .ttl-class, .framework-story-slide .ttl-resource { color: #ffcb6b; }
-        .framework-story-slide .ttl-highlight-step { display: none; }
-        #ontology-network-slide .ontology-graph-toolbar { align-items: center; color: #274560; display: flex; font-size: .62em; gap: 1.2em; justify-content: space-between; margin: .8em var(--side-gap) .35em; }
-        #ontology-network-slide .ontology-graph-toolbar label { align-items: center; display: flex; gap: .4em; }
-        #ontology-network-slide .ontology-graph-toolbar input { border: 1px solid #9fc6dc; border-radius: 1em; color: #274560; font: inherit; padding: .35em .75em; width: 16em; }
-        #ontology-network-slide .ontology-graph-hint { color: #6b7c8c; font-size: .9em; }
-        #ontology-network-slide .ontology-network-wrap { background: transparent; border: 0; height: 86%; margin: 0 var(--side-gap); overflow: hidden; position: relative; }
-        #ontology-network-slide #ontology-network-svg { display: block; height: 100%; width: 100%; }
-        #ontology-network-slide .ontology-graph-tooltip { background: #202a35; border: 1px solid #8bc6e0; border-radius: .5em; color: #fff; font-size: .65em; line-height: 1.25; max-width: 24em; padding: .5em .7em; pointer-events: none; position: absolute; white-space: normal; z-index: 5; }
-        #ontology-network-slide .ontology-graph-tooltip strong { color: #8bc6e0; display: block; }
-        #ontology-network-slide .ontology-graph-tooltip span { display: block; }
-        #ontology-network-slide .ontology-graph-tooltip-id { color: #b8c9d8; font-size: .85em; }
-        #ontology-network-slide .ontology-graph-tooltip-definition { color: #fff; margin: .35em 0; }
-        .mcp-generic-flow, .mcp-discovery-flow { align-items: center; display: flex; gap: 1em; justify-content: center; margin: 4% 4% 2%; }
-        .mcp-generic-stage, .mcp-discovery-stage { align-items: center; background: #eef4fa; border: 1px solid #c9dcee; border-radius: .6em; display: flex; flex: 1 1 0; flex-direction: column; gap: .35em; justify-content: center; min-height: 7em; padding: .7em; text-align: center; }
-        .mcp-generic-stage strong, .mcp-discovery-stage strong { color: #0a4d8c; }
-        .mcp-generic-stage > span:last-child, .mcp-discovery-stage > span:last-child { color: #4a5a6a; font-size: .62em; }
-        .mcp-generic-icon, .mcp-discovery-icon { align-items: center; background: #202a35; border-radius: 50%; color: #fff; display: flex; font-size: 1.5em; height: 1.7em; justify-content: center; width: 1.7em; }
-        .mcp-explainer-arrow, .mcp-discovery-arrow { color: #a24e3c; font-size: 1.5em; }
-        .mcp-generic-code-row, .mcp-discovery-code-row { margin: 0 8%; }
-        .mcp-generic-code-note, .mcp-discovery-code-note { color: #4a5a6a; font-size: .62em; margin-bottom: .4em; }
-        .mcp-generic-code, .mcp-discovery-code { background: #202a35; border-radius: .5em; color: #d7e3f0; font-size: .55em; line-height: 1.35; margin: 0; padding: 1em; }
 
-        #ontology-example-slide .ontology-ttl-layout,
-        #ontology-operation-example-slide .ontology-ttl-layout { display: block; height: auto; left: 0; margin: 0; position: absolute; right: 0; top: 50%; transform: translateY(-50%); }
-        #ontology-example-slide .ttl-file-card,
-        #ontology-operation-example-slide .ttl-file-card { align-items: center; background: transparent; border: 0; color: #274560; display: flex; flex: none; flex-direction: column; font-size: .68em; gap: .35em; justify-content: initial; left: 5%; padding: 0; position: absolute; text-align: center; top: 50%; transform: translateY(-50%); width: 15%; }
-        #ontology-example-slide .ttl-file-icon,
-        #ontology-operation-example-slide .ttl-file-icon { background: #eef4f8; border: 3px solid #76b7d7; border-radius: .35em; color: #a24e3c; font-family: Consolas, monospace; font-size: 1.4em; height: 3.2em; width: 2.5em; }
-        #ontology-example-slide pre.ontology-ttl,
-        #ontology-operation-example-slide pre.ontology-ttl { background: #202a35; border-radius: 12px; box-sizing: border-box; color: #d7e3f0; flex: none; font-family: Consolas, monospace; font-size: .62em; line-height: 1.35; margin-left: 23%; margin-right: 3%; max-height: none; overflow: visible; padding: 1.1em 1.4em; text-align: left; white-space: pre; width: 74%; }
-        #ontology-example-slide pre.ontology-ttl code,
-        #ontology-operation-example-slide pre.ontology-ttl code { background: transparent; color: #d7e3f0; font-size: 1em; max-height: none; overflow: visible; white-space: pre; }
-        #ontology-example-slide .ttl-line,
-        #ontology-operation-example-slide .ttl-line { display: block; min-height: 1.5em; opacity: 1; }
-        #ontology-example-slide .ttl-highlight-step,
-        #ontology-operation-example-slide .ttl-highlight-step { display: block; height: 0; width: 0; }
-        #ontology-example-slide .ttl-comment,
-        #ontology-operation-example-slide .ttl-comment { color: #8aa0b5; font-style: italic; }
-        #ontology-example-slide .ttl-group-prefix.ttl-active,
-        #ontology-example-slide .ttl-group-subject.ttl-active,
-        #ontology-example-slide .ttl-group-predicate.ttl-active,
-        #ontology-operation-example-slide .ttl-operation-group-prefix.ttl-active,
-        #ontology-operation-example-slide .ttl-operation-group-subject.ttl-active,
-        #ontology-operation-example-slide .ttl-operation-group-identity.ttl-active,
-        #ontology-operation-example-slide .ttl-operation-group-parameters.ttl-active,
-        #ontology-operation-example-slide .ttl-operation-group-availability.ttl-active,
-        #ontology-operation-example-slide .ttl-operation-group-contract.ttl-active { background: rgba(118, 183, 215, .14); padding-left: 0; }
-        #ontology-operation-example-slide .ttl-file-card { font-size: .62em; }
-        #ontology-operation-example-slide pre.ontology-ttl { flex: none; font-size: .62em; line-height: 1.35; padding: 1.1em 1.4em; transform: none; }
-        #ontology-operation-example-slide .ttl-line { min-height: 1.5em; }
+      <!-- MARK: Implementation conditions must be part of the provenance -->
+      <section class="slide" id="anthropic-example-operations-slide-2">
+        <h2>Implementation conditions must be part of the provenance</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/fair_workflow_explained_2.png"
+            alt="Anthropic example broken down into concrete operations">
+        </div>
+      </section>
+
+
+      <!-- MARK: How can we describe a data processing operation? -->
+      <section class="slide" id="anthropic-example-operations-slide-3">
+        <h2>How can we describe a data processing operation?</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/fair_workflow_explained_3.png"
+            alt="Anthropic example broken down into concrete operations">
+        </div>
+      </section>
+
+
+      <!-- MARK: Ontology as a functional knowledge graph -->
+      <section class="slide" id="anthropic-example-operations-slide-4">
+        <h2>Ontology as a functional knowledge graph</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/fair_workflow_explained_4.png"
+            alt="Anthropic example broken down into concrete operations">
+        </div>
+      </section>
+
+
+      <!-- MARK: We own and control our data transformation via validated tools -->
+      <section class="slide" id="anthropic-example-operations-slide-5">
+        <h2>We own and control our data transformation via validated tools</h2>
+        <div class="slide-body">
+          <img class="full-slide-image" src="../assets/fair_workflow_explained_5.png"
+            alt="Anthropic example broken down into concrete operations">
+        </div>
+      </section>
+
+      <!-- MARK: What is an Ontology? -->
+      <style>
+        #ontology-example-slide .ontology-ttl-layout {
+          align-items: center;
+          display: flex;
+          gap: 3%;
+          height: 78%;
+          margin: 2% 4% 0;
+        }
+
+        #ontology-example-slide .ttl-file-card {
+          align-items: center;
+          background: #eef4fa;
+          border: 1px solid #c9dcee;
+          border-radius: .6em;
+          display: flex;
+          flex: 0 0 19%;
+          flex-direction: column;
+          gap: .35em;
+          justify-content: center;
+          padding: 1em;
+          text-align: center;
+        }
+
+        #ontology-example-slide .ttl-file-icon {
+          align-items: center;
+          background: #0a4d8c;
+          border-radius: .25em;
+          color: #fff;
+          display: flex;
+          font-size: 1.5em;
+          height: 2em;
+          justify-content: center;
+          width: 2.5em;
+        }
+
+        #ontology-example-slide .ttl-file-card strong {
+          color: #0a4d8c;
+        }
+
+        #ontology-example-slide .ttl-file-card>span:last-child {
+          color: #4a5a6a;
+          font-size: .7em;
+          line-height: 1.2;
+        }
+
+        #ontology-example-slide pre.ontology-ttl {
+          background: #202a35;
+          border-radius: .5em;
+          box-sizing: border-box;
+          color: #d7e3f0;
+          flex: 1 1 auto;
+          font-size: .56em;
+          line-height: 1.45;
+          margin: 0;
+          min-width: 0;
+          padding: 1.2em 1.4em;
+        }
+
+        #ontology-example-slide .ttl-line {
+          display: block;
+          opacity: .35;
+        }
+
+        #ontology-example-slide .ttl-line.ttl-active {
+          opacity: 1;
+        }
+
+        #ontology-example-slide .ttl-comment {
+          color: #718394;
+        }
+
+        #ontology-example-slide .ttl-directive {
+          color: #c792ea;
+        }
+
+        #ontology-example-slide .ttl-prefix {
+          color: #82aaff;
+        }
+
+        #ontology-example-slide .ttl-iri,
+        #ontology-example-slide .ttl-string {
+          color: #c3e88d;
+        }
+
+        #ontology-example-slide .ttl-subject {
+          color: #f78c6c;
+        }
+
+        #ontology-example-slide .ttl-predicate {
+          color: #89ddff;
+        }
+
+        #ontology-example-slide .ttl-class,
+        #ontology-example-slide .ttl-resource {
+          color: #ffcb6b;
+        }
+
+        #ontology-example-slide .ttl-highlight-step {
+          display: none;
+        }
+
+        #ontology-example-slide .ontology-ttl-layout {
+          display: block;
+          height: auto;
+          left: 0;
+          margin: 0;
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        #ontology-example-slide .ttl-file-card {
+          background: transparent;
+          border: 0;
+          color: #274560;
+          display: flex;
+          flex: none;
+          font-size: .68em;
+          justify-content: initial;
+          left: 5%;
+          padding: 0;
+          position: absolute;
+          text-align: center;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 15%;
+        }
+
+        #ontology-example-slide .ttl-file-icon {
+          background: #eef4f8;
+          border: 3px solid #76b7d7;
+          border-radius: .35em;
+          color: #a24e3c;
+          font-family: Consolas, monospace;
+          font-size: 1.4em;
+          height: 3.2em;
+          width: 2.5em;
+        }
+
+        #ontology-example-slide pre.ontology-ttl {
+          border-radius: 12px;
+          flex: none;
+          font-size: .62em;
+          line-height: 1.35;
+          margin-left: 23%;
+          margin-right: 3%;
+          max-height: none;
+          overflow: visible;
+          padding: 1.1em 1.4em;
+          text-align: left;
+          white-space: pre;
+          width: 74%;
+        }
+
+        #ontology-example-slide pre.ontology-ttl code {
+          background: transparent;
+          color: #d7e3f0;
+          font-size: 1em;
+          max-height: none;
+          overflow: visible;
+          white-space: pre;
+        }
+
+        #ontology-example-slide .ttl-line {
+          min-height: 1.5em;
+          opacity: .35;
+        }
+
+        #ontology-example-slide .ttl-highlight-step {
+          display: block;
+          height: 0;
+          width: 0;
+        }
+
+        #ontology-example-slide .ttl-comment {
+          color: #8aa0b5;
+          font-style: italic;
+        }
       </style>
       <section class="slide framework-story-slide" id="ontology-example-slide">
         <h2>What is an Ontology?</h2>
         <div class="ontology-ttl-layout">
-          <div class="ttl-file-card"><span class="ttl-file-icon"><b>.ttl</b></span><strong>ontology.ttl</strong><span>text file<br>stored on disk</span></div>
-          <pre class="ontology-ttl"><code><span class="ttl-line ttl-comment ttl-group-prefix"># Prefix: short name for an IRI (Internationalized Resource Identifier)</span><span class="ttl-line ttl-group-prefix"><span class="ttl-directive">@prefix</span> <span class="ttl-prefix">ex:</span> <span class="ttl-iri">&lt;https://example.org/&gt;</span> .</span><span class="ttl-highlight-step fragment" data-highlight="subject" aria-hidden="true"></span><span class="ttl-line"> </span><span class="ttl-line ttl-comment ttl-group-subject"># Subject: identify one resource</span><span class="ttl-line ttl-group-subject"><span class="ttl-subject">ex:sample_001</span></span><span class="ttl-highlight-step fragment" data-highlight="predicate" aria-hidden="true"></span><span class="ttl-line ttl-comment ttl-group-predicate"># Predicate → object: complete the RDF triple</span><span class="ttl-line ttl-group-predicate">    <span class="ttl-predicate">a</span> <span class="ttl-class">ex:WastewaterSample</span> ;</span><span class="ttl-line ttl-group-predicate">    <span class="ttl-predicate">ex:hasParameter</span> <span class="ttl-resource">ex:pH</span> ;</span><span class="ttl-line ttl-group-predicate">    <span class="ttl-predicate">ex:hasValue</span> <span class="ttl-string">"7.4"</span> .</span></code></pre>
+          <div class="ttl-file-card"><span
+              class="ttl-file-icon"><b>.ttl</b></span><strong>ontology.ttl</strong><span>text file<br>stored on
+              disk</span></div>
+          <pre
+            class="ontology-ttl"><code><span class="ttl-line ttl-comment ttl-group-prefix"># Prefix: short name for an IRI (Internationalized Resource Identifier)</span><span class="ttl-line ttl-group-prefix"><span class="ttl-directive">@prefix</span> <span class="ttl-prefix">ex:</span> <span class="ttl-iri">&lt;https://example.org/&gt;</span> .</span><span class="ttl-highlight-step fragment" data-highlight="subject" aria-hidden="true"></span><span class="ttl-line"> </span><span class="ttl-line ttl-comment ttl-group-subject"># Subject: identify one resource</span><span class="ttl-line ttl-group-subject"><span class="ttl-subject">ex:sample_001</span></span><span class="ttl-highlight-step fragment" data-highlight="predicate" aria-hidden="true"></span><span class="ttl-line ttl-comment ttl-group-predicate"># Predicate → object: complete the RDF triple</span><span class="ttl-line ttl-group-predicate">    <span class="ttl-predicate">a</span> <span class="ttl-class">ex:WastewaterSample</span> ;</span><span class="ttl-line ttl-group-predicate">    <span class="ttl-predicate">ex:hasParameter</span> <span class="ttl-resource">ex:pH</span> ;</span><span class="ttl-line ttl-group-predicate">    <span class="ttl-predicate">ex:hasValue</span> <span class="ttl-string">"7.4"</span> .</span></code></pre>
         </div>
       </section>
+
+
+      <!-- MARK: An example from streamfind -->
+      <style>
+        #ontology-operation-example-slide .ontology-ttl-layout {
+          align-items: center;
+          display: flex;
+          gap: 3%;
+          height: 78%;
+          margin: 2% 4% 0;
+        }
+
+        #ontology-operation-example-slide .ttl-file-card {
+          align-items: center;
+          background: #eef4fa;
+          border: 1px solid #c9dcee;
+          border-radius: .6em;
+          display: flex;
+          flex: 0 0 19%;
+          flex-direction: column;
+          gap: .35em;
+          justify-content: center;
+          padding: 1em;
+          text-align: center;
+        }
+
+        #ontology-operation-example-slide .ttl-file-icon {
+          align-items: center;
+          background: #0a4d8c;
+          border-radius: .25em;
+          color: #fff;
+          display: flex;
+          font-size: 1.5em;
+          height: 2em;
+          justify-content: center;
+          width: 2.5em;
+        }
+
+        #ontology-operation-example-slide .ttl-file-card strong {
+          color: #0a4d8c;
+        }
+
+        #ontology-operation-example-slide .ttl-file-card>span:last-child {
+          color: #4a5a6a;
+          font-size: .7em;
+          line-height: 1.2;
+        }
+
+        #ontology-operation-example-slide pre.ontology-ttl {
+          background: #202a35;
+          border-radius: .5em;
+          box-sizing: border-box;
+          color: #d7e3f0;
+          flex: 1 1 auto;
+          font-size: .56em;
+          line-height: 1.45;
+          margin: 0;
+          min-width: 0;
+          padding: 1.2em 1.4em;
+        }
+
+        #ontology-operation-example-slide .ttl-line {
+          display: block;
+          opacity: .35;
+        }
+
+        #ontology-operation-example-slide .ttl-line.ttl-active {
+          opacity: 1;
+        }
+
+        #ontology-operation-example-slide .ttl-comment {
+          color: #718394;
+        }
+
+        #ontology-operation-example-slide .ttl-directive {
+          color: #c792ea;
+        }
+
+        #ontology-operation-example-slide .ttl-prefix {
+          color: #82aaff;
+        }
+
+        #ontology-operation-example-slide .ttl-iri,
+        #ontology-operation-example-slide .ttl-string {
+          color: #c3e88d;
+        }
+
+        #ontology-operation-example-slide .ttl-subject {
+          color: #f78c6c;
+        }
+
+        #ontology-operation-example-slide .ttl-predicate {
+          color: #89ddff;
+        }
+
+        #ontology-operation-example-slide .ttl-class,
+        #ontology-operation-example-slide .ttl-resource {
+          color: #ffcb6b;
+        }
+
+        #ontology-operation-example-slide .ttl-highlight-step {
+          display: none;
+        }
+
+        #ontology-operation-example-slide .ontology-ttl-layout {
+          display: block;
+          height: auto;
+          left: 0;
+          margin: 0;
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        #ontology-operation-example-slide .ttl-file-card {
+          background: transparent;
+          border: 0;
+          color: #274560;
+          display: flex;
+          flex: none;
+          font-size: .62em;
+          justify-content: initial;
+          left: 5%;
+          padding: 0;
+          position: absolute;
+          text-align: center;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 15%;
+        }
+
+        #ontology-operation-example-slide .ttl-file-icon {
+          background: #eef4f8;
+          border: 3px solid #76b7d7;
+          border-radius: .35em;
+          color: #a24e3c;
+          font-family: Consolas, monospace;
+          font-size: 1.4em;
+          height: 3.2em;
+          width: 2.5em;
+        }
+
+        #ontology-operation-example-slide pre.ontology-ttl {
+          border-radius: 12px;
+          flex: none;
+          font-size: .62em;
+          line-height: 1.35;
+          margin-left: 23%;
+          margin-right: 3%;
+          max-height: none;
+          overflow: visible;
+          padding: 1.1em 1.4em;
+          text-align: left;
+          transform: none;
+          white-space: pre;
+          width: 74%;
+        }
+
+        #ontology-operation-example-slide pre.ontology-ttl code {
+          background: transparent;
+          color: #d7e3f0;
+          font-size: 1em;
+          max-height: none;
+          overflow: visible;
+          white-space: pre;
+        }
+
+        #ontology-operation-example-slide .ttl-line {
+          min-height: 1.5em;
+          opacity: .35;
+        }
+
+        #ontology-operation-example-slide .ttl-highlight-step {
+          display: block;
+          height: 0;
+          width: 0;
+        }
+
+        #ontology-operation-example-slide .ttl-comment {
+          color: #8aa0b5;
+          font-style: italic;
+        }
+      </style>
       <section class="slide framework-story-slide" id="ontology-operation-example-slide">
         <h2>An example from streamfind</h2>
-        <div class="ontology-ttl-layout"><div class="ttl-file-card"><span class="ttl-file-icon"><b>.ttl</b></span><strong>operations.ttl</strong><span>streamFind<br>mass-spec ontology</span></div><pre class="ontology-ttl"><code><span class="ttl-line ttl-operation-group-subject"><span class="ttl-subject">sfms:findChromatogramPeaks</span></span><span class="ttl-highlight-step fragment" data-highlight-operation="identity" aria-hidden="true"></span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">a</span> <span class="ttl-class">sf:Operation</span> ;</span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">sf:operationId</span> <span class="ttl-string">"mass_spec.find_chromatogram_peaks"</span> ;</span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">sf:availableInDomain</span> <span class="ttl-resource">sfms:mass_spec</span> ;</span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">sf:providedByModule</span> <span class="ttl-resource">sfms:chromatogramsModule</span> ;</span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">skos:prefLabel</span> <span class="ttl-string">"Find chromatogram peaks"</span> ;</span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">skos:definition</span> <span class="ttl-string">"Detect and integrate chromatographic peaks from the processed chromatogram signal (intensity column). Expects intensity to reflect prior baseline correction and smoothing. Uses Savitzky-Golay smoothing and first-derivative zero-crossing detection, then publishes peak metrics."</span> ;</span><span class="ttl-highlight-step fragment" data-highlight-operation="parameters" aria-hidden="true"></span><span class="ttl-line ttl-operation-group-parameters">    <span class="ttl-predicate">sf:hasParameter</span></span><span class="ttl-line ttl-operation-group-parameters">        <span class="ttl-resource">sfms:analysisNamesParameter</span>, <span class="ttl-resource">sfms:indicesParameter</span>,</span><span class="ttl-line ttl-operation-group-parameters">        <span class="ttl-resource">sfms:mergeParameter</span>, <span class="ttl-resource">sfms:mergeDistanceParameter</span>,</span><span class="ttl-line ttl-operation-group-parameters">        <span class="ttl-resource">sfms:minPeakHeightParameter</span>, <span class="ttl-resource">sfms:minPeakDistanceParameter</span>,</span><span class="ttl-line ttl-operation-group-parameters">        <span class="ttl-resource">sfms:minPeakWidthParameter</span>, <span class="ttl-resource">sfms:maxPeakWidthParameter</span>,</span><span class="ttl-line ttl-operation-group-parameters">        <span class="ttl-resource">sfms:minSnrParameter</span> ;</span><span class="ttl-highlight-step fragment" data-highlight-operation="contract" aria-hidden="true"></span><span class="ttl-line ttl-operation-group-contract">    <span class="ttl-predicate">sf:hasInputPort</span> <span class="ttl-resource">sfms:chromatogramsTable</span> ;</span><span class="ttl-line ttl-operation-group-contract">    <span class="ttl-predicate">sf:hasOutputPort</span> <span class="ttl-resource">sfms:chromatogramPeaksTable</span>, <span class="ttl-resource">sfcore:operationSuccessSignal</span> .</span></code></pre></div>
+        <div class="ontology-ttl-layout">
+          <div class="ttl-file-card"><span
+              class="ttl-file-icon"><b>.ttl</b></span><strong>operations.ttl</strong><span>streamFind<br>mass-spec
+              ontology</span></div>
+          <pre
+            class="ontology-ttl"><code><span class="ttl-line ttl-operation-group-subject"><span class="ttl-subject">sfms:findChromatogramPeaks</span></span><span class="ttl-highlight-step fragment" data-highlight-operation="identity" aria-hidden="true"></span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">a</span> <span class="ttl-class">sf:Operation</span> ;</span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">sf:operationId</span> <span class="ttl-string">"mass_spec.find_chromatogram_peaks"</span> ;</span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">sf:availableInDomain</span> <span class="ttl-resource">sfms:mass_spec</span> ;</span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">sf:providedByModule</span> <span class="ttl-resource">sfms:chromatogramsModule</span> ;</span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">skos:prefLabel</span> <span class="ttl-string">"Find chromatogram peaks"</span> ;</span><span class="ttl-line ttl-operation-group-identity">    <span class="ttl-predicate">skos:definition</span> <span class="ttl-string">"Detect and integrate chromatographic peaks from the processed chromatogram signal (intensity column). Expects intensity to reflect prior baseline correction and smoothing. Uses Savitzky-Golay smoothing and first-derivative zero-crossing detection, then publishes peak metrics."</span> ;</span><span class="ttl-highlight-step fragment" data-highlight-operation="parameters" aria-hidden="true"></span><span class="ttl-line ttl-operation-group-parameters">    <span class="ttl-predicate">sf:hasParameter</span></span><span class="ttl-line ttl-operation-group-parameters">        <span class="ttl-resource">sfms:analysisNamesParameter</span>, <span class="ttl-resource">sfms:indicesParameter</span>,</span><span class="ttl-line ttl-operation-group-parameters">        <span class="ttl-resource">sfms:mergeParameter</span>, <span class="ttl-resource">sfms:mergeDistanceParameter</span>,</span><span class="ttl-line ttl-operation-group-parameters">        <span class="ttl-resource">sfms:minPeakHeightParameter</span>, <span class="ttl-resource">sfms:minPeakDistanceParameter</span>,</span><span class="ttl-line ttl-operation-group-parameters">        <span class="ttl-resource">sfms:minPeakWidthParameter</span>, <span class="ttl-resource">sfms:maxPeakWidthParameter</span>,</span><span class="ttl-line ttl-operation-group-parameters">        <span class="ttl-resource">sfms:minSnrParameter</span> ;</span><span class="ttl-highlight-step fragment" data-highlight-operation="contract" aria-hidden="true"></span><span class="ttl-line ttl-operation-group-contract">    <span class="ttl-predicate">sf:hasInputPort</span> <span class="ttl-resource">sfms:chromatogramsTable</span> ;</span><span class="ttl-line ttl-operation-group-contract">    <span class="ttl-predicate">sf:hasOutputPort</span> <span class="ttl-resource">sfms:chromatogramPeaksTable</span>, <span class="ttl-resource">sfcore:operationSuccessSignal</span> .</span></code></pre>
+        </div>
       </section>
+
+
+      <!-- MARK: Knowledge graph of the streamfind Ontology -->
+      <style>
+        #ontology-network-slide .ontology-graph-toolbar {
+          align-items: center;
+          color: #274560;
+          display: flex;
+          font-size: .62em;
+          gap: 1.2em;
+          justify-content: space-between;
+          margin: .8em var(--side-gap) .35em;
+        }
+
+        #ontology-network-slide .ontology-graph-toolbar label {
+          align-items: center;
+          display: flex;
+          gap: .4em;
+        }
+
+        #ontology-network-slide .ontology-graph-toolbar input {
+          border: 1px solid #9fc6dc;
+          border-radius: 1em;
+          color: #274560;
+          font: inherit;
+          padding: .35em .75em;
+          width: 16em;
+        }
+
+        #ontology-network-slide .ontology-graph-hint {
+          color: #6b7c8c;
+          font-size: .9em;
+        }
+
+        #ontology-network-slide .ontology-network-wrap {
+          background: transparent;
+          border: 0;
+          height: 86%;
+          margin: 0 var(--side-gap);
+          overflow: hidden;
+          position: relative;
+        }
+
+        #ontology-network-slide #ontology-network-svg {
+          display: block;
+          height: 100%;
+          width: 100%;
+        }
+
+        #ontology-network-slide .ontology-graph-tooltip {
+          background: #202a35;
+          border: 1px solid #8bc6e0;
+          border-radius: .5em;
+          color: #fff;
+          font-size: .65em;
+          line-height: 1.25;
+          max-width: 24em;
+          padding: .5em .7em;
+          pointer-events: none;
+          position: absolute;
+          white-space: normal;
+          z-index: 5;
+        }
+
+        #ontology-network-slide .ontology-graph-tooltip strong {
+          color: #8bc6e0;
+          display: block;
+        }
+
+        #ontology-network-slide .ontology-graph-tooltip span {
+          display: block;
+        }
+
+        #ontology-network-slide .ontology-graph-tooltip-id {
+          color: #b8c9d8;
+          font-size: .85em;
+        }
+
+        #ontology-network-slide .ontology-graph-tooltip-definition {
+          color: #fff;
+          margin: .35em 0;
+        }
+      </style>
       <section class="slide framework-story-slide" id="ontology-network-slide">
         <h2>Knowledge graph of the streamfind Ontology</h2>
-        <div class="ontology-graph-toolbar"><span><strong id="ontology-graph-count">662 entities · 2,845 relationships</strong></span><label>Find <input id="ontology-graph-search" type="search" placeholder="operation, method, table…"></label><span class="ontology-graph-hint">hover for labels · drag to explore · scroll to zoom</span></div>
-        <div class="ontology-network-wrap"><svg id="ontology-network-svg" role="img" aria-label="Interactive force-directed graph of the streamfind ontology"></svg></div>
+        <div class="ontology-graph-toolbar"><span><strong id="ontology-graph-count">662 entities · 2,845
+              relationships</strong></span><label>Find <input id="ontology-graph-search" type="search"
+              placeholder="operation, table…"></label><span class="ontology-graph-hint">hover for labels · drag
+            to explore · scroll to zoom</span></div>
+        <div class="ontology-network-wrap"><svg id="ontology-network-svg" role="img"
+            aria-label="Interactive force-directed graph of the streamfind ontology"></svg></div>
       </section>
+
+
+      <!-- MARK: What is MCP (Model Context Protocol)? -->
+      <style>
+        #mcp-generic-slide .mcp-generic-flow {
+          align-items: center;
+          display: flex;
+          gap: 1em;
+          justify-content: center;
+          margin: 4% 4% 2%;
+        }
+
+        #mcp-generic-slide .mcp-generic-stage {
+          align-items: center;
+          background: #eef4fa;
+          border: 1px solid #c9dcee;
+          border-radius: .6em;
+          display: flex;
+          flex: 1 1 0;
+          flex-direction: column;
+          gap: .35em;
+          justify-content: center;
+          min-height: 7em;
+          padding: .7em;
+          text-align: center;
+        }
+
+        #mcp-generic-slide .mcp-generic-stage strong {
+          color: #0a4d8c;
+        }
+
+        #mcp-generic-slide .mcp-generic-stage>span:last-child {
+          color: #4a5a6a;
+          font-size: .62em;
+        }
+
+        #mcp-generic-slide .mcp-generic-icon {
+          align-items: center;
+          background: #202a35;
+          border-radius: 50%;
+          color: #fff;
+          display: flex;
+          font-size: 1.5em;
+          height: 1.7em;
+          justify-content: center;
+          width: 1.7em;
+        }
+
+        #mcp-generic-slide .mcp-explainer-arrow {
+          color: #a24e3c;
+          font-size: 1.5em;
+        }
+
+        #mcp-generic-slide .mcp-generic-code-row {
+          align-items: center;
+          display: flex;
+          gap: 2em;
+          justify-content: center;
+          margin: 1em auto 0;
+          max-width: 84%;
+          transform: none;
+        }
+
+        #mcp-generic-slide .mcp-generic-code-note {
+          color: #274560;
+          flex: 0 1 24%;
+          font-size: .68em;
+          line-height: 1.25;
+          margin-bottom: 0;
+          text-align: center;
+        }
+
+        #mcp-generic-slide .mcp-generic-code {
+          background: #202a35;
+          border-radius: 12px;
+          box-sizing: border-box;
+          color: #d7e3f0;
+          font-family: Consolas, monospace;
+          font-size: .55em;
+          line-height: 1.25;
+          padding: .7em 1em;
+          text-align: left;
+          white-space: pre-wrap;
+          flex: 0 0 42%;
+          width: 42%;
+        }
+
+        #mcp-generic-slide .mcp-generic-code code {
+          background: transparent;
+          color: #d7e3f0;
+        }
+
+        #mcp-generic-slide .mcp-json-key {
+          color: #f3c969;
+        }
+
+        #mcp-generic-slide .mcp-json-string {
+          color: #f6a6a6;
+        }
+
+        #mcp-generic-slide .mcp-json-punctuation {
+          color: #9eb5cc;
+        }
+
+        #mcp-generic-slide .mcp-json-brace {
+          color: #82cfff;
+        }
+      </style>
       <section class="slide framework-story-slide" id="mcp-generic-slide">
         <h2>What is MCP (Model Context Protocol)?</h2>
-        <div class="mcp-generic-flow"><div class="mcp-generic-stage"><span class="mcp-generic-icon">U</span><strong>User</strong><span>describes a request</span></div><div class="mcp-explainer-arrow">→</div><div class="mcp-generic-stage"><span class="mcp-generic-icon">✦</span><strong>AI agent</strong><span>plans a solution</span></div><div class="mcp-explainer-arrow">→</div><div class="mcp-generic-stage"><span class="mcp-generic-icon">M</span><strong>MCP server</strong><span>offers discoverable tools</span></div><div class="mcp-explainer-arrow">→</div><div class="mcp-generic-stage"><span class="mcp-generic-icon">▣</span><strong>Connected tool</strong><span>returns data</span></div></div>
-        <div class="mcp-generic-code-row"><div class="mcp-generic-code-note">JSON-RPC message sent by the AI agent to the MCP server.</div><pre class="mcp-generic-code"><code>{ "method": "tools/call", "params": { "name": "read_file", "arguments": { "path": "batch_list.csv" } } }</code></pre></div>
+        <div class="mcp-generic-flow">
+          <div class="mcp-generic-stage"><span class="mcp-generic-icon">U</span><strong>User</strong><span>describes a
+              request</span></div>
+          <div class="mcp-explainer-arrow">→</div>
+          <div class="mcp-generic-stage"><span class="mcp-generic-icon">✦</span><strong>AI agent</strong><span>plans a
+              solution</span></div>
+          <div class="mcp-explainer-arrow">→</div>
+          <div class="mcp-generic-stage"><span class="mcp-generic-icon">M</span><strong>MCP server</strong><span>offers
+              discoverable tools</span></div>
+          <div class="mcp-explainer-arrow">→</div>
+          <div class="mcp-generic-stage"><span class="mcp-generic-icon">▣</span><strong>Connected
+              tool</strong><span>returns data</span></div>
+        </div>
+        <div class="mcp-generic-code-row">
+          <div class="mcp-generic-code-note">JSON-RPC message (Remote Procedure Call) that the AI agent sends to the MCP
+            server.</div>
+          <pre class="mcp-generic-code code-block"><code><span class="mcp-json-brace">{</span>
+  <span class="mcp-json-key">"method"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-string">"tools/call"</span><span class="mcp-json-punctuation">,</span>
+  <span class="mcp-json-key">"params"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-brace">{</span>
+    <span class="mcp-json-key">"name"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-string">"list_operations"</span><span class="mcp-json-punctuation">,</span>
+    <span class="mcp-json-key">"arguments"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-brace">{</span>
+      <span class="mcp-json-key">"domain"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-string">"mass_spec"</span><span class="mcp-json-punctuation">,</span>
+      <span class="mcp-json-key">"module"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-string">"chromatograms"</span>
+    <span class="mcp-json-brace">}</span>
+  <span class="mcp-json-brace">}</span>
+<span class="mcp-json-brace">}</span></code></pre>
+        </div>
       </section>
+
+
+      <!-- MARK: How does the AI agent discover tools in the MCP server? -->
+      <style>
+        #mcp-discovery-slide .mcp-discovery-flow {
+          align-items: center;
+          display: flex;
+          gap: 1em;
+          justify-content: center;
+          margin: 4% 4% 2%;
+        }
+
+        #mcp-discovery-slide .mcp-discovery-stage {
+          align-items: center;
+          background: #eef4fa;
+          border: 1px solid #c9dcee;
+          border-radius: .6em;
+          display: flex;
+          flex: 1 1 0;
+          flex-direction: column;
+          gap: .35em;
+          justify-content: center;
+          min-height: 7em;
+          padding: .7em;
+          text-align: center;
+          font-size: .8em;
+        }
+
+        #mcp-discovery-slide .mcp-discovery-stage strong {
+          color: #0a4d8c;
+        }
+
+        #mcp-discovery-slide .mcp-discovery-stage>span:last-child {
+          color: #4a5a6a;
+          font-size: .62em;
+        }
+
+        #mcp-discovery-slide .mcp-discovery-icon {
+          align-items: center;
+          background: #202a35;
+          border-radius: 50%;
+          color: #fff;
+          display: flex;
+          font-size: 1.5em;
+          height: 1.7em;
+          justify-content: center;
+          width: 1.7em;
+        }
+
+        #mcp-discovery-slide .mcp-discovery-arrow {
+          color: #a24e3c;
+          font-size: 1.5em;
+        }
+
+        #mcp-discovery-slide .mcp-discovery-code-row {
+          align-items: center;
+          display: flex;
+          gap: 1.5em;
+          justify-content: center;
+          margin: .5em auto 0;
+          max-width: 92%;
+        }
+
+        #mcp-discovery-slide .mcp-discovery-code-note {
+          color: #274560;
+          flex: 0 1 24%;
+          font-size: .62em;
+          line-height: 1.3;
+          margin-bottom: 0;
+          text-align: left;
+        }
+
+        #mcp-discovery-slide .mcp-discovery-code {
+          background: #202a35;
+          border-radius: 12px;
+          box-sizing: border-box;
+          color: #d7e3f0;
+          font-family: Consolas, monospace;
+          font-size: .55em;
+          height: auto !important;
+          line-height: 1.25;
+          margin: 0;
+          max-height: none !important;
+          min-height: 7em;
+          overflow: visible !important;
+          padding: .7em 1em;
+          text-align: left;
+          transform: none;
+          white-space: pre-wrap;
+          width: 62%;
+        }
+
+        #mcp-discovery-slide .mcp-discovery-code code {
+          background: transparent;
+          color: #d7e3f0;
+        }
+
+        #mcp-discovery-slide .mcp-json-key {
+          color: #f3c969;
+        }
+
+        #mcp-discovery-slide .mcp-json-string {
+          color: #f6a6a6;
+        }
+
+        #mcp-discovery-slide .mcp-json-punctuation {
+          color: #9eb5cc;
+        }
+
+        #mcp-discovery-slide .mcp-json-brace,
+        #mcp-discovery-slide .mcp-json-bracket {
+          color: #82cfff;
+        }
+      </style>
       <section class="slide framework-story-slide" id="mcp-discovery-slide">
         <h2>How does the AI agent discover tools in the MCP server?</h2>
-        <div class="mcp-discovery-takeaway">The server advertises its tools and the agent discovers them instead of hard-coding.</div>
-        <div class="mcp-discovery-flow"><div class="mcp-discovery-stage"><span class="mcp-discovery-icon">✦</span><strong>AI agent</strong><span>starts a connection</span></div><div class="mcp-discovery-arrow">→</div><div class="mcp-discovery-stage"><span class="mcp-discovery-icon">M</span><strong>MCP server</strong><span>loads available tools</span></div><div class="mcp-discovery-arrow">→</div><div class="mcp-discovery-stage"><span class="mcp-discovery-icon">☷</span><strong>tools/list</strong><span>returns names and schemas</span></div><div class="mcp-discovery-arrow">→</div><div class="mcp-discovery-stage"><span class="mcp-discovery-icon">✓</span><strong>AI agent</strong><span>selects and calls a tool</span></div></div>
-        <div class="mcp-discovery-code-row"><div class="mcp-discovery-code-note">The tool list gives the agent descriptions and input schemas.</div><pre class="mcp-discovery-code"><code>{ "tools": [{ "name": "read_file", "description": "Read a text file", "inputSchema": { "type": "object" } }] }</code></pre></div>
+        <div class="mcp-discovery-takeaway">The server advertises its tools and the agent discovers them instead of
+          hard-coding.</div>
+        <div class="mcp-discovery-flow">
+          <div class="mcp-discovery-stage"><span class="mcp-discovery-icon">✦</span><strong>AI
+              agent</strong><span>starts a connection</span></div>
+          <div class="mcp-discovery-arrow">→</div>
+          <div class="mcp-discovery-stage"><span class="mcp-discovery-icon">M</span><strong>MCP
+              server</strong><span>loads available tools</span></div>
+          <div class="mcp-discovery-arrow">→</div>
+          <div class="mcp-discovery-stage"><span
+              class="mcp-discovery-icon">☷</span><strong>tools/list</strong><span>returns names and schemas</span></div>
+          <div class="mcp-discovery-arrow">→</div>
+          <div class="mcp-discovery-stage"><span class="mcp-discovery-icon">✓</span><strong>AI
+              agent</strong><span>selects and calls a tool</span></div>
+        </div>
+        <div class="mcp-discovery-code-row">
+          <div class="mcp-discovery-code-note">The tool list gives the agent descriptions and input schemas.</div>
+          <pre class="mcp-discovery-code code-block"><code><span class="mcp-json-brace">{</span>
+  <span class="mcp-json-key">"tools"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-bracket">[</span>
+    <span class="mcp-json-brace">{</span> <span class="mcp-json-key">"name"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-string">"list_operations"</span><span class="mcp-json-punctuation">,</span>
+      <span class="mcp-json-key">"description"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-string">"List operations available in a domain and module"</span><span class="mcp-json-punctuation">,</span>
+      <span class="mcp-json-key">"inputSchema"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-brace">{</span>
+        <span class="mcp-json-key">"type"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-string">"object"</span><span class="mcp-json-punctuation">,</span>
+        <span class="mcp-json-key">"properties"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-brace">{</span>
+          <span class="mcp-json-key">"domain"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-brace">{</span> <span class="mcp-json-key">"type"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-string">"string"</span> <span class="mcp-json-brace">}</span><span class="mcp-json-punctuation">,</span>
+          <span class="mcp-json-key">"module"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-brace">{</span> <span class="mcp-json-key">"type"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-string">"string"</span> <span class="mcp-json-brace">}</span>
+        <span class="mcp-json-brace">}</span><span class="mcp-json-punctuation">,</span>
+        <span class="mcp-json-key">"required"</span><span class="mcp-json-punctuation">:</span> <span class="mcp-json-bracket">[</span><span class="mcp-json-string">"domain"</span><span class="mcp-json-punctuation">,</span> <span class="mcp-json-string">"module"</span><span class="mcp-json-bracket">]</span>
+      <span class="mcp-json-brace">}</span> <span class="mcp-json-brace">}</span>
+  <span class="mcp-json-bracket">]</span>
+<span class="mcp-json-brace">}</span></code></pre>
+        </div>
       </section>
 
       <!-- MARK: StreamFind in practice -->
       <style>
-        html, body, .reveal, .reveal-viewport { background: #000 !important; }
-        .reveal .slides #title-slide { background: #fff !important; }
-        .reveal .slides section.slide:not(.streamfind-video-slide) { background: #fff; }
-        .streamfind-video-slide { background: #000; padding: 0 !important; }
-        .streamfind-video-slide > .slide-chrome { z-index: 1; }
-        .streamfind-video-slide video { display: block; height: 100%; inset: 0; max-height: none; max-width: none; object-fit: contain; position: absolute; width: 100%; z-index: 3; }
+        html,
+        body,
+        .reveal,
+        .reveal-viewport {
+          background: #000 !important;
+        }
+
+        .reveal .slides #title-slide {
+          background: #fff !important;
+        }
+
+        .reveal .slides section.slide:not(.streamfind-video-slide) {
+          background: #fff;
+        }
+
+        .streamfind-video-slide {
+          background: #000;
+          padding: 0 !important;
+        }
+
+        .streamfind-video-slide>.slide-chrome {
+          z-index: 1;
+        }
+
+        .streamfind-video-slide video {
+          display: block;
+          height: 100%;
+          inset: 0;
+          max-height: none;
+          max-width: none;
+          object-fit: contain;
+          position: absolute;
+          width: 100%;
+          z-index: 3;
+        }
       </style>
+      <!-- MARK: StreamFind workflow prompt -->
       <section class="slide streamfind-video-slide" id="streamfind-video-1">
         <video autoplay muted playsinline preload="auto" src="../assets/streamfind_workflow_prompt.mp4"></video>
       </section>
+
+
+      <!-- MARK: StreamFind workflow inspection -->
       <section class="slide streamfind-video-slide" id="streamfind-video-2">
         <video autoplay muted playsinline preload="auto" src="../assets/streamfind_workflow_inspection.mp4"></video>
       </section>
+
+
+      <!-- MARK: StreamFind workflow results -->
       <section class="slide streamfind-video-slide" id="streamfind-video-3">
         <video autoplay muted playsinline preload="auto" src="../assets/streamfind_workflow_results.mp4"></video>
       </section>
 
-      <!-- MARK: StreamFind relaxed technician -->
+      <!-- MARK: FAIR data builds confidence, skills, and regulatory integrity -->
       <section class="slide" id="streamfind-relaxed-technician-slide">
         <h2> FAIR data builds confidence, skills, and regulatory integrity </h2>
         <div class="slide-body">
@@ -895,6 +1663,7 @@ project$run()</code></pre>
       -->
 
       <!-- Keep this as the final slide. -->
+      <!-- MARK: Thank you -->
       <section class="slide thank-you-slide">
         <img class="banner-background" src="../assets/template/title-background.jpg" alt="">
         <h2></h2>
@@ -1057,19 +1826,28 @@ project$run()</code></pre>
       var link = layer.append('g').attr('stroke', '#9db7c8').attr('stroke-opacity', .3).selectAll('line').data(links).join('line');
       var classColors = { operation: '#2f79a8', apicommand: '#a24e3c', parameter: '#7b61a8', table: '#3d8b68', column: '#c58b2c', domain: '#4c8caa', method: '#b36b35', entity: '#718394' };
       function colorForClass(node) { return classColors[String(node.class || 'Entity').toLowerCase().replace(/[^a-z]/g, '')] || classColors.entity; }
-      var node = layer.append('g').selectAll('circle').data(nodes).join('circle').attr('r', function (d) { return Math.min(7, 2.2 + Math.sqrt(d.degree)); }).attr('fill', colorForClass).attr('fill-opacity', .85).style('cursor', 'grab');
+      function nodeRadius(d) { return Math.min(7, 2.2 + Math.sqrt(d.degree)); }
+      var node = layer.append('g').selectAll('circle').data(nodes).join('circle').attr('r', nodeRadius).attr('fill', colorForClass).attr('fill-opacity', .85).style('cursor', 'grab');
       node.append('title').text(function (d) { return d.prefLabel || d.label; });
       var tooltip = document.createElement('div');
       tooltip.className = 'ontology-graph-tooltip';
       tooltip.style.display = 'none';
       wrap.appendChild(tooltip);
       function escapeHtml(value) { return String(value).replace(/[&<>"']/g, function (character) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]; }); }
+      function endpointId(endpoint) { return typeof endpoint === 'object' ? endpoint.id : endpoint; }
+      function highlightConnections(selected) {
+        var selectedId = selected.id;
+        link.attr('stroke', function (d) { return endpointId(d.source) === selectedId || endpointId(d.target) === selectedId ? '#f0b44d' : '#9db7c8'; }).attr('stroke-opacity', function (d) { return endpointId(d.source) === selectedId || endpointId(d.target) === selectedId ? .95 : .08; }).attr('stroke-width', function (d) { return endpointId(d.source) === selectedId || endpointId(d.target) === selectedId ? 2.5 : 1; });
+        node.attr('fill-opacity', function (d) { return d.id === selectedId || links.some(function (linkData) { return (endpointId(linkData.source) === selectedId && endpointId(linkData.target) === d.id) || (endpointId(linkData.target) === selectedId && endpointId(linkData.source) === d.id); }) ? 1 : .12; }).attr('r', function (d) { return d.id === selectedId ? nodeRadius(d) + 3 : nodeRadius(d); }).attr('stroke', function (d) { return d.id === selectedId ? '#fff3c4' : 'none'; }).attr('stroke-width', function (d) { return d.id === selectedId ? 3 : 0; });
+      }
+      function clearConnectionHighlight() { link.attr('stroke', '#9db7c8').attr('stroke-opacity', .3).attr('stroke-width', 1); node.attr('fill-opacity', .85).attr('r', nodeRadius).attr('stroke', 'none').attr('stroke-width', 0); }
       node.on('mouseenter', function (event, d) {
+        highlightConnections(d);
         tooltip.innerHTML = '<strong>' + escapeHtml(d.prefLabel || d.label) + '</strong><span class="ontology-graph-tooltip-id">' + escapeHtml(d.label + ' - ' + (d.class || 'Entity')) + '</span>' + (d.definition ? '<span class="ontology-graph-tooltip-definition">' + escapeHtml(d.definition) + '</span>' : '') + '<span>' + escapeHtml(d.group) + ' · ' + d.degree + ' relationships</span>';
         tooltip.style.display = 'block';
         tooltip.style.left = (event.offsetX + 12) + 'px';
         tooltip.style.top = (event.offsetY + 12) + 'px';
-      }).on('mousemove', function (event) { tooltip.style.left = (event.offsetX + 12) + 'px'; tooltip.style.top = (event.offsetY + 12) + 'px'; }).on('mouseleave', function () { tooltip.style.display = 'none'; });
+      }).on('mousemove', function (event) { tooltip.style.left = (event.offsetX + 12) + 'px'; tooltip.style.top = (event.offsetY + 12) + 'px'; }).on('mouseleave', function () { tooltip.style.display = 'none'; clearConnectionHighlight(); });
       node.call(d3.drag().on('start', function (event, d) { if (!event.active) simulation.alphaTarget(.25).restart(); d.fx = d.x; d.fy = d.y; }).on('drag', function (event, d) { d.fx = event.x; d.fy = event.y; }).on('end', function (event, d) { if (!event.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; }));
       var simulation = d3.forceSimulation(nodes).force('link', d3.forceLink(links).id(function (d) { return d.id; }).distance(36)).force('charge', d3.forceManyBody().strength(-32)).force('center', d3.forceCenter(width / 2, height / 2)).on('tick', function () {
         link.attr('x1', function (d) { return d.source.x; }).attr('y1', function (d) { return d.source.y; }).attr('x2', function (d) { return d.target.x; }).attr('y2', function (d) { return d.target.y; });
