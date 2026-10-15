@@ -1,5 +1,5 @@
 site_name: IUTA Slides
-site_description: Reusable IUTA Reveal.js template
+site_description: IUTA Reveal.js template and unlisted presentations
 site_url: https://ricardo-cunha.github.io/iuta-slides/
 use_directory_urls: false
 strict: true
