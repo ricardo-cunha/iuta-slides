@@ -9,7 +9,7 @@
   -->
   <meta name="author" content="Ricardo Cunha">
   <meta name="author-email" content="cunha@iuta.de">
-  <meta name="presentation-title" content="Non-target Screening with streamfind">
+  <meta name="presentation-title" content="Non-target screening with streamfind">
   <meta name="presentation-date" content="2026-10-22">
   <meta name="presentation-event" content="Wetsus Exchange">
   <meta name="presentation-affiliation"
@@ -59,11 +59,58 @@
          <h2>What we will cover</h2>
          <div class="slide-body" style="align-items: flex-start; justify-content: center;">
            <ul style="font-size: 1.4em; line-height: 2.5; max-width: 90%;">
-             <li>Open-source tools for NTS</li>
+             <li>NTS and latest trends</li>
              <li>The BMFTR-funded <strong>streamFind project</strong></li>
              <li>Agentic vibe coding to build FAIR data processing workflows</li>
              <li>Live deep dive: non-target screening with <strong>streamfind</strong></li>
            </ul>
+         </div>
+       </section>
+
+       <!-- MARK: What is NTS? -->
+       <section class="slide" id="what-is-nts-slide">
+         <h2>What is NTS?</h2>
+         <div class="slide-body">
+           <img class="full-slide-image" src="../assets/nts_lcms_msms_overview.png"
+             alt="LC-HRMS/MS data with chromatographic retention time, mass spectra, a selected ion trace and MS/MS fragmentation spectrum, leading to unknown chemical identification and comparative analysis with volcano plots, PCA and trend analysis">
+         </div>
+         <span class="ai-generated-note">AI-generated illustration</span>
+       </section>
+
+       <!-- MARK: Chromatographic coverage for NTS -->
+       <section class="slide" id="nts-chromatography-slide">
+         <h2>Chromatographic coverage of chemical space</h2>
+         <div class="slide-body">
+           <div class="columns" style="gap: 1.2em; align-items: center;">
+             <div style="justify-content: center; gap: .25em;">
+               <img src="../assets/chemical_database_space_logp_mass.svg"
+                 alt="Scatter plot of monoisotopic mass in daltons against estimated logP for sampled PubChemLite and CompToxWW chemicals; both logP values are calculated from SMILES using Open Babel"
+                 style="width: 100%; max-height: 58vh; object-fit: contain;">
+               <p style="margin: 0; font-size: .43em; line-height: 1.25;">
+                 Sources: <a href="https://doi.org/10.5281/zenodo.5995885" target="_blank" rel="noopener noreferrer">PubChemLite</a> · <a href="https://doi.org/10.1186/s13321-017-0247-6" target="_blank" rel="noopener noreferrer">EPA CompTox Chemicals Dashboard</a>.<br>
+                 4,558 sampled structures per database; mass tails above 2,000 Da and logP outside −15 to 15 are clipped. LogP estimated from SMILES with Open Babel for both sets.
+               </p>
+             </div>
+             <div style="justify-content: center; gap: .35em;">
+               <img src="../assets/chromatographic_coverage_chemical_polarity.webp"
+                 alt="Polarity coverage of reversed-phase liquid chromatography, hydrophilic interaction chromatography, ion chromatography, capillary electrophoresis, and supercritical fluid chromatography across log D, from hydrophilic to hydrophobic compounds"
+                 style="width: 100%; max-height: 52vh; object-fit: contain;">
+               <p style="margin: 0; font-size: .48em; line-height: 1.25; text-align: center;">
+                 <a href="https://link.springer.com/article/10.1186/s12302-022-00604-4" target="_blank" rel="noopener noreferrer">Hale et al. (2022), Fig. 2</a>, <em>Environmental Sciences Europe</em>.
+               </p>
+             </div>
+           </div>
+         </div>
+       </section>
+
+       <!-- MARK: Mass resolution across a chromatographic peak -->
+       <section class="slide" id="nts-resolution-identification-slide">
+         <h2>Mass resolution across a chromatographic peak</h2>
+          <!-- Sources and schematic timing assumptions: PubChem diclofenac formula (https://pubchem.ncbi.nlm.nih.gov/compound/Diclofenac); SCIEX TripleTOF example uses 150 ms TOF-MS and 35 ms MS/MS accumulation (https://sciex.com/content/dam/SCIEX/pdf/tech-notes/all/cannabinoids_scrn_3xtof4600.pdf); Thermo Orbitrap Exploris 120 lists 60k as 128 ms / 7 Hz and 120k as 256 ms / 3 Hz (https://documents.thermofisher.com/TFS-Assets/CMD/Reference-Materials/wp-65743-ms-orbitrap-exploris-120-wp65743-en.pdf). Thermo defines scan cycles around a master scan plus its dependent scans (https://docs.thermofisher.com/r/Orbitrap-Ascend-Method-Editor-Help/1563029131v2en-US2328462859). -->
+          <div class="slide-body" style="gap: .45em;">
+           <img src="../assets/diclofenac_eic_resolution_cyclegrid.svg"
+            alt="Three columns compare diclofenac chromatograms sampled on a fixed time grid over the same 30-second window. Each intensity panel is normalized to its own MS1 apex and shown in relative arbitrary units, so absolute intensity magnitudes are not compared across instruments. The peak has a 10-second FWHM. TOF uses a 150-millisecond accumulation; Orbitrap MS1 scans become slower at higher resolution. Each modeled cycle records either MS1 or MS2, with equal spacing between successive events. A colored MS2 point follows every second high-intensity MS1. Red markers in the lower m/z plot show the selected diclofenac precursor during MS2 cycles, not fragment ions. MS2 relative intensity is illustrative, not measured. Cycle intervals are examples, not universal instrument settings. The m/z spread narrows from TOF 25,000 to Orbitrap 60,000 and 120,000."
+              style="display: block; width: 100%; max-height: 74vh; object-fit: contain;">
          </div>
        </section>
 
@@ -112,6 +159,20 @@
       </section>
 
        <style>
+         .slide .ai-generated-note {
+           background: rgba(255, 255, 255, .88);
+           border-radius: 3px;
+           bottom: calc(var(--bottom-rule) + 20px);
+           color: #667784;
+           font-size: .34em;
+           line-height: 1;
+           padding: .25em .45em;
+           pointer-events: none;
+           position: absolute;
+           right: var(--side-gap);
+           z-index: 20;
+         }
+
          .nts-trend-slide .trend-content {
            align-items: center;
            display: flex;
@@ -174,6 +235,20 @@
          }
 
          #trend-molecular-networking-slide .trend-ref {
+           font-size: .8em;
+           margin-top: .6em;
+         }
+
+         #trend-insilico-fragmentation-slide .trend-content img {
+           width: 68%;
+         }
+
+         #trend-insilico-fragmentation-slide .trend-summary {
+           font-size: .52em;
+           width: 28%;
+         }
+
+         #trend-insilico-fragmentation-slide .trend-ref {
            font-size: .8em;
            margin-top: .6em;
          }
@@ -253,6 +328,15 @@
          .nts-trend-card-slide .trend-bottom-note strong {
            color: #176f83;
          }
+
+         #trend-ai-identification-slide .trend-card-layout {
+           height: 96%;
+         }
+
+         #trend-ai-identification-slide .trend-bottom-note {
+           align-self: end;
+           font-size: 1.1em;
+         }
        </style>
 
        <!-- MARK: Trend — AI/ML-powered identification -->
@@ -320,14 +404,14 @@
             <span>Estimates concentrations of unidentified chemicals from MS/MS-derived fingerprints and calibrated response factors.</span>
             <a href="https://pubmed.ncbi.nlm.nih.gov/37548594/" target="_blank" rel="noopener noreferrer">Sepman et al., Anal Chem 2023</a>
           </div>
-          <div class="trend-bottom-note"><strong>But how usable are these tools in practice?</strong> A walk through the key methods and what they deliver.</div>
+          <div class="trend-bottom-note"><strong>But how usable are these tools in practice?</strong></div>
         </div>
         </div>
       </section>
 
        <!-- MARK: Trend example — DreaMS -->
       <section class="slide nts-trend-slide" id="trend-dreams-example-slide">
-        <h2>Example: DreaMS — a foundation model for MS/MS spectra</h2>
+        <h2>DreaMS — a foundation model for MS/MS spectra</h2>
         <div class="slide-body">
           <div class="trend-content">
             <img src="../assets/dreams_fig3_architecture.png"
@@ -348,7 +432,7 @@
 
        <!-- MARK: Trend — Molecular networking -->
       <section class="slide nts-trend-slide" id="trend-molecular-networking-slide">
-        <h2>Molecular networking connects related compounds</h2>
+        <h2>FBMN — Feature-Based Molecular Networking</h2>
         <div class="slide-body">
           <div class="trend-content">
             <img src="../assets/gnps_fbmn_workflow.jpg"
@@ -361,7 +445,7 @@
                 <li><strong>4. Extend with IIN</strong> — Ion Identity Networking adds edges for adducts, dimers, and multimers, reducing redundancy and clarifying topology.</li>
               </ul>
               <div class="trend-ref">Nothias et al., <a href="https://doi.org/10.1038/s41592-020-0933-6" target="_blank" rel="noopener noreferrer">Nat Methods 2020</a> <br> <a href="https://doi.org/10.1038/nbt.3597" target="_blank" rel="noopener noreferrer">Wang et al., Nat Biotechnol 2016</a></div>
-              <div class="trend-ref"><a href="http://dorresteinappshub.ucsd.edu:5050/featurebasednetworking" target="_blank" rel="noopener noreferrer"><strong>Try it →</strong></a> (free GNPS account needed)</div>
+              <div class="trend-ref"><a href="https://ccms-ucsd.github.io/GNPSDocumentation/featurebasedmolecularnetworking/" target="_blank" rel="noopener noreferrer"><strong>Try it →</strong></a></div>
             </div>
           </div>
         </div>
@@ -369,69 +453,32 @@
 
        <!-- MARK: Trend — In silico fragmentation -->
       <section class="slide nts-trend-slide" id="trend-insilico-fragmentation-slide">
-        <h2>In silico fragmentation &amp; compound class prediction</h2>
-        <div class="trend-content">
-          <img src="../assets/sirius_csifingerid.png"
-            alt="SIRIUS interface showing fragmentation tree computation and CSI:FingerID structure candidates">
-          <div class="trend-summary">
-            <ul>
-              <li><strong>SIRIUS</strong> — fragmentation trees predict molecular formulas without any database.</li>
-              <li><strong>CSI:FingerID</strong> — retrieves candidate structures from PubChem using tree fingerprints.</li>
-              <li><strong>CANOPUS</strong> — predicts compound classes (ClassyFire / NPC) directly from MS/MS.</li>
-              <li><strong>ZODIAC</strong> — improves formula prediction using peak-pair relationships.</li>
-            </ul>
-            <div class="trend-ref">SIRIUS 4.5 · <a href="https://bio.informatik.uni-jena.de/bioinfmedia/SIRIUS/" target="_blank" rel="noopener noreferrer">Dührkop 2019 &amp; 2021</a></div>
+        <h2>From MS/MS fragments to a molecular fingerprint</h2>
+        <div class="slide-body">
+          <div class="trend-content">
+            <img src="../assets/sirius_csifingerid.png"
+              alt="SIRIUS interface showing fragmentation tree computation and CSI:FingerID structure candidates">
+            <div class="trend-summary">
+              <ul>
+                <li><strong>The idea:</strong> an MS/MS spectrum is a set of fragments that carries clues about a molecule’s substructures.</li>
+                <li><strong>Molecular fingerprint:</strong> a compact vector of predicted substructure bits — a machine-readable summary, not a complete structure.</li>
+                <li><strong>SIRIUS + CSI:FingerID:</strong> SIRIUS uses the fragmentation pattern to infer a formula and fragmentation tree; CSI:FingerID predicts the fingerprint, then ranks database candidates that best match it.</li>
+              </ul>
+              <div class="trend-ref">Dührkop et al., <a href="https://doi.org/10.1073/pnas.1509788112" target="_blank" rel="noopener noreferrer">PNAS 2015</a></div>
+              <div class="trend-ref"><a href="https://bright-giant.com/request-demo/" target="_blank" rel="noopener noreferrer"><strong>Try it →</strong></a></div>
+            </div>
           </div>
         </div>
       </section>
 
-       <!-- MARK: Trend — Suspect screening -->
-      <section class="slide nts-trend-card-slide" id="trend-suspect-screening-slide">
-        <h2>Suspect screening prioritizes targets before full NTS</h2>
-        <div class="trend-card-layout">
-          <div class="trend-tool-card">
-            <strong>NORMAN SusDat</strong>
-            <span>100k+ substances with formulas, structures, and MS-ready properties for prioritized screening.</span>
-            <a href="https://doi.org/10.1021/acs.est.0c07216" target="_blank" rel="noopener noreferrer">Prest et al., EST 2020</a>
-          </div>
-          <div class="trend-tool-card">
-            <strong>CompTox Dashboard</strong>
-            <span>EPA database — MS-ready masses, retention time predictions, and bioactivity data.</span>
-            <a href="https://comptox.epa.gov/dashboard" target="_blank" rel="noopener noreferrer">EPA CompTox</a>
-          </div>
-          <div class="trend-tool-card">
-            <strong>streamfind Suspect Screening</strong>
-            <span>Built-in operation — match features against suspect lists with configurable tolerance and adducts.</span>
-            <a href="https://streamfind.odea-project.org/" target="_blank" rel="noopener noreferrer">streamfind docs</a>
-          </div>
-          <div class="trend-bottom-note"><strong>Why first:</strong> narrows the search space to relevant compounds, bridging NTS and regulatory requirements with a transparent, auditable path.</div>
-        </div>
-      </section>
-
-       <!-- MARK: Trend — Retention time prediction -->
-      <section class="slide nts-trend-slide" id="trend-rt-prediction-slide">
-        <h2>Retention time prediction adds orthogonal evidence</h2>
-        <div class="trend-content">
-          <img src="../assets/2step_webapp_screenshot.png"
-            alt="Screenshot of the 2-step retention time prediction web application">
-          <div class="trend-summary">
-            <ul>
-              <li><strong>2-step</strong> — graph neural network predicts a Retention Order Index, transferable across columns and setups.</li>
-              <li><strong>RepoRT</strong> — comprehensive repository of small-molecule retention times from hundreds of methods.</li>
-              <li><strong>SIRIUS RT</strong> — integrates RT prediction to rank CSI:FingerID candidates.</li>
-            </ul>
-            <div class="trend-ref">2-step web app · <a href="https://doi.org/10.1038/s41592-026-03243-2" target="_blank" rel="noopener noreferrer">Kretschmer 2026</a> · <a href="https://doi.org/10.1038/s41592-023-02143-z" target="_blank" rel="noopener noreferrer">RepoRT 2024</a></div>
-          </div>
-        </div>
-      </section>
-
-       <!-- MARK: Back in 2022... -->
-      <section class="slide" id="back-in-2022">
-        <h2>Back in 2022...</h2>
+       <!-- MARK: Do you have any questions? -->
+      <section class="slide" id="nts-problem-slide">
+        <h2>Do you have any questions?</h2>
         <div class="slide-body">
           <img class="full-slide-image" src="../assets/streamfind_motivation_lab.png"
-            alt="Back in 2022 image">
+            alt="nts problem image">
         </div>
+        <span class="ai-generated-note">AI-generated illustration</span>
        </section>
 
 
@@ -450,6 +497,7 @@
         <div class="slide-body">
           <img class="full-slide-image" src="../assets/streamfind_plan.png" alt="StreamFind plan image">
         </div>
+        <span class="ai-generated-note">AI-generated illustration</span>
        </section>
 
 
@@ -1507,6 +1555,7 @@ project$run()</code></pre>
              </div>
           </div>
         </div>
+        <span class="ai-generated-note">AI-generated illustration</span>
        </section>
 
 
@@ -1516,6 +1565,7 @@ project$run()</code></pre>
         <div class="slide-body">
           <img class="full-slide-image" src="../assets/r_package_friction_summary.png" alt="StreamFind friction image">
         </div>
+        <span class="ai-generated-note">AI-generated illustration</span>
        </section>
 
 
@@ -2847,6 +2897,7 @@ project$run()</code></pre>
            <img class="full-slide-image" src="../assets/streamfind_confident_technician.png"
              alt="StreamFind confident technician image">
          </div>
+         <span class="ai-generated-note">AI-generated illustration</span>
        </section>
 
        <style>
@@ -2952,6 +3003,7 @@ project$run()</code></pre>
              <li><strong>Stay in one semantic context:</strong> the same ontology, metadata, results, and provenance support every interface.</li>
            </ul>
          </div>
+         <span class="ai-generated-note">AI-generated illustration</span>
        </section>
 
        <!-- MARK: Live deep dive: developer perspective -->
@@ -2966,6 +3018,7 @@ project$run()</code></pre>
              <li><strong>Frontends and clients:</strong> the web GUI, R package, Python API, CLI/scripts, and AI agents use the same backend capabilities.</li>
            </ul>
          </div>
+         <span class="ai-generated-note">AI-generated illustration</span>
        </section>
 
 

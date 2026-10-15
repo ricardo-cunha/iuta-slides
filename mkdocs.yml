@@ -1,8 +1,6 @@
 site_name: IUTA Slides
-site_description: Presentations and seminar slide decks
+site_description: Reusable IUTA Reveal.js template
 site_url: https://ricardo-cunha.github.io/iuta-slides/
-repo_url: https://github.com/ricardo-cunha/iuta-slides
-repo_name: ricardo-cunha/iuta-slides
 use_directory_urls: false
 strict: true
 theme:
