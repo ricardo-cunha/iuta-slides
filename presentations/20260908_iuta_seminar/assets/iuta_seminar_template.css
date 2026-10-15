@@ -416,6 +416,22 @@ Same branded treatment as slides.html.
    width: 8.6817%;
 }
 
+#title-slide .title-funding-note {
+   bottom: 5%;
+   color: #000000;
+   font-size: .5em;
+   line-height: 1.2;
+   position: absolute;
+   right: 4.5%;
+   text-align: center;
+   width: 24%;
+}
+
+#title-slide .title-logo.ude,
+#title-slide .title-logo.jrf {
+   bottom: 10%;
+}
+
 .thank-you-slide {
    align-items: center;
    background-color: transparent;

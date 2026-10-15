@@ -1383,6 +1383,7 @@ function ensureTitleSlide(meta) {
     '<div class="iuta-title-logo-ude" aria-hidden="true"></div>',
     '<div class="iuta-title-logo-jrf" aria-hidden="true"></div>',
     '<div class="iuta-title-logo-iuta" aria-hidden="true"></div>',
+    '<div class="iuta-title-funding-note">Die Institute der JRF werden vom<br>Land NRW institutionell gefördert</div>',
     '<div class="iuta-title-date">' + escapeHtml(meta.date || "") + '</div>',
     '<div class="iuta-title-event">' + escapeHtml(meta.event || "") + '</div>',
     names ? '<div class="iuta-title-speakers">' + names + '</div>' : '',
@@ -1513,13 +1514,13 @@ Reveal.initialize({
 .reveal #title-slide .iuta-title-logo-ude {
   background-image: var(--iuta-title-logo-ude-image);
   background-position: center; background-repeat: no-repeat; background-size: contain;
-  bottom: 2.5714%; height: 15.4286%; position: absolute;
+  bottom: 10%; height: 15.4286%; position: absolute;
   right: 17.0418%; width: 8.6817%;
 }
 .reveal #title-slide .iuta-title-logo-jrf {
   background-image: var(--iuta-title-logo-jrf-image);
   background-position: center; background-repeat: no-repeat; background-size: contain;
-  bottom: 1.4286%; height: 15.4286%; position: absolute;
+  bottom: 10%; height: 15.4286%; position: absolute;
   right: 7.3955%; width: 8.6817%;
 }
 .reveal #title-slide .iuta-title-logo-iuta {
@@ -1527,6 +1528,10 @@ Reveal.initialize({
   background-position: left top; background-repeat: no-repeat; background-size: contain;
   height: 13.7143%; left: 4.3408%; position: absolute;
   top: 4.5714%; width: 17.2026%;
+}
+.reveal #title-slide .iuta-title-funding-note {
+  bottom: 5%; color: #000000; font-size: 0.5em; line-height: 1.2;
+  position: absolute; right: 4.5%; text-align: center; width: 24%; z-index: 1;
 }
 .reveal .slides section.slide.iuta-thank-you-slide {
   align-items: center; background-image:
