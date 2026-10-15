@@ -347,6 +347,7 @@ Same branded treatment as slides.html.
 
 #title-slide .title-date,
 #title-slide .title-event,
+#title-slide .title-location,
 #title-slide .title-speakers,
 #title-slide .title-affiliations {
    left: 4.34%;
@@ -356,7 +357,7 @@ Same branded treatment as slides.html.
 #title-slide .title-date {
    color: #fff;
    font-size: .62em;
-   top: 28.3%;
+   top: 26%;
 }
 
 #title-slide .title-event {
@@ -364,6 +365,13 @@ Same branded treatment as slides.html.
    font-size: .66em;
    font-weight: 700;
    text-transform: uppercase;
+   top: 29.2%;
+}
+
+#title-slide .title-location {
+   color: #fff;
+   font-size: .58em;
+   font-weight: 600;
    top: 32.3%;
 }
 

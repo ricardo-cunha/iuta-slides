@@ -12,6 +12,7 @@
   <meta name="presentation-title" content="Non-target screening with streamfind">
   <meta name="presentation-date" content="2026-10-22">
   <meta name="presentation-event" content="Wetsus Exchange">
+  <meta name="presentation-location" content="Leeuwarden, Netherlands">
   <meta name="presentation-affiliation"
     content="Institut fur Umwelt &amp; Energie, Technik &amp; Analytik e. V. (IUTA)">
   <meta name="presentation-thank-you" content="Thank you for your attention">
@@ -40,6 +41,7 @@
         <h1 class="title"></h1>
         <div class="title-date"></div>
         <div class="title-event"></div>
+        <div class="title-location"></div>
         <div class="title-speakers"></div>
         <div class="title-affiliations"></div>
         <div class="title-logo iuta" aria-hidden="true"></div>
@@ -76,6 +78,42 @@
              alt="LC-HRMS/MS data with chromatographic retention time, mass spectra, a selected ion trace and MS/MS fragmentation spectrum, leading to unknown chemical identification and comparative analysis with volcano plots, PCA and trend analysis">
          </div>
          <span class="ai-generated-note">AI-generated illustration</span>
+       </section>
+
+       <!-- MARK: Sample preparation and representative blank -->
+       <section class="slide" id="nts-sample-preparation-slide">
+         <h2>The method defines the detectable chemical domain</h2>
+         <div class="slide-body">
+           <div class="columns" style="--column-count: 2; grid-template-columns: 1.25fr 1fr; gap: 1.1em; align-items: center;">
+             <div style="justify-content: center;">
+               <img src="../assets/norman_nts_compound_domain_fig2.png"
+                 alt="Venn-style diagram showing the detectable chemical domain as the overlap of compounds that can be extracted or enriched, separated by chromatography, and ionized; all are bounded by the compounds present in the sample"
+                 style="width: 100%; max-height: 64vh; object-fit: contain;">
+               <p style="margin: 0; font-size: .42em; line-height: 1.25; text-align: center; color: #667783;">
+                 Hollender et al. (2023), Fig. 2, “NORMAN guidance on suspect and non-target screening in environmental monitoring,” <em>Environmental Sciences Europe</em>. CC BY 4.0.
+                 <a href="https://link.springer.com/article/10.1186/s12302-023-00779-4" target="_blank" rel="noopener noreferrer">Publication</a> ·
+                 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">License</a>.
+               </p>
+             </div>
+             <div style="justify-content: center; gap: .75em;">
+               <h3 style="margin: 0; color: #004c93;">Design preparation around the question</h3>
+               <p style="margin: 0; font-size: .68em; line-height: 1.35; color: #344957;">
+                 The method’s chemical domain is not known in advance: it is the overlap of extraction, chromatography and ionisation. Characterise that domain with representative reference compounds.
+               </p>
+               <div style="border-left: 5px solid #1689c9; padding: .45em .7em; background: #edf6fb;">
+                 <strong style="font-size: .66em; color: #145b8c;">Generic NTS preparation</strong>
+                 <p style="margin: .18em 0 0; font-size: .58em; line-height: 1.3; color: #465b68;">Favor broad coverage and limited processing to minimise losses. For water, use direct injection when sensitivity allows; enrich by SPE when needed. Extract solids with broad solvent mixtures.</p>
+               </div>
+               <div style="border-left: 5px solid #b96b52; padding: .45em .7em; background: #fbf3ef;">
+                 <strong style="font-size: .66em; color: #8d4936;">Add selective cleanup only when needed</strong>
+                 <p style="margin: .18em 0 0; font-size: .58em; line-height: 1.3; color: #465b68;">It can reduce interferences and improve sensitivity, but may narrow the compound domain or lose analytes. Check suitability with representative standards for priority chemical groups.</p>
+               </div>
+               <p style="margin: 0; font-size: .57em; line-height: 1.35; color: #344957;">
+                 <strong>Quality checks:</strong> field, laboratory and procedural blanks reveal contamination; reference compounds and spiked-matrix samples test method coverage and performance.
+               </p>
+             </div>
+           </div>
+         </div>
        </section>
 
        <!-- MARK: Chromatographic coverage for NTS -->
@@ -3124,6 +3162,7 @@ project$run()</code></pre>
       author: metadata('author'),
       date: metadata('presentation-date'),
       event: metadata('presentation-event'),
+      location: metadata('presentation-location'),
       affiliation: metadata('presentation-affiliation'),
       footer: [metadata('author'), metadata('author-email')].filter(Boolean).join(' | '),
       thankYou: metadata('presentation-thank-you'),
@@ -3135,6 +3174,7 @@ project$run()</code></pre>
     document.querySelector('#title-slide .title').textContent = presentationMetadata.title;
     document.querySelector('#title-slide .title-date').textContent = presentationMetadata.date;
     document.querySelector('#title-slide .title-event').textContent = presentationMetadata.event;
+    document.querySelector('#title-slide .title-location').textContent = presentationMetadata.location;
     document.querySelector('#title-slide .title-speakers').textContent = presentationMetadata.author;
     document.querySelector('#title-slide .title-affiliations').textContent = presentationMetadata.affiliation;
     document.querySelector('.thank-you-slide h2').textContent = presentationMetadata.thankYou;

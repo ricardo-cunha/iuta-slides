@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="author" content="Ricardo Cunha">
+<meta name="presentation-event" content="FA Seminar">
+<meta name="presentation-location" content="Duisburg, Germany">
 <title>From LLM to Agent: Setting Up and Using Local Models</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -48,6 +50,7 @@ ul.task-list li input[type="checkbox"] {
   --iuta-title-font-size: 1.42em;
   --iuta-title-date-font-size: 0.62em;
   --iuta-title-event-font-size: 0.66em;
+  --iuta-title-location-font-size: 0.58em;
   --iuta-title-speakers-font-size: 1.02em;
   --iuta-title-affiliations-font-size: 0.48em;
   --iuta-thank-you-message-top: 41.94%;
@@ -646,9 +649,6 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
   <p class="date"></p>
-  <div id="iuta-meta" hidden aria-hidden="true">
-    <span class="iuta-meta-event">FA Seminar</span>
-  </div>
 </section>
 
 <section class="slide level2 llm-slide">
@@ -1236,6 +1236,11 @@ function readAuthors(titleSlide) {
   });
 }
 
+function readMetaTag(name) {
+  const node = document.querySelector('meta[name="' + name + '"]');
+  return node ? (node.content || "").trim() : "";
+}
+
 function readMeta() {
   const titleSlide = document.getElementById("title-slide");
   const authors = titleSlide ? readAuthors(titleSlide) : [];
@@ -1244,7 +1249,8 @@ function readMeta() {
     title: titleSlide ? textContent("h1.title", titleSlide) : textContent("title"),
     subtitle: titleSlide ? textContent("p.subtitle", titleSlide) : "",
     date: titleSlide ? textContent("p.date", titleSlide) : textContent('meta[name="dcterms.date"]'),
-    event: readBridgeContent("#iuta-meta .iuta-meta-event"),
+    event: readMetaTag("presentation-event"),
+    location: readMetaTag("presentation-location"),
     footerName: readBridgeContent("#iuta-meta .iuta-meta-footer-name") || firstAuthor.name || "",
     footerEmail: readBridgeContent("#iuta-meta .iuta-meta-footer-email") || firstAuthor.email || "",
     affiliations: authors.reduce(function (result, author) {
@@ -1386,6 +1392,7 @@ function ensureTitleSlide(meta) {
     '<div class="iuta-title-funding-note">Die Institute der JRF werden vom<br>Land NRW institutionell gefördert</div>',
     '<div class="iuta-title-date">' + escapeHtml(meta.date || "") + '</div>',
     '<div class="iuta-title-event">' + escapeHtml(meta.event || "") + '</div>',
+    '<div class="iuta-title-location">' + escapeHtml(meta.location || "") + '</div>',
     names ? '<div class="iuta-title-speakers">' + names + '</div>' : '',
     affiliations ? '<div class="iuta-title-affiliations">' + affiliations + '</div>' : ''
   ].join("");
@@ -1503,8 +1510,9 @@ Reveal.initialize({
 .reveal #title-slide > * { position: relative; z-index: 1; }
 .reveal #title-slide .quarto-title-authors, .reveal #title-slide .date { display: none; }
 .reveal #title-slide .title { color: #ffffff; font-size: var(--iuta-title-font-size); left: var(--iuta-title-side-inset); line-height: 1.08; margin: 0; position: absolute; right: var(--iuta-title-side-inset); top: var(--iuta-title-heading-top); }
-.reveal #title-slide .iuta-title-date { color: #ffffff; font-size: var(--iuta-title-date-font-size); left: var(--iuta-title-side-inset); position: absolute; top: 28.2857%; }
-.reveal #title-slide .iuta-title-event { color: #ffffff; font-size: var(--iuta-title-event-font-size); font-weight: 700; left: var(--iuta-title-side-inset); letter-spacing: 0.02em; position: absolute; text-transform: uppercase; top: 32.2857%; }
+.reveal #title-slide .iuta-title-date { color: #ffffff; font-size: var(--iuta-title-date-font-size); left: var(--iuta-title-side-inset); position: absolute; top: 26%; }
+.reveal #title-slide .iuta-title-event { color: #ffffff; font-size: var(--iuta-title-event-font-size); font-weight: 700; left: var(--iuta-title-side-inset); letter-spacing: 0.02em; position: absolute; text-transform: uppercase; top: 29.2%; }
+.reveal #title-slide .iuta-title-location { color: #ffffff; font-size: var(--iuta-title-location-font-size); font-weight: 600; left: var(--iuta-title-side-inset); position: absolute; top: 32.3%; }
 .reveal #title-slide .iuta-title-speakers { color: #7b7b7b; font-size: var(--iuta-title-speakers-font-size); left: var(--iuta-title-side-inset); position: absolute; right: var(--iuta-title-content-right); top: 63.7143%; }
 .reveal #title-slide .iuta-title-speaker { display: inline; }
 .reveal #title-slide .iuta-title-affiliations { color: var(--iuta-blue); font-size: var(--iuta-title-affiliations-font-size); left: var(--iuta-title-side-inset); line-height: 1.3; position: absolute; right: var(--iuta-title-content-right); top: 72%; }
