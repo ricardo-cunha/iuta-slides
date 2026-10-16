@@ -2972,6 +2972,7 @@ project$run()</code></pre>
            color: #176f83;
          }
 
+
          @media (max-width: 800px) {
            .deep-dive-framework-slide .deep-dive-framework-content {
              flex-direction: column;
@@ -3030,32 +3031,17 @@ project$run()</code></pre>
         }
       </style>
 
-       <!-- MARK: Live deep dive: user perspective -->
-       <section class="slide deep-dive-framework-slide" id="deep-dive-user-perspective-slide">
-         <h2>Live deep dive: non-target screening with <strong>streamfind</strong></h2>
-         <div class="deep-dive-framework-content">
-           <img src="../assets/cogniflow_refactoring_plan.png"
-             alt="streamfind framework connecting the ontology, backend framework, MCP server, and user interfaces">
-           <ul class="deep-dive-framework-summary">
-             <li><strong>As a user, choose your way in:</strong> web GUI, R package, Python API, CLI/scripts, or an AI agent.</li>
-             <li><strong>Explore and run:</strong> query data, execute workflows, analyze results, and generate reports.</li>
-             <li><strong>Stay in one semantic context:</strong> the same ontology, metadata, results, and provenance support every interface.</li>
-           </ul>
-         </div>
-         <span class="ai-generated-note">AI-generated illustration</span>
-       </section>
-
-       <!-- MARK: Live deep dive: developer perspective -->
-       <section class="slide deep-dive-framework-slide" id="deep-dive-developer-perspective-slide">
-         <h2>Live deep dive: the developer perspective</h2>
-         <div class="deep-dive-framework-content">
-           <img src="../assets/cogniflow_refactoring_plan.png"
-             alt="streamfind developer architecture showing the Python backend framework, MCP server, ontology, and frontends">
-           <ul class="deep-dive-framework-summary">
-             <li><strong>Backend:</strong> a Python framework combines DuckDB storage, workflow execution, processing methods, caching, and provenance.</li>
-             <li><strong>MCP server:</strong> a standardized interface exposes ontology-aware discovery, execution, results, and metadata.</li>
-             <li><strong>Frontends and clients:</strong> the web GUI, R package, Python API, CLI/scripts, and AI agents use the same backend capabilities.</li>
-           </ul>
+       <!-- MARK: streamfind architecture -->
+       <style>
+         #streamfind-architecture-slide .full-slide-image {
+           top: -5.5%;
+         }
+       </style>
+       <section class="slide full-image-slide" id="streamfind-architecture-slide">
+         <h2>streamfind architecture</h2>
+         <div class="slide-body">
+           <img class="full-slide-image" src="../assets/streamfind_architecture.png"
+             alt="streamfind technical stack and service architecture, from backend components through interfaces to applications">
          </div>
          <span class="ai-generated-note">AI-generated illustration</span>
        </section>

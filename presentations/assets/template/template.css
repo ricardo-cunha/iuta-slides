@@ -88,6 +88,7 @@ code {
    display: grid;
    font-size: .75em;
    grid-template-columns: 1fr auto auto;
+   column-gap: 1.2em;
    left: var(--side-gap);
    position: absolute;
    right: var(--side-gap);
